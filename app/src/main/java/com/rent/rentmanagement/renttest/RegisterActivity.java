@@ -28,12 +28,16 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 URL url=new URL(params[0]);
                 HttpURLConnection connection=(HttpURLConnection)url.openConnection();
-                connection.connect();
                 connection.addRequestProperty("Accept","application/json");
                 connection.addRequestProperty("Content-Type","application/json");
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.connect();
+
                 DataOutputStream outputStream=new DataOutputStream(connection.getOutputStream());
                 outputStream.writeBytes(params[1]);
-                //String resp=connection.getResponseMessage();
+                int resp=connection.getResponseCode();
+                Log.i("resp",String.valueOf(resp));
                 outputStream.flush();
                 outputStream.close();
             } catch (MalformedURLException e) {
@@ -60,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
             userDetails.put("password", password.getText().toString());
             RegisterTask task=new RegisterTask();
             Log.i("data:",userDetails.toString());
-            task.execute("URL",userDetails.toString());
+            task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signup",userDetails.toString());
         }catch(Exception e)
         {
             Log.i("err",e.getMessage());
