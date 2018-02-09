@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:gravity="center_vertical|center_horizontal"
             android:id="@+id/userNameInput"
             android:hint="Username"
             android:fontFamily="serif" />
@@ -33,7 +32,6 @@
             android:inputType="textPassword"
             android:ems="10"
             android:hint="Password"
-            android:gravity="center_horizontal|c"
             android:layout_marginTop="30dp"
             android:id="@+id/passwordInput" />
 
