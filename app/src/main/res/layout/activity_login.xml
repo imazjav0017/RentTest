@@ -22,12 +22,8 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-<<<<<<< HEAD
-=======
-           
->>>>>>> 402e403a60ca7e2704dc0fecaa5828c5018d637e
             android:id="@+id/userNameInput"
-            android:hint="Username"
+            android:hint="Email"
             android:fontFamily="serif" />
 
         <EditText
@@ -36,10 +32,6 @@
             android:inputType="textPassword"
             android:ems="10"
             android:hint="Password"
-<<<<<<< HEAD
-=======
-            
->>>>>>> 402e403a60ca7e2704dc0fecaa5828c5018d637e
             android:layout_marginTop="30dp"
             android:id="@+id/passwordInput" />
 
