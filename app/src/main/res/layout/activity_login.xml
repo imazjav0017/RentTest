@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rent.rentmanagement.renttest.LoginActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear1"
+        android:padding="20dp"
+        android:layout_marginTop="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:gravity="center_vertical|center_horizontal"
+            android:id="@+id/userNameInput"
+            android:hint="Username"
+            android:fontFamily="serif" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:hint="Password"
+            android:gravity="center_horizontal|c"
+            android:layout_marginTop="30dp"
+            android:id="@+id/passwordInput" />
+
+            <Button
+                android:text="Login"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginButton"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:elevation="10dp"
+                android:onClick="login"
+                android:textAllCaps="false"
+                android:fontFamily="cursive" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            android:textColor="#000"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:text="Register"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:elevation="10dp"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:layout_weight="1"
+            android:onClick="Register"
+           android:textStyle="bold"
+            android:fontFamily="cursive" />
+    </LinearLayout>
+</RelativeLayout>
