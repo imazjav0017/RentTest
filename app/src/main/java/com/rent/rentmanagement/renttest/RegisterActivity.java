@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +25,10 @@ public class RegisterActivity extends AppCompatActivity {
 
     public class RegisterTask extends AsyncTask<String,Void,String>
     {
+        public void enableButton()
+        {
+            register.setClickable(true);
+        }
         @Override
         protected String doInBackground(String... params) {
             try {
@@ -38,12 +44,18 @@ public class RegisterActivity extends AppCompatActivity {
                 outputStream.writeBytes(params[1]);
                 int resp=connection.getResponseCode();
                 Log.i("resp",String.valueOf(resp));
+                if(resp==200)
+                    onBackPressed();
+                else {
+                    enableButton();
+                    Toast.makeText(RegisterActivity.this, "Invalid", Toast.LENGTH_SHORT).show();
+                }
                 outputStream.flush();
                 outputStream.close();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
-                e.printStackTrace();
+                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
             return null;
@@ -74,7 +86,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent i=new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(i);
         finish();
     }
 
