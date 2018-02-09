@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
             userDetails.put("password", password.getText().toString());
             RegisterTask task=new RegisterTask();
             Log.i("data:",userDetails.toString());
-            task.execute("URL",userDetails.toString());
+            task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signup",userDetails.toString());
         }catch(Exception e)
         {
             Log.i("err",e.getMessage());
