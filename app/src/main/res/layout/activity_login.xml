@@ -23,7 +23,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/userNameInput"
-            android:hint="Email"
+            android:hint="Username"
             android:fontFamily="serif" />
 
         <EditText
