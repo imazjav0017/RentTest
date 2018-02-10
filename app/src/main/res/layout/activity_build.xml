@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rent.rentmanagement.renttest.BuildActivity">
+    <include
+        layout="@layout/actionbarlayout"/>
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.rent.rentmanagement.renttest.BuildActivity">
+   >
+
+
 
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_marginTop="80sp"
        android:orientation="vertical"
+       android:background="@drawable/squarebg"
        >
 
         <TextView
            android:id="@+id/buildingname"
-            android:layout_width="140dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="Building Name:"
             android:textSize="18dp"
@@ -27,42 +36,60 @@
         <TextView
             android:id="@+id/ownername"
             android:layout_marginTop="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:padding="5dp"
             android:text="Owner Name:"
             android:textColor="#000000"
             android:textSize="18sp" />
    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/roomdetail"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="No. of rooms available:"
-        android:layout_gravity="end"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        android:layout_marginTop="25sp"/>
+        android:orientation="horizontal">
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:contentDescription="No of Rooms"
+            android:layout_height="50dp"
+            android:id="@+id/spinner"
+            ></Spinner>
+
+        <EditText
+            android:id="@+id/roomdetailInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="No Of Rooms"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
 
     <EditText
+        android:id="@+id/rentInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-
+        android:hint="Rent"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:textStyle="italic"
         />
-
     <Button
+        android:layout_marginTop="15dp"
+        android:onClick="saveRooms"
         android:layout_width="wrap_content"
+        android:padding="10dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:fontFamily="cursive"
-        android:background="@drawable/round_bg"
-        android:id="@+id/addrooms"
+        android:id="@+id/addroomsButton"
+        android:textSize="18sp"
+        android:background="#172ea4"
+        android:textColor="#fff"
         android:text="Add Rooms" />
 
 
 
 </LinearLayout>
+</RelativeLayout>

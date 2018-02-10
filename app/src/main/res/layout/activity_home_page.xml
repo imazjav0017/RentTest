@@ -4,22 +4,25 @@
     android:id="@+id/activity_home_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.rent.rentmanagement.renttest.HomePageActivity">
-
+    <include
+        layout="@layout/actionbarlayout"/>
     <TextView
         android:padding="10sp"
         android:text="please add Rooms,\nBy Clicking\non Building Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="addRoom"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal|center_vertical"
         android:id="@+id/addBuildingText"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="30sp"
         android:fontFamily="cursive"
         android:background="@drawable/squarebg" />
+
+
+
+
 </RelativeLayout>
