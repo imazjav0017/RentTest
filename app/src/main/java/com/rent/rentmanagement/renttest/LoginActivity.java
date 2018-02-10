@@ -15,6 +15,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,6 +27,28 @@ public class LoginActivity extends AppCompatActivity {
     EditText emailInput,passwordInput;
     Button loginButton;
     public static SharedPreferences sharedPreferences;
+    public String getResponse(HttpURLConnection connection)
+    {
+        try {
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            connection.getInputStream()));
+            StringBuffer sb = new StringBuffer("");
+            String line = "";
+
+            while ((line = in.readLine()) != null) {
+
+                sb.append(line);
+                break;
+            }
+
+            in.close();
+            return sb.toString();
+        }catch(Exception e)
+        {
+            return e.getMessage();
+        }
+    }
     public void gotoHome()
     {
 
@@ -55,16 +78,21 @@ public class LoginActivity extends AppCompatActivity {
                 int resp=connection.getResponseCode();
                 if(resp!=200) {
                     enableButton();
-
+                    String response=getResponse(connection);
+                    Log.i("resp",String.valueOf(resp));
+                    return response;
                 }
                 else
                 {
                     sharedPreferences.edit().putBoolean("isLoggedIn",true).apply();
+                   String response=getResponse(connection);
+                    Log.i("resp",String.valueOf(resp));
+                    outputStream.flush();
+                    outputStream.close();
                     gotoHome();
+                    return response;
                 }
-                Log.i("resp",String.valueOf(resp));
-                outputStream.flush();
-                outputStream.close();
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -75,8 +103,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(String response) {
+          Log.i("response",response);
 
         }
     }
