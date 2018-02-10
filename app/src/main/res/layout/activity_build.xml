@@ -7,84 +7,65 @@
     android:orientation="vertical"
     tools:context="com.rent.rentmanagement.renttest.BuildActivity">
 
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="80sp"
+       android:orientation="vertical"
+       >
 
-    <LinearLayout
-        android:layout_marginTop="80dp"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@drawable/round_bg"
-        >
         <TextView
+           android:id="@+id/buildingname"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:padding="5dp"
-            android:text="Building Name:"
+            android:text="@string/building_name"
             android:textSize="18dp"
             android:textColor="#000000"
             android:layout_marginLeft="5dp"
             />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/l2"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        android:background="@drawable/round_bg">
-
         <TextView
+            android:id="@+id/ownername"
+            android:layout_marginTop="20sp"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginLeft="5dp"
             android:padding="5dp"
             android:text="Owner Name:"
-
             android:textColor="#000000"
             android:textSize="18sp" />
+   </LinearLayout>
 
 
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"></Spinner>
-
-
-        <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-            android:layout_weight="1"
-        android:layout_gravity="end">
     <TextView
+        android:id="@+id/roomdetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="No. of rooms available:"
         android:layout_gravity="end"
+        android:textSize="18sp"
+        android:textStyle="italic"
         android:layout_marginTop="25sp"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+
         />
+<<<<<<< HEAD
+=======
+
+>>>>>>> ef27f94a489538f24c0ea68ce1ccf78805cca843
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="0sp"
+        android:fontFamily="cursive"
+        android:background="@drawable/round_bg"
+        android:id="@+id/addrooms"
         android:text="Add Rooms" />
-    </LinearLayout>
-    </LinearLayout>
+
 
 
 </LinearLayout>
