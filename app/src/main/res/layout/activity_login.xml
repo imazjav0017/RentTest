@@ -24,6 +24,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/emailInput"
+            android:drawableLeft="@drawable/ic_action_username"
             android:hint="Email"
             android:fontFamily="serif" />
 
@@ -31,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_action_pass"
             android:ems="10"
             android:hint="Password"
             android:layout_marginTop="30dp"
