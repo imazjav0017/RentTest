@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".HomePageActivity" />
-        <activity android:name=".BuildActivity"></activity>
+        <activity android:name=".BuildActivity" />
+        <activity android:name=".roomActivity"></activity>
     </application>
 
 </manifest>

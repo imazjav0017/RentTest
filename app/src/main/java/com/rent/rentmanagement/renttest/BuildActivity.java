@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,8 @@ public class BuildActivity extends AppCompatActivity {
         addRoomsbutton.setClickable(false);
         rooms=roomNo.getText().toString();
         rentAmount=rentInput.getText().toString();
-        if (accessToken == null || rentInput.equals("") || rooms.equals("")||roomType==null) {
+        if (accessToken == null || rentInput.equals("") || rooms.equals("")||roomType==null)
+        {
             Toast.makeText(this, "Missing Fields", Toast.LENGTH_SHORT).show();
             addRoomsbutton.setClickable(true);
         }
@@ -167,7 +169,19 @@ public class BuildActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
         });
+
+         Button roc =(Button)findViewById(R.id.finish);
+        roc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(BuildActivity.this,roomActivity.class);
+                startActivity(i);
+            }
+        });
+
 
     }
 }
