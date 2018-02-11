@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,9 @@ import java.net.URL;
 public class LoginActivity extends AppCompatActivity {
     EditText emailInput,passwordInput;
     Button loginButton;
+    String accessToken=null;
+    int resp;
+    JSONObject tokenJson;
     public static SharedPreferences sharedPreferences;
     public String getResponse(HttpURLConnection connection)
     {
@@ -47,6 +51,16 @@ public class LoginActivity extends AppCompatActivity {
         }catch(Exception e)
         {
             return e.getMessage();
+        }
+    }
+    public void setToken(String token)
+    {
+        try {
+            tokenJson=new JSONObject(token);
+            accessToken=tokenJson.getString("token");
+            sharedPreferences.edit().putString("token",accessToken).apply();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
     public void gotoHome()
@@ -75,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                 DataOutputStream outputStream=new DataOutputStream(connection.getOutputStream());
                 outputStream.writeBytes(params[1]);
                 Log.i("data",params[1]);
-                int resp=connection.getResponseCode();
+                 resp=connection.getResponseCode();
                 if(resp!=200) {
                     enableButton();
                     String response=getResponse(connection);
@@ -87,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                     sharedPreferences.edit().putBoolean("isLoggedIn",true).apply();
                    String response=getResponse(connection);
                     Log.i("resp",String.valueOf(resp));
+                    setToken(response);
                     outputStream.flush();
                     outputStream.close();
                     gotoHome();
@@ -106,8 +121,10 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String response) {
           Log.i("response",response);
 
+
         }
     }
+
     public void login(View v)  {
         loginButton.setClickable(false);
         JSONObject loginDetails=new JSONObject();
@@ -144,6 +161,9 @@ public class LoginActivity extends AppCompatActivity {
             gotoHome();
         }
         setContentView(R.layout.activity_login);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Login");
         emailInput=(EditText)findViewById(R.id.emailInput);
         passwordInput=(EditText)findViewById(R.id.passwordInput);
         loginButton=(Button)findViewById(R.id.loginButton);
