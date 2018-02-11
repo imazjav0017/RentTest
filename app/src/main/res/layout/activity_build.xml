@@ -59,6 +59,7 @@
         <EditText
             android:id="@+id/roomdetailInput"
             android:layout_width="wrap_content"
+            android:inputType="number"
             android:layout_height="wrap_content"
             android:hint="No Of Rooms"
             android:textSize="18sp"
@@ -73,6 +74,7 @@
         android:layout_height="wrap_content"
         android:hint="Rent"
         android:textSize="18sp"
+        android:inputType="number"
         android:layout_gravity="center"
         android:textStyle="italic"
 
@@ -93,39 +95,15 @@
         android:text="Add Rooms" />
 
     <TextView
-        android:id="@+id/totalrooms"
-        android:layout_width="wrap_content"
+        android:id="@+id/description"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/totalRooms"
+        android:text=""
         android:textSize="18sp"
-        android:layout_marginTop="15sp"
-        android:textColor="@color/colorAccent"/>
+        android:layout_marginTop="20dp"
+        android:textColor="#610321"/>
 
-    <TextView
-        android:id="@+id/expectedincome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/expected_income"
-        android:textSize="18sp"
-        android:textColor="@color/colorAccent"
-        android:layout_marginTop="15sp"
-       />
-    <TextView
-        android:id="@+id/totalstudents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/total_number_of_students"
-        android:textSize="18sp"
-        android:layout_marginTop="15sp"
-        android:textColor="@color/colorAccent"/>
-    <TextView
-        android:id="@+id/exactstudents"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exact_number_of_students"
-        android:textSize="18sp"
-        android:layout_marginTop="15sp"
-        android:textColor="@color/colorAccent"/>
+
 
 
 
