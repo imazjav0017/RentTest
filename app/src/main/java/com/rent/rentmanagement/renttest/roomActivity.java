@@ -3,6 +3,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,7 +20,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
-=======
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,12 +30,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class roomActivity extends AppCompatActivity {
-    ArrayList<String>rooms;
-    ArrayAdapter adapter;
+    ArrayList<RoomModel>rooms;
+    CustomAdapter adapter;
     String response="";
+    ListView listView;
     public void setTokenJson()
     {
         try {
@@ -125,15 +128,30 @@ public class roomActivity extends AppCompatActivity {
         }
     }
     public void setData(String s) throws JSONException {
+        rooms.clear();
         JSONObject jsonObject=new JSONObject(s);
         JSONArray array=jsonObject.getJSONArray("room");
-        for(int i=0;i<array.length();i++)
+        if(array.length()==0)
         {
-            JSONObject detail=array.getJSONObject(i);
-           rooms.add(detail.getString("roomType")+" "+detail.getString("roomNo")+ " "+detail.getString("roomRent"));
-            adapter.notifyDataSetChanged();
+
         }
-        Log.i("size",String.valueOf(rooms.size()));
+        else {
+            for (int i = 0; i < array.length(); i++) {
+                JSONObject detail = array.getJSONObject(i);
+                // rooms.add(detail.getString("roomType")+" "+detail.getString("roomNo")+ " "+detail.getString("roomRent"));
+                rooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                        detail.getString("roomRent"), detail.getString("_id")));
+                adapter.notifyDataSetChanged();
+            }
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    RoomModel model=rooms.get(position);
+                    Log.i("id",model.get_id());
+                }
+            });
+        }
+
 
 
     }
@@ -153,20 +171,17 @@ public class roomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
-        ListView listView=(ListView)findViewById(R.id.roomdetailsList);
+        listView=(ListView)findViewById(R.id.roomdetailsList);
         rooms=new ArrayList<>();
-        adapter=new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,rooms);
+        adapter=new CustomAdapter(getApplicationContext(),R.layout.customlist_item,rooms);
         listView.setAdapter(adapter);
         setTokenJson();
-
-
-
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
        Button logout=(Button)findViewById(R.id.logout);
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);
-        setTitle("Building Name");
+        setTitle("Rooms");
 
     }
 }

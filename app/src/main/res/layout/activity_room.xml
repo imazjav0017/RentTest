@@ -8,6 +8,7 @@
     <include
         layout="@layout/actionbarlayout"/>
    <ListView
+       android:layout_marginTop="65dp"
        android:layout_width="match_parent"
        android:id="@+id/roomdetailsList"
        android:layout_height="wrap_content">

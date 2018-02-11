@@ -20,7 +20,7 @@
             android:onClick="logout"
             android:background="#0a24b7"
             android:id="@+id/logout"
-            android:visibility="visible"
+            android:visibility="invisible"
             android:clickable="false"
             android:layout_gravity="right"
             android:elevation="7dp"
