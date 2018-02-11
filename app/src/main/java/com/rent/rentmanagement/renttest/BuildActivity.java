@@ -113,12 +113,9 @@ public class BuildActivity extends AppCompatActivity {
         if(s.equals("200"))
         {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-            TextView textView1= (TextView)findViewById(R.id.totalrooms);
-            String a="Total Rooms:               Rs."+rooms;
-            String b="Expected Income:         Rs."+ rentAmount;
-            textView1.setText(a);
-            TextView textView2= (TextView)findViewById(R.id.expectedincome);
-            textView2.setText(b);
+            TextView description= (TextView)findViewById(R.id.description);
+            int income=Integer.parseInt(rooms)*Integer.parseInt(rentAmount);
+            description.setText("No Of Rooms: "+rooms+"\nExpected Income: "+String.valueOf(income));
 
         }
         else
