@@ -169,8 +169,8 @@ public class BuildActivity extends AppCompatActivity {
 
         });
 
-         Button roc =(Button)findViewById(R.id.finish);
-        roc.setOnClickListener(new View.OnClickListener() {
+         Button finis =(Button)findViewById(R.id.finish);
+        finis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
