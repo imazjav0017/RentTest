@@ -14,7 +14,7 @@
         android:padding="5dp"
         android:textStyle="italic"
         android:layout_weight="1"
-        android:fontFamily=""
+        android:fontFamily="casual"
 
         />
     <TextView
