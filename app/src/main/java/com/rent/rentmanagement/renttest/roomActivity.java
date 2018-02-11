@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest;
 
+<<<<<<< HEAD
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,6 +21,17 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+=======
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+>>>>>>> 948f4df92e57249e5b30c00d2755264c467e5dab
 
 public class roomActivity extends AppCompatActivity {
     ArrayList<String>rooms;
@@ -128,10 +140,21 @@ public class roomActivity extends AppCompatActivity {
 
     }
 
+
+    public void logout(View v)
+    {
+        LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
+        Log.i("status","Logging out");
+        LoginActivity.sharedPreferences.edit().putString("token",null).apply();
+        Intent i=new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(i);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
+<<<<<<< HEAD
         ListView listView=(ListView)findViewById(R.id.roomdetailsList);
         rooms=new ArrayList<>();
         adapter=new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,rooms);
@@ -139,5 +162,13 @@ public class roomActivity extends AppCompatActivity {
         setTokenJson();
 
 
+=======
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+       Button logout=(Button)findViewById(R.id.logout);
+        logout.setClickable(true);
+        logout.setVisibility(View.VISIBLE);
+        setTitle("Building Name");
+>>>>>>> 948f4df92e57249e5b30c00d2755264c467e5dab
     }
 }
