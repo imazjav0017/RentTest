@@ -3,6 +3,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -38,6 +39,16 @@ public class roomActivity extends AppCompatActivity {
     CustomAdapter adapter;
     String response="";
     ListView listView;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
+
     public void setTokenJson()
     {
         try {
@@ -178,6 +189,7 @@ public class roomActivity extends AppCompatActivity {
         setTokenJson();
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
        Button logout=(Button)findViewById(R.id.logout);
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);

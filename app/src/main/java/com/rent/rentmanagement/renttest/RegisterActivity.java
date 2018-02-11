@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,16 @@ import java.net.URL;
 public class RegisterActivity extends AppCompatActivity {
     EditText username,email,password;
     Button register;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
 
     public class RegisterTask extends AsyncTask<String,Void,String>
     {
@@ -99,6 +110,7 @@ public class RegisterActivity extends AppCompatActivity {
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Register");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         username=(EditText)findViewById(R.id.newUsernameInput);
         email=(EditText)findViewById(R.id.emailInput);
         password=(EditText)findViewById(R.id.newPasswordInput);

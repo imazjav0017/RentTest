@@ -36,6 +36,7 @@ public void logout(View v)
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         logout=(Button)findViewById(R.id.logout);
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);

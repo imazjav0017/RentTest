@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,6 +31,16 @@ public class BuildActivity extends AppCompatActivity {
     EditText rentInput,roomNo;
     Button addRoomsbutton;
     String accessToken,rooms=null,rentAmount=null,roomType=null;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home)
+        {
+            onBackPressed();
+            return true;
+        }
+        return false;
+    }
+
     public void logout(View v)
     {
         LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
@@ -145,7 +156,7 @@ public class BuildActivity extends AppCompatActivity {
         logout.setVisibility(View.VISIBLE);
         setTitle("Add Rooms");
         accessToken=LoginActivity.sharedPreferences.getString("token",null);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Spinner spinner =(Spinner)findViewById(R.id.spinner);
         final String[] items={"Room Type","Single","Double","Triple"};
         ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items);
