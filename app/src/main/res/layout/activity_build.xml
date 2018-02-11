@@ -69,13 +69,16 @@
 
     <EditText
         android:id="@+id/rentInput"
-        android:layout_width="wrap_content"
+        android:layout_width="90sp"
         android:layout_height="wrap_content"
         android:hint="Rent"
         android:textSize="18sp"
         android:layout_gravity="center"
         android:textStyle="italic"
+
+
         />
+
     <Button
         android:layout_marginTop="15dp"
         android:onClick="saveRooms"
@@ -88,6 +91,42 @@
         android:background="#172ea4"
         android:textColor="#fff"
         android:text="Add Rooms" />
+
+    <TextView
+        android:id="@+id/totalrooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/totalRooms"
+        android:textSize="18sp"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/expectedincome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/expected_income"
+        android:textSize="18sp"
+        android:textColor="@color/colorAccent"
+        android:layout_marginTop="15sp"
+       />
+    <TextView
+        android:id="@+id/totalstudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_number_of_students"
+        android:textSize="18sp"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/colorAccent"/>
+    <TextView
+        android:id="@+id/exactstudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/exact_number_of_students"
+        android:textSize="18sp"
+        android:layout_marginTop="15sp"
+        android:textColor="@color/colorAccent"/>
+
 
 
 

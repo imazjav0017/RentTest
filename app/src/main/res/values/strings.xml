@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Rent Test</string>
+    <string name="totalRooms">Total Rooms:</string>
+    <string name="expected_income">Expected Income:</string>
+    <string name="total_number_of_students">Total number of students:</string>
+    <string name="exact_number_of_students">Exact number of students</string>
 </resources>

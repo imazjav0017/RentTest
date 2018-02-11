@@ -98,9 +98,12 @@ public class BuildActivity extends AppCompatActivity {
             return null;
         }
 
+
         @Override
         protected void onPostExecute(String s) {
             response(s);
+            Log.i("response",s);
+
         }
     }
     public void response(String s)
@@ -108,7 +111,13 @@ public class BuildActivity extends AppCompatActivity {
         if(s.equals("200"))
         {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-            onBackPressed();
+            TextView textView1= (TextView)findViewById(R.id.totalrooms);
+            String a="Total Rooms:               Rs."+rooms;
+            String b="Expected Income:         Rs."+ rentAmount;
+            textView1.setText(a);
+            TextView textView2= (TextView)findViewById(R.id.expectedincome);
+            textView2.setText(b);
+
         }
         else
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
