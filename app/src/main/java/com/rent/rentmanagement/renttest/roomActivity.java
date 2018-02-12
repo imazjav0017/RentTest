@@ -142,6 +142,7 @@ public class roomActivity extends AppCompatActivity {
         rooms.clear();
         JSONObject jsonObject=new JSONObject(s);
         JSONArray array=jsonObject.getJSONArray("room");
+        Log.i("array",array.toString());
         if(array.length()==0)
         {
 
@@ -150,9 +151,12 @@ public class roomActivity extends AppCompatActivity {
             for (int i = 0; i < array.length(); i++) {
                 JSONObject detail = array.getJSONObject(i);
                 // rooms.add(detail.getString("roomType")+" "+detail.getString("roomNo")+ " "+detail.getString("roomRent"));
-                rooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                        detail.getString("roomRent"), detail.getString("_id")));
-                adapter.notifyDataSetChanged();
+                if(detail.getBoolean("isRentDue")==false) {
+                    rooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                            detail.getString("roomRent"), detail.getString("_id")));
+                    Log.i("rent",String.valueOf(detail.getBoolean("isRentDue")));
+                    adapter.notifyDataSetChanged();
+                }
             }
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
