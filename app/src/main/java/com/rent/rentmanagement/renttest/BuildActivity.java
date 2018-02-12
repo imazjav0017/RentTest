@@ -180,16 +180,5 @@ public class BuildActivity extends AppCompatActivity {
 
         });
 
-         Button finis =(Button)findViewById(R.id.finish);
-        finis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(BuildActivity.this,roomActivity.class);
-                startActivity(i);
-            }
-        });
-
-
     }
 }
