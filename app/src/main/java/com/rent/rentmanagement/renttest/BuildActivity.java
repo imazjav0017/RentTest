@@ -186,7 +186,6 @@ public class BuildActivity extends AppCompatActivity {
 
         });
 
-<<<<<<< HEAD
          Button finis =(Button)findViewById(R.id.finish);
         finis.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,7 +198,6 @@ public class BuildActivity extends AppCompatActivity {
 
 
 
-=======
->>>>>>> c2d4b5553bd418e4c70a305fe296248c51faea13
+
     }
 }

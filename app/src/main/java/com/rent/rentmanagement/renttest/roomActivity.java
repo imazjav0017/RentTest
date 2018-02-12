@@ -36,7 +36,8 @@ import android.widget.TextView;
 
 public class roomActivity extends AppCompatActivity {
     ArrayList<RoomModel>erooms,oRooms;
-    CustomAdapter adapter1,adapter2;
+    CustomAdapter adapter1;
+    OccupiedRoomsAdapter adapter2;
     String response="";
     ListView emptyRoomsListView,occupiedRoomsListView;
     boolean isToggled;
@@ -218,7 +219,7 @@ public class roomActivity extends AppCompatActivity {
 
         occupiedRoomsListView=(ListView)findViewById(R.id.occupiedRoomsList);
         oRooms=new ArrayList<>();
-        adapter2=new CustomAdapter(getApplicationContext(),R.layout.customlist_item,oRooms);
+        adapter2=new OccupiedRoomsAdapter(getApplicationContext(),R.layout.roomdisplayafeature,oRooms);
         occupiedRoomsListView.setAdapter(adapter2);
 
         setTokenJson();

@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Room 1"
+            android:id="@+id/roomNoOccupiedop"
             android:textSize="18sp"
             android:gravity="center"
             android:textStyle="bold"
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RS 5000"
+            android:id="@+id/rentToBeCollected"
             android:gravity="center"
             android:textSize="18sp"
             />
@@ -73,11 +75,13 @@
             android:layout_height="wrap_content"
             android:background="@drawable/round_bg"
             android:textColor="#008000"
+            android:padding="10dp"
             android:text="collect"
             />
         <Button
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
+            android:padding="10dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_bg"
             android:textColor="#008000"
