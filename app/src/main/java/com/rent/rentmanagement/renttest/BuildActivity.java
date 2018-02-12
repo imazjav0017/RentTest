@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,6 +54,7 @@ public class BuildActivity extends AppCompatActivity {
     }
     public void enable()
     {
+
         addRoomsbutton.setClickable(true);
     }
     public void saveRooms(View v) {
@@ -68,6 +71,7 @@ public class BuildActivity extends AppCompatActivity {
             Log.i("amo",rentAmount);
             SendToken task = new SendToken();
             task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/addRooms");
+
         }
     }
     public class SendToken extends AsyncTask<String,Void,String> {
@@ -116,6 +120,7 @@ public class BuildActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             response(s);
             Log.i("response",s);
+            enable();
 
         }
     }
@@ -169,6 +174,7 @@ public class BuildActivity extends AppCompatActivity {
                 {
 
                     roomType=items[position];
+                    enable();
 
                 }
             }
@@ -189,6 +195,7 @@ public class BuildActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
 
 
     }

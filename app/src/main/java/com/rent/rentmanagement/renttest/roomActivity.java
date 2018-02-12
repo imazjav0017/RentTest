@@ -35,10 +35,25 @@ import android.widget.TextView;
 
 
 public class roomActivity extends AppCompatActivity {
-    ArrayList<RoomModel>rooms;
-    CustomAdapter adapter;
+    ArrayList<RoomModel>erooms,oRooms;
+    CustomAdapter adapter1,adapter2;
     String response="";
-    ListView listView;
+    ListView emptyRoomsListView,occupiedRoomsListView;
+    boolean isToggled;
+    public void toggle(View v)
+    {
+        if(!isToggled) {
+            emptyRoomsListView.setVisibility(View.INVISIBLE);
+            occupiedRoomsListView.setVisibility(View.VISIBLE);
+            isToggled=true;
+        }
+        else
+        {
+            emptyRoomsListView.setVisibility(View.VISIBLE);
+            occupiedRoomsListView.setVisibility(View.INVISIBLE);
+            isToggled=false;
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -139,7 +154,7 @@ public class roomActivity extends AppCompatActivity {
         }
     }
     public void setData(String s) throws JSONException {
-        rooms.clear();
+        erooms.clear();
         JSONObject jsonObject=new JSONObject(s);
         JSONArray array=jsonObject.getJSONArray("room");
         Log.i("array",array.toString());
@@ -148,21 +163,29 @@ public class roomActivity extends AppCompatActivity {
 
         }
         else {
+
             for (int i = 0; i < array.length(); i++) {
                 JSONObject detail = array.getJSONObject(i);
-                // rooms.add(detail.getString("roomType")+" "+detail.getString("roomNo")+ " "+detail.getString("roomRent"));
-                if(detail.getBoolean("isRentDue")==false) {
-                    rooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                if(detail.getBoolean("isEmpty")==true) {
+                    //empty rooms
+                    erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"), detail.getString("_id")));
-                    Log.i("rent",String.valueOf(detail.getBoolean("isRentDue")));
-                    adapter.notifyDataSetChanged();
+                    adapter1.notifyDataSetChanged();
+                }
+                else
+                {
+                    oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                            detail.getString("roomRent"), detail.getString("_id")));
+                    adapter2.notifyDataSetChanged();
                 }
             }
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            emptyRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    RoomModel model=rooms.get(position);
-                    Log.i("id",model.get_id());
+                    RoomModel model=erooms.get(position);
+                    Intent i=new Intent(getApplicationContext(),StudentActivity.class);
+                    i.putExtra("id",model.get_id());
+                    startActivity(i);
                 }
             });
         }
@@ -185,11 +208,19 @@ public class roomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
+        isToggled=false;
+        emptyRoomsListView=(ListView)findViewById(R.id.emptyRoomsList);
+        erooms=new ArrayList<>();
+        adapter1=new CustomAdapter(getApplicationContext(),R.layout.customlist_item,erooms);
+        emptyRoomsListView.setAdapter(adapter1);
 
-        listView=(ListView)findViewById(R.id.roomdetailsList);
-        rooms=new ArrayList<>();
-        adapter=new CustomAdapter(getApplicationContext(),R.layout.customlist_item,rooms);
-        listView.setAdapter(adapter);
+
+
+        occupiedRoomsListView=(ListView)findViewById(R.id.occupiedRoomsList);
+        oRooms=new ArrayList<>();
+        adapter2=new CustomAdapter(getApplicationContext(),R.layout.customlist_item,oRooms);
+        occupiedRoomsListView.setAdapter(adapter2);
+
         setTokenJson();
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -199,5 +230,12 @@ public class roomActivity extends AppCompatActivity {
         logout.setVisibility(View.VISIBLE);
         setTitle("Rooms");
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),BuildActivity.class);
+        startActivity(i);
+        finish();
     }
 }

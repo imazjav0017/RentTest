@@ -50,10 +50,31 @@
        android:layout_below="@+id/heading"
        android:layout_marginTop="10dp"
        android:layout_width="match_parent"
-       android:id="@+id/roomdetailsList"
+       android:id="@+id/emptyRoomsList"
        android:layout_height="wrap_content"
        android:padding="10dp"
       >
 
    </ListView>
+    <ListView
+        android:layout_below="@+id/heading"
+        android:visibility="invisible"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:id="@+id/occupiedRoomsList"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+
+    </ListView>
+
+    <Button
+        android:text="Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="toggle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/toggleButton" />
+
 </RelativeLayout>

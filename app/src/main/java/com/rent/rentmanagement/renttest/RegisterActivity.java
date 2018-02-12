@@ -56,18 +56,18 @@ public class RegisterActivity extends AppCompatActivity {
                 outputStream.writeBytes(params[1]);
                 int resp=connection.getResponseCode();
                 Log.i("resp",String.valueOf(resp));
-                if(resp==200)
+                if(resp==200) {
                     onBackPressed();
+                    return String.valueOf(resp);
+                }
                 else {
                     enableButton();
-                    Toast.makeText(RegisterActivity.this, "Invalid", Toast.LENGTH_SHORT).show();
+                    return String.valueOf(resp);
                 }
-                outputStream.flush();
-                outputStream.close();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
-                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
             }
 
             return null;
@@ -75,7 +75,16 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+            if(s!=null)
+            {
+                if(s.equals("200"))
+                {
+                    Toast.makeText(getApplicationContext(), "Registered...", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_SHORT).show();
+
+            }
 
         }
     }

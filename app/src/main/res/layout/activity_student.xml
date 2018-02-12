@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="55dp"
     tools:context="com.rent.rentmanagement.renttest.StudentActivity">
     <include
         layout="@layout/actionbarlayout"/>
@@ -48,7 +47,7 @@
         android:textSize="18sp"/>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/studentNameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView"
@@ -60,25 +59,25 @@
         android:text="" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/studentContactNoInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignLeft="@+id/studentNameInput"
+        android:layout_alignStart="@+id/studentNameInput"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
        />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/studentAadharNoInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView3"
             android:layout_toEndOf="@+id/textView3"
             android:layout_toRightOf="@+id/textView3"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
              />
 
 
@@ -86,11 +85,11 @@
     </RelativeLayout>
     <Button
         android:layout_centerVertical="true"
-        android:id="@+id/button2"
+        android:id="@+id/checkInButton"
         android:layout_width="wrap_content"
+        android:onClick="checkIn"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="166dp"
-        android:text="Save" />
+        android:text="CheckIn" />
 </RelativeLayout>

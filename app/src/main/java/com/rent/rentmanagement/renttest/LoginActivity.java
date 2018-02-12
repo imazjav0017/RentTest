@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
                     enableButton();
                     String response=getResponse(connection);
                     Log.i("resp",String.valueOf(resp));
-                    return response;
+                    return String.valueOf(resp);
                 }
                 else
                 {
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     outputStream.flush();
                     outputStream.close();
                     gotoHome();
-                    return response;
+                    return String.valueOf(resp);
                 }
 
             } catch (MalformedURLException e) {
@@ -119,7 +119,13 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String response) {
-          Log.i("response",response);
+          if(response.equals("200"))
+          {
+              Toast.makeText(getApplicationContext(), "Logging In...!", Toast.LENGTH_SHORT).show();
+          }
+            else {
+              Toast.makeText(getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
+          }
 
 
         }
