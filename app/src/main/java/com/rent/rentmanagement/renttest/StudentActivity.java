@@ -136,9 +136,9 @@ public class StudentActivity extends AppCompatActivity {
         Button logout=(Button)findViewById(R.id.logout);
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);
-        setTitle("CheckIn");
         Intent i=getIntent();
         _id=i.getStringExtra("id");
+        setTitle("Room No: "+i.getStringExtra("roomNo"));
         Log.i("id",_id);
         studentName=(EditText)findViewById(R.id.studentNameInput);
         contactNo=(EditText)findViewById(R.id.studentContactNoInput);

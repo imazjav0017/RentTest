@@ -32,7 +32,7 @@ public class CustomAdapter extends ArrayAdapter<RoomModel> {
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         LayoutInflater inflater=LayoutInflater.from(context);
         View view=inflater.inflate(resource,null,false);
         TextView roomNo=(TextView)view.findViewById(R.id.roomNoDisplay);
@@ -46,7 +46,10 @@ public class CustomAdapter extends ArrayAdapter<RoomModel> {
         checkIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i=new Intent(parent.getContext(),StudentActivity.class);
+                i.putExtra("id",model.get_id());
+                i.putExtra("roomNo",model.getRoomNo());
+                parent.getContext().startActivity(i);
             }
         });
 

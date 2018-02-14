@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/squarebg"
+    android:descendantFocusability="blocksDescendants"
     android:layout_margin="5dp"
     android:padding="5dp"
     android:weightSum="3">
@@ -69,6 +70,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="1"
+
+
         android:gravity="center">
 
         <Button

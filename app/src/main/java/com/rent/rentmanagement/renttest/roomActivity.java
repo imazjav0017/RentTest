@@ -184,8 +184,19 @@ public class roomActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     RoomModel model=erooms.get(position);
-                    Intent i=new Intent(getApplicationContext(),StudentActivity.class);
+                   Intent i=new Intent(getApplicationContext(),roomDetailActivity.class);
                     i.putExtra("id",model.get_id());
+                    i.putExtra("roomNo",model.getRoomNo());
+                    startActivity(i);
+                }
+            });
+            occupiedRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    RoomModel model=oRooms.get(position);
+                    Intent i=new Intent(getApplicationContext(),roomDetailActivity.class);
+                    i.putExtra("id",model.get_id());
+                    i.putExtra("roomNo",model.getRoomNo());
                     startActivity(i);
                 }
             });
