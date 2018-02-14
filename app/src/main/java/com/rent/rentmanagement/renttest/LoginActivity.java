@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         protected void onPostExecute(String response) {
           if(response.equals("200"))
           {
-              Toast.makeText(getApplicationContext(), "Logging In...!", Toast.LENGTH_SHORT).show();
+              Toast.makeText(getApplicationContext(), "Logged In!", Toast.LENGTH_SHORT).show();
           }
             else {
               Toast.makeText(getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(View v)  {
+        Toast.makeText(this, "Logging In..!", Toast.LENGTH_SHORT).show();
         loginButton.setClickable(false);
         JSONObject loginDetails=new JSONObject();
         try {

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@drawable/squarebg"
+    android:layout_margin="5dp"
     android:padding="5dp"
     android:weightSum="3">
 
@@ -84,7 +85,7 @@
             android:padding="10dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_bg"
-            android:textColor="#008000"
+            android:textColor="#E53935"
             android:text="REASON"/>
     </LinearLayout>
 

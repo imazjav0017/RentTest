@@ -1,12 +1,16 @@
 package com.rent.rentmanagement.renttest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -34,10 +38,17 @@ public class CustomAdapter extends ArrayAdapter<RoomModel> {
         TextView roomNo=(TextView)view.findViewById(R.id.roomNoDisplay);
         TextView roomType=(TextView)view.findViewById(R.id.roomTypeDisplay);
         TextView rent=(TextView)view.findViewById(R.id.rentDisplay);
-        RoomModel model=roomList.get(position);
+       final RoomModel model=roomList.get(position);
         roomNo.setText(model.getRoomNo());
         roomType.setText(model.getRoomType());
         rent.setText(model.getRoomRent());
+        Button checkIn=(Button)view.findViewById(R.id.checkInOptionButton);
+        checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
 
         return view;

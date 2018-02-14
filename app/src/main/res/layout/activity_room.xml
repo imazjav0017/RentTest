@@ -7,48 +7,9 @@
     tools:context="com.rent.rentmanagement.renttest.roomActivity">
     <include
         layout="@layout/actionbarlayout"/>
-    <LinearLayout
-        android:id="@+id/heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="55dp"
-        android:padding="10dp"
-        android:background="@drawable/squarebg"
-        >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="cursive"
-        android:layout_weight="1"
-        android:text="ROOM NO."
-        android:layout_gravity="left"
-        android:textSize="22sp"
-        android:textColor="#000ced"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:text="ROOM TYPE"
-        android:fontFamily="cursive"
-        android:textSize="22sp"
-        android:textColor="#000ced"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ROOM RENT"
-        android:gravity="right"
-        android:layout_weight="1"
-        android:fontFamily="cursive"
-        android:textColor="#000ced"
-        android:textSize="22sp"/>
-    </LinearLayout>
+
    <ListView
-       android:layout_below="@+id/heading"
-       android:layout_marginTop="10dp"
+       android:layout_marginTop="55dp"
        android:layout_width="match_parent"
        android:id="@+id/emptyRoomsList"
        android:layout_height="wrap_content"
@@ -57,9 +18,9 @@
 
    </ListView>
     <ListView
-        android:layout_below="@+id/heading"
+
         android:visibility="invisible"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
         android:id="@+id/occupiedRoomsList"
         android:layout_height="wrap_content"

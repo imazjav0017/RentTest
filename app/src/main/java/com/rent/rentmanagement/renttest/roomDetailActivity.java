@@ -12,14 +12,6 @@ public class roomDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_detail);
-        Button student =(Button)findViewById(R.id.finish);
-        student.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent i = new Intent(roomDetailActivity.this,StudentActivity.class);
-                startActivity(i);
-            }
-        });
     }
 }

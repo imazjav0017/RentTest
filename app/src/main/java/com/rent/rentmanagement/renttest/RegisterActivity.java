@@ -89,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
     public void Register(View v)  {
+        Toast.makeText(this, "Registering..!", Toast.LENGTH_SHORT).show();
         register.setClickable(false);
         try {
             JSONObject userDetails = new JSONObject();
