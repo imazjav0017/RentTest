@@ -31,7 +31,8 @@
             android:xlargeScreens="true" />
 
         <activity android:name=".roomDetailActivity" />
-        <activity android:name=".StudentActivity"></activity>
+        <activity android:name=".StudentActivity" />
+        <activity android:name=".rent_collectedActivity"></activity>
     </application>
 
 </manifest>

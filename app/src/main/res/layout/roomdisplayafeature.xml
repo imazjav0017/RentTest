@@ -80,6 +80,7 @@
             android:background="@drawable/round_bg"
             android:textColor="#008000"
             android:padding="10dp"
+            android:id="@+id/collectingButton"
             android:text="collect"
             />
         <Button

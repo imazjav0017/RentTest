@@ -14,6 +14,8 @@ public class RoomModel {
         this._id = _id;
     }
 
+
+
     public String getRoomType() {
         return roomType;
     }

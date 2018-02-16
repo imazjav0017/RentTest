@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
-/**
+/*
  * Created by imazjav0017 on 11-02-2018.
  */
 
@@ -39,7 +39,7 @@ public class CustomAdapter extends ArrayAdapter<RoomModel> {
         TextView roomType=(TextView)view.findViewById(R.id.roomTypeDisplay);
         TextView rent=(TextView)view.findViewById(R.id.rentDisplay);
        final RoomModel model=roomList.get(position);
-        roomNo.setText(model.getRoomNo());
+        roomNo.setText("RoomNo "+model.getRoomNo());
         roomType.setText(model.getRoomType());
         rent.setText(model.getRoomRent());
         Button checkIn=(Button)view.findViewById(R.id.checkInOptionButton);
