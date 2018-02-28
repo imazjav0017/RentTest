@@ -8,7 +8,7 @@
     <include
         layout="@layout/actionbarlayout"/>
 
-   <ListView
+   <android.support.v7.widget.RecyclerView
        android:layout_marginTop="55dp"
        android:layout_width="match_parent"
        android:id="@+id/emptyRoomsList"
@@ -16,8 +16,8 @@
        android:padding="10dp"
       >
 
-   </ListView>
-    <ListView
+   </android.support.v7.widget.RecyclerView>
+    <android.support.v7.widget.RecyclerView
 
         android:visibility="invisible"
         android:layout_marginTop="55dp"
@@ -27,7 +27,7 @@
         android:padding="10dp"
         >
 
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
     <Button
         android:text="Switch"

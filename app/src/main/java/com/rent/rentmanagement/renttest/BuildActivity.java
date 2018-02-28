@@ -61,7 +61,7 @@ public class BuildActivity extends AppCompatActivity {
         addRoomsbutton.setClickable(false);
         rooms=roomNo.getText().toString();
         rentAmount=rentInput.getText().toString();
-        if (accessToken == null || rentInput.equals("") || rooms.equals("")||roomType==null)
+        if (accessToken == null || rentAmount.equals("") || rooms.equals("")||roomType==null)
         {
             Toast.makeText(this, "Missing Fields", Toast.LENGTH_SHORT).show();
             addRoomsbutton.setClickable(true);

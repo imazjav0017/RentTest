@@ -3,6 +3,7 @@
     android:orientation="horizontal"
     android:background="@drawable/squarebg"
     android:layout_width="match_parent"
+    android:id="@+id/emptyRoomsLinearLayout"
     android:descendantFocusability="blocksDescendants"
     android:layout_height="wrap_content">
 <LinearLayout

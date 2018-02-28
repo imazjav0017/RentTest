@@ -6,6 +6,7 @@
     android:background="@drawable/squarebg"
     android:descendantFocusability="blocksDescendants"
     android:layout_margin="5dp"
+    android:id="@+id/ocRoomLl"
     android:padding="5dp"
     android:weightSum="3">
 

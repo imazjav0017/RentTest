@@ -2,6 +2,8 @@ package com.rent.rentmanagement.renttest;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -36,10 +38,10 @@ import android.widget.TextView;
 
 public class roomActivity extends AppCompatActivity {
     ArrayList<RoomModel>erooms,oRooms;
-    CustomAdapter adapter1;
+    RecyclerAdapter adapter;
     OccupiedRoomsAdapter adapter2;
     String response="";
-    ListView emptyRoomsListView,occupiedRoomsListView;
+    RecyclerView emptyRoomsListView,occupiedRoomsListView;
     boolean isToggled;
     public void toggle(View v)
     {
@@ -171,16 +173,18 @@ public class roomActivity extends AppCompatActivity {
                     //empty rooms
                     erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"), detail.getString("_id")));
-                    adapter1.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
+
                 }
                 else
                 {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"), detail.getString("_id")));
                     adapter2.notifyDataSetChanged();
+
                 }
             }
-            emptyRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /*emptyRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     RoomModel model=erooms.get(position);
@@ -199,7 +203,7 @@ public class roomActivity extends AppCompatActivity {
                     i.putExtra("roomNo",model.getRoomNo());
                     startActivity(i);
                 }
-            });
+            });*/
         }
 
 
@@ -221,18 +225,22 @@ public class roomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
         isToggled=false;
-        emptyRoomsListView=(ListView)findViewById(R.id.emptyRoomsList);
+        emptyRoomsListView=(RecyclerView) findViewById(R.id.emptyRoomsList);
         erooms=new ArrayList<>();
-        adapter1=new CustomAdapter(getApplicationContext(),R.layout.customlist_item,erooms);
-        emptyRoomsListView.setAdapter(adapter1);
+        adapter=new RecyclerAdapter(erooms,getApplicationContext());
+        LinearLayoutManager lm=new LinearLayoutManager(this);
+        emptyRoomsListView.setLayoutManager(lm);
+        emptyRoomsListView.setHasFixedSize(true);
+        emptyRoomsListView.setAdapter(adapter);
 
 
-
-        occupiedRoomsListView=(ListView)findViewById(R.id.occupiedRoomsList);
+        occupiedRoomsListView=(RecyclerView)findViewById(R.id.occupiedRoomsList);
         oRooms=new ArrayList<>();
-        adapter2=new OccupiedRoomsAdapter(getApplicationContext(),R.layout.roomdisplayafeature,oRooms);
+        adapter2=new OccupiedRoomsAdapter(oRooms,getApplicationContext());
+        LinearLayoutManager lm1=new LinearLayoutManager(this);
+        occupiedRoomsListView.setLayoutManager(lm1);
+        occupiedRoomsListView.setHasFixedSize(true);
         occupiedRoomsListView.setAdapter(adapter2);
-
         setTokenJson();
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
