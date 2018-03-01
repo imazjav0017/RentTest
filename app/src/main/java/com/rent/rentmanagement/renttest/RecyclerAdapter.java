@@ -42,6 +42,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
                 Intent i=new Intent(holder.context,roomDetailActivity.class);
                 i.putExtra("id",model.get_id());
                 i.putExtra("roomNo",model.getRoomNo());
+                i.putExtra("roomType",model.getRoomType());
+                i.putExtra("roomRent",model.getRoomRent());
                 holder.context.startActivity(i);
             }
         });

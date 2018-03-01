@@ -60,6 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="179dp"
+            android:onClick="submit"
             android:id="@+id/reasonButton" />
     </RelativeLayout>
     <Button

@@ -11,7 +11,6 @@
     android:orientation="vertical"
     android:layout_marginTop="15dp"
     android:padding="10dp"
-<<<<<<< HEAD
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
@@ -44,26 +43,14 @@
         android:layout_marginTop="15dp"
         android:layout_height="match_parent">
         <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Room Type"
+            android:padding="5dp"
+            android:textStyle="bold"
         android:textColor="#424242"
-        android:textSize="15sp"
-=======
-    android:layout_height="wrap_content">
+        android:textSize="15sp"/>
 
-    <TextView
-        android:text="Room 1"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/roomNoDisplay"
-        android:textColor="#424242"
-        android:textSize="18sp"
->>>>>>> 78dcb9e56d056fdc8d42fff69c055434da1049d6
-        android:padding="5dp"
-        android:textStyle="bold"
-        android:layout_weight="1"/>
     <TextView
         android:text="Single"
         android:layout_width="match_parent"

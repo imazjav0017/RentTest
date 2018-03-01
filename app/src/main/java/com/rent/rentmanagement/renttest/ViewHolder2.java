@@ -26,6 +26,6 @@ public class ViewHolder2 extends RecyclerView.ViewHolder {
         roomNo=(TextView)itemView.findViewById(R.id.roomNoOccupiedop);
         amount=(TextView)itemView.findViewById(R.id.rentToBeCollected);
         reason=(Button)itemView.findViewById(R.id.reason);
-        collect=(Button)itemView.findViewById(R.id.collect);
+        collect=(Button)itemView.findViewById(R.id.collectingButton);
     }
 }

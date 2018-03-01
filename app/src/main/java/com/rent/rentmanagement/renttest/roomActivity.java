@@ -273,4 +273,9 @@ public class roomActivity extends AppCompatActivity {
             finish();
         }
     }
+    void submit(View v)
+    {
+        reasonPage.setVisibility(View.INVISIBLE);
+        isVisible=false;
+    }
 }
