@@ -44,6 +44,13 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 holder.context.startActivity(i);
             }
         });
+        holder.reason.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                roomActivity.reasonPage.setVisibility(View.VISIBLE);
+                roomActivity.isVisible=true;
+            }
+        });
     }
 
     @Override

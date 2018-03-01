@@ -11,9 +11,9 @@
     android:orientation="vertical"
     android:layout_marginTop="15dp"
     android:padding="10dp"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RoomNo"
         android:textColor="#424242"
@@ -24,7 +24,7 @@
         />
     <TextView
         android:text="100"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/roomNoDisplay"
         android:textColor="#424242"
@@ -41,7 +41,7 @@
         android:orientation="vertical"
         android:padding="10dp"
         android:layout_marginTop="15dp"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
 
     <TextView
         android:text="Single"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/roomTypeDisplay"

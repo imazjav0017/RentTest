@@ -33,6 +33,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -42,7 +43,9 @@ public class roomActivity extends AppCompatActivity {
     OccupiedRoomsAdapter adapter2;
     String response="";
     RecyclerView emptyRoomsListView,occupiedRoomsListView;
+    static RelativeLayout reasonPage;
     boolean isToggled;
+    static boolean isVisible=false;
     public void toggle(View v)
     {
         if(!isToggled) {
@@ -249,13 +252,21 @@ public class roomActivity extends AppCompatActivity {
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);
         setTitle("Rooms");
+        reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
 
     }
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),BuildActivity.class);
-        startActivity(i);
-        finish();
+        if(isVisible)
+        {
+            reasonPage.setVisibility(View.INVISIBLE);
+            isVisible=false;
+        }
+        else {
+            Intent i = new Intent(getApplicationContext(), BuildActivity.class);
+            startActivity(i);
+            finish();
+        }
     }
 }

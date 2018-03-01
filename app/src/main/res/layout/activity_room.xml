@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rl"
     tools:context="com.rent.rentmanagement.renttest.roomActivity">
     <include
         layout="@layout/actionbarlayout"/>
+
 
    <android.support.v7.widget.RecyclerView
        android:layout_marginTop="55dp"
@@ -15,6 +17,8 @@
        android:layout_height="wrap_content"
        android:padding="10dp"
       >
+
+
 
    </android.support.v7.widget.RecyclerView>
     <android.support.v7.widget.RecyclerView
@@ -28,7 +32,36 @@
         >
 
     </android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="139dp"
+        android:visibility="invisible"
+        android:background="@drawable/squarebg"
+        android:id="@+id/reasonPage">
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:id="@+id/reasonInput"
+            android:hint="Enter Your Reason.." />
+
+        <Button
+            android:text="Save"
+            android:background="@drawable/squarebg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="179dp"
+            android:id="@+id/reasonButton" />
+    </RelativeLayout>
     <Button
         android:text="Switch"
         android:layout_width="wrap_content"
