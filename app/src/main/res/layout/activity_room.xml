@@ -8,30 +8,24 @@
     tools:context="com.rent.rentmanagement.renttest.roomActivity">
     <include
         layout="@layout/actionbarlayout"/>
-
-
-   <android.support.v7.widget.RecyclerView
-       android:layout_marginTop="55dp"
-       android:layout_width="match_parent"
-       android:id="@+id/emptyRoomsList"
-       android:layout_height="wrap_content"
-       android:padding="10dp"
-      >
-
-
-
-   </android.support.v7.widget.RecyclerView>
-    <android.support.v7.widget.RecyclerView
-
-        android:visibility="invisible"
-        android:layout_marginTop="55dp"
+    <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
-        android:id="@+id/occupiedRoomsList"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        >
-
-    </android.support.v7.widget.RecyclerView>
+        android:background="#fff"
+        android:id="@+id/tabLayout"
+        android:elevation="10dp"
+        android:layout_marginTop="55dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabSelectedTextColor="#737373"
+        app:tabTextColor="#4c3493">
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewPager"
+        android:layout_below="@+id/tabLayout"
+        ></android.support.v4.view.ViewPager>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -63,13 +57,6 @@
             android:onClick="submit"
             android:id="@+id/reasonButton" />
     </RelativeLayout>
-    <Button
-        android:text="Switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="toggle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/toggleButton" />
+
 
 </RelativeLayout>

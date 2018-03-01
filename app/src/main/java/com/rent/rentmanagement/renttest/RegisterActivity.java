@@ -85,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_SHORT).show();
 
             }
+            else Toast.makeText(RegisterActivity.this, "Please Check Your Internet and Try Again!", Toast.LENGTH_SHORT).show();
 
         }
     }

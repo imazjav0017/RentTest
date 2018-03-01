@@ -1,5 +1,7 @@
 package com.rent.rentmanagement.renttest;
 import android.os.AsyncTask;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,31 +37,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class roomActivity extends AppCompatActivity {
-    ArrayList<RoomModel>erooms,oRooms;
-    RecyclerAdapter adapter;
-    OccupiedRoomsAdapter adapter2;
+    static ArrayList<RoomModel>erooms,oRooms;
     String response="";
-    RecyclerView emptyRoomsListView,occupiedRoomsListView;
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    ViewPagerAdapter viewPagerAdapter;
     static RelativeLayout reasonPage;
-    boolean isToggled;
     static boolean isVisible=false;
-    public void toggle(View v)
-    {
-        if(!isToggled) {
-            emptyRoomsListView.setVisibility(View.INVISIBLE);
-            occupiedRoomsListView.setVisibility(View.VISIBLE);
-            isToggled=true;
-        }
-        else
-        {
-            emptyRoomsListView.setVisibility(View.VISIBLE);
-            occupiedRoomsListView.setVisibility(View.INVISIBLE);
-            isToggled=false;
-        }
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -155,62 +143,43 @@ public class roomActivity extends AppCompatActivity {
             }
             else
             {
+                Toast.makeText(roomActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
                 super.onPostExecute(s);
             }
         }
     }
     public void setData(String s) throws JSONException {
         erooms.clear();
+        oRooms.clear();
         JSONObject jsonObject=new JSONObject(s);
         JSONArray array=jsonObject.getJSONArray("room");
         Log.i("array",array.toString());
+        LoginActivity.sharedPreferences.edit().putString("roomsDetails",s).apply();
         if(array.length()==0)
         {
 
         }
         else {
-
+            Toast.makeText(this, "Refreshed!", Toast.LENGTH_SHORT).show();
             for (int i = 0; i < array.length(); i++) {
                 JSONObject detail = array.getJSONObject(i);
                 if(detail.getBoolean("isEmpty")==true) {
                     //empty rooms
                     erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"), detail.getString("_id")));
-                    adapter.notifyDataSetChanged();
+
 
                 }
                 else
                 {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"), detail.getString("_id")));
-                    adapter2.notifyDataSetChanged();
+
 
                 }
             }
-            /*emptyRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    RoomModel model=erooms.get(position);
-                   Intent i=new Intent(getApplicationContext(),roomDetailActivity.class);
-                    i.putExtra("id",model.get_id());
-                    i.putExtra("roomType",model.getRoomType());
-                    i.putExtra("roomRent",model.getRoomRent());
-                    i.putExtra("roomNo",model.getRoomNo());
-                    startActivity(i);
-                }
-            });
-            occupiedRoomsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    RoomModel model=oRooms.get(position);
-                    Intent i=new Intent(getApplicationContext(),roomDetailActivity.class);
-                    i.putExtra("id",model.get_id());
-                    i.putExtra("roomNo",model.getRoomNo());
-                    i.putExtra("roomType",model.getRoomType());
-                    i.putExtra("roomRent",model.getRoomRent());
-                    startActivity(i);
-                }
-            });*/
+            EmptyRoomsFragment.adapter.notifyDataSetChanged();
+            RentDueFragment.adapter2.notifyDataSetChanged();
         }
 
 
@@ -231,27 +200,20 @@ public class roomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
-        isToggled=false;
-        emptyRoomsListView=(RecyclerView) findViewById(R.id.emptyRoomsList);
         erooms=new ArrayList<>();
-        adapter=new RecyclerAdapter(erooms,getApplicationContext());
-        LinearLayoutManager lm=new LinearLayoutManager(this);
-        emptyRoomsListView.setLayoutManager(lm);
-        emptyRoomsListView.setHasFixedSize(true);
-        emptyRoomsListView.setAdapter(adapter);
-
-
-        occupiedRoomsListView=(RecyclerView)findViewById(R.id.occupiedRoomsList);
         oRooms=new ArrayList<>();
-        adapter2=new OccupiedRoomsAdapter(oRooms,getApplicationContext());
-        LinearLayoutManager lm1=new LinearLayoutManager(this);
-        occupiedRoomsListView.setLayoutManager(lm1);
-        occupiedRoomsListView.setHasFixedSize(true);
-        occupiedRoomsListView.setAdapter(adapter2);
+        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
         setTokenJson();
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        tabLayout=(TabLayout)findViewById(R.id.tabLayout);
+        viewPager=(ViewPager)findViewById(R.id.viewPager);
+        viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),getApplicationContext());
+        viewPagerAdapter.addFragment(new EmptyRoomsFragment(getApplicationContext()),"Empty Rooms");
+        viewPagerAdapter.addFragment(new RentDueFragment(getApplicationContext()),"Rent Due");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
        Button logout=(Button)findViewById(R.id.logout);
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);
@@ -259,7 +221,50 @@ public class roomActivity extends AppCompatActivity {
         reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
 
     }
+public void setStaticData(String s) {
+    if(s!=null)
+    {
 
+        erooms.clear();
+        oRooms.clear();
+        JSONObject jsonObject= null;
+        try {
+            jsonObject = new JSONObject(s);
+
+            JSONArray array = jsonObject.getJSONArray("room");
+
+
+            Log.i("arrayStatic", array.toString());
+            if (array.length() == 0) {
+
+            } else {
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject detail = array.getJSONObject(i);
+                    if (detail.getBoolean("isEmpty") == true) {
+                        //empty rooms
+                        erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                detail.getString("roomRent"), detail.getString("_id")));
+
+
+                    }
+                    else {
+                        oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                detail.getString("roomRent"), detail.getString("_id")));
+
+
+                    }
+                }
+                EmptyRoomsFragment.adapter.notifyDataSetChanged();
+                RentDueFragment.adapter2.notifyDataSetChanged();
+            }
+        }
+        catch (Exception e) {
+            Log.i("err","err");
+        e.printStackTrace();
+    }
+    }
+}
     @Override
     public void onBackPressed() {
         if(isVisible)

@@ -119,31 +119,43 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String response) {
-          if(response.equals("200"))
-          {
-              Toast.makeText(getApplicationContext(), "Logged In!", Toast.LENGTH_SHORT).show();
-          }
-            else {
-              Toast.makeText(getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
-          }
+            if (response != null) {
+                if (response.equals("200")) {
+                    Toast.makeText(getApplicationContext(), "Logged In!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
+                }
 
 
+            }
+            else
+            {
+                enableButton();
+                Toast.makeText(LoginActivity.this, "Please Check Your Internet Connection and Try Again", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
     public void login(View v)  {
-        Toast.makeText(this, "Logging In..!", Toast.LENGTH_SHORT).show();
         loginButton.setClickable(false);
         JSONObject loginDetails=new JSONObject();
         try {
-            loginDetails.put("email", emailInput.getText().toString());
-            loginDetails.put("password", passwordInput.getText().toString());
+            if(!(emailInput.getText().toString().equals("")||passwordInput.getText().toString().equals(""))) {
+                loginDetails.put("email", emailInput.getText().toString());
+                loginDetails.put("password", passwordInput.getText().toString());
+                Toast.makeText(this, "Logging In..!", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(this, "Please Enter something!", Toast.LENGTH_SHORT).show();
+            }
         }catch(Exception e)
         {
             loginButton.setClickable(true);
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         LoginTask task=new LoginTask();
+
         task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signin",loginDetails.toString());
     }
     public void Register(View v)
