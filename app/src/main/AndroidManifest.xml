@@ -32,6 +32,10 @@
 
         <activity android:name=".roomDetailActivity" />
         <activity android:name=".StudentActivity" />
+<<<<<<< HEAD
+=======
+        <activity android:name=".rent_collectedActivity"></activity>
+>>>>>>> 78dcb9e56d056fdc8d42fff69c055434da1049d6
     </application>
 
 </manifest>

@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class roomDetailActivity extends AppCompatActivity {
+    TextView rn,rt,rr;
+    String roomNo,roomType,roomRent;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -39,6 +42,15 @@ public class roomDetailActivity extends AppCompatActivity {
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);
         Intent i=getIntent();
+        roomNo=i.getStringExtra("roomNo");
+        roomType=i.getStringExtra("roomType");
+        roomRent=i.getStringExtra("roomRent");
         setTitle("RoomNo: "+i.getStringExtra("roomNo"));
+        rn = (TextView) findViewById(R.id.roomno);
+        rt = (TextView) findViewById(R.id.roomtype);
+        rr = (TextView) findViewById(R.id.roomrent);
+        rn.setText(roomNo);
+        rt.setText(roomType);
+        rr.setText(roomRent);
     }
 }

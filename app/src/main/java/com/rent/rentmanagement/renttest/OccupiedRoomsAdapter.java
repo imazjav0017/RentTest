@@ -2,11 +2,15 @@ package com.rent.rentmanagement.renttest;
 
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.support.v7.widget.RecyclerView;
+=======
+>>>>>>> 78dcb9e56d056fdc8d42fff69c055434da1049d6
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -54,7 +58,29 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     }
 
     @Override
+<<<<<<< HEAD
     public int getItemCount() {
         return roomList.size();
+=======
+    public View getView(int position, View convertView,final ViewGroup parent) {
+        LayoutInflater inflater=LayoutInflater.from(context);
+        View view=inflater.inflate(resource,null,false);
+        TextView roomNo=(TextView)view.findViewById(R.id.roomNoOccupiedop);
+        TextView rent=(TextView)view.findViewById(R.id.rentToBeCollected);
+        final RoomModel model=roomList.get(position);
+        roomNo.setText("Room "+model.getRoomNo());
+        rent.setText(model.getRoomRent());
+         Button checkIn=(Button)view.findViewById(R.id.collectingButton);
+        checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(parent.getContext(),rent_collectedActivity.class);
+                i.putExtra("id",model.get_id());
+                i.putExtra("roomNo",model.getRoomNo());
+                parent.getContext().startActivity(i);
+            }
+        });
+        return view;
+>>>>>>> 78dcb9e56d056fdc8d42fff69c055434da1049d6
     }
 }

@@ -193,6 +193,8 @@ public class roomActivity extends AppCompatActivity {
                     RoomModel model=erooms.get(position);
                    Intent i=new Intent(getApplicationContext(),roomDetailActivity.class);
                     i.putExtra("id",model.get_id());
+                    i.putExtra("roomType",model.getRoomType());
+                    i.putExtra("roomRent",model.getRoomRent());
                     i.putExtra("roomNo",model.getRoomNo());
                     startActivity(i);
                 }
@@ -204,6 +206,8 @@ public class roomActivity extends AppCompatActivity {
                     Intent i=new Intent(getApplicationContext(),roomDetailActivity.class);
                     i.putExtra("id",model.get_id());
                     i.putExtra("roomNo",model.getRoomNo());
+                    i.putExtra("roomType",model.getRoomType());
+                    i.putExtra("roomRent",model.getRoomRent());
                     startActivity(i);
                 }
             });*/
