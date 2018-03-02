@@ -58,6 +58,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
     static boolean isVisible=false;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    SearchView searchView;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -72,7 +73,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
         MenuItem item=menu.findItem(R.id.searchMenu);
-        SearchView searchView=(SearchView)MenuItemCompat.getActionView(item);
+        searchView=(SearchView)MenuItemCompat.getActionView(item);
         searchView.setOnQueryTextListener(this);
         searchView.setMaxWidth(Integer.MAX_VALUE);
         return true;
@@ -359,13 +360,17 @@ public void setStaticData(String s) {
 }
     @Override
     public void onBackPressed() {
-        if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible) {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible ||!(searchView.isIconified())) {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START);
             }
             if (isVisible) {
                 reasonPage.setVisibility(View.INVISIBLE);
                 isVisible = false;
+            }
+            if(!(searchView.isIconified()))
+            {
+                searchView.setIconified(true);
             }
         }
         else {
