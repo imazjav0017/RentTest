@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:id="@+id/tabLayout"
-        android:elevation="10dp"
         android:layout_marginTop="55dp"
         app:tabMode="fixed"
         app:tabGravity="fill"

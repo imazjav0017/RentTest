@@ -33,6 +33,7 @@ public class BuildActivity extends AppCompatActivity {
     EditText rentInput,roomNo;
     Button addRoomsbutton;
     String accessToken,rooms=null,rentAmount=null,roomType=null;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -67,6 +68,7 @@ public class BuildActivity extends AppCompatActivity {
             addRoomsbutton.setClickable(true);
         }
         else {
+            Toast.makeText(this, "Processing!", Toast.LENGTH_SHORT).show();
             Log.i("sending","sending");
             Log.i("amo",rentAmount);
             SendToken task = new SendToken();
@@ -122,6 +124,7 @@ public class BuildActivity extends AppCompatActivity {
             Log.i("response",s);
             enable();
 
+
         }
     }
     public void response(String s)
@@ -129,9 +132,12 @@ public class BuildActivity extends AppCompatActivity {
         if(s.equals("200"))
         {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-            TextView description= (TextView)findViewById(R.id.description);
+            Intent i = new Intent(BuildActivity.this,roomActivity.class);
+            startActivity(i);
+            finish();
+            /*TextView description= (TextView)findViewById(R.id.description);
             int income=Integer.parseInt(rooms)*Integer.parseInt(rentAmount);
-            description.setText("No Of Rooms: "+rooms+"\nExpected Income: "+String.valueOf(income));
+            description.setText("No Of Rooms: "+rooms+"\nExpected Income: "+String.valueOf(income));*/
 
         }
         else
@@ -140,7 +146,7 @@ public class BuildActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),HomePageActivity.class);
+        Intent i=new Intent(getApplicationContext(),roomActivity.class);
         startActivity(i);
         finish();
     }
@@ -186,7 +192,7 @@ public class BuildActivity extends AppCompatActivity {
 
         });
 
-         Button finis =(Button)findViewById(R.id.finish);
+         /*Button finis =(Button)findViewById(R.id.finish);
         finis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,7 +200,7 @@ public class BuildActivity extends AppCompatActivity {
                 Intent i = new Intent(BuildActivity.this,roomActivity.class);
                 startActivity(i);
             }
-        });
+        });*/
 
 
 

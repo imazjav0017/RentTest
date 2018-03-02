@@ -67,6 +67,10 @@ public class StudentActivity extends AppCompatActivity {
             if(s!=null)
             {
                 Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
+                if(s.equals("success"))
+                {
+                    onBackPressed();
+                }
             }
         }
     }

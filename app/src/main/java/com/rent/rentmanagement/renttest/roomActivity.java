@@ -1,12 +1,20 @@
 package com.rent.rentmanagement.renttest;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,7 +48,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class roomActivity extends AppCompatActivity {
+public class roomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
     static ArrayList<RoomModel>erooms,oRooms;
     String response="";
     TabLayout tabLayout;
@@ -48,6 +56,8 @@ public class roomActivity extends AppCompatActivity {
     ViewPagerAdapter viewPagerAdapter;
     static RelativeLayout reasonPage;
     static boolean isVisible=false;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -58,6 +68,47 @@ public class roomActivity extends AppCompatActivity {
         return false;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_menu,menu);
+        MenuItem item=menu.findItem(R.id.searchMenu);
+        SearchView searchView=(SearchView)MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        return true;
+    }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        newText=newText.toLowerCase();
+        ArrayList<RoomModel>filteredList=new ArrayList<>();
+        ArrayList<RoomModel>filteredOcList=new ArrayList<>();
+        filteredList.clear();
+        filteredOcList.clear();
+        for(RoomModel model : erooms)
+        {
+            if(model.getRoomNo().toLowerCase().contains(newText))
+            {
+                filteredList.add(model);
+            }
+        }
+        for(RoomModel model : oRooms)
+        {
+            if(model.getRoomNo().toLowerCase().contains(newText))
+            {
+                filteredOcList.add(model);
+            }
+        }
+
+        EmptyRoomsFragment.adapter.setFilter(filteredList);
+        RentDueFragment.adapter2.setFilter(filteredOcList);
+        return true;
+    }
     public void setTokenJson()
     {
         try {
@@ -93,6 +144,10 @@ public class roomActivity extends AppCompatActivity {
             return e.getMessage();
         }
     }
+
+
+
+
     public class GetRoomsTask extends AsyncTask<String,Void,String>
     {
         @Override
@@ -196,10 +251,40 @@ public class roomActivity extends AppCompatActivity {
         startActivity(i);
 
     }
+    void setNavigation() {
+        navigationView = (NavigationView) findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Log.i("item", "selected");
+                switch (item.getItemId()) {
+                    case R.id.addRoomsNavigationMenu:
+                        Intent i = new Intent(getApplicationContext(), BuildActivity.class);
+                        startActivity(i);
+                        finish();
+                        break;
+                    case R.id.emptyRoomsNavigationMenu:
+                        viewPager.setCurrentItem(0);
+                        break;
+                    case R.id.rentDueNavigationMenu:
+                        viewPager.setCurrentItem(1);
+                        break;
+                    case R.id.profileMenu:
+                        viewPager.setCurrentItem(2);
+                        break;
+
+                }
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+
+            }
+
+        });
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room);
+        setContentView(R.layout.rooms_activity);
         erooms=new ArrayList<>();
         oRooms=new ArrayList<>();
         setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
@@ -212,8 +297,15 @@ public class roomActivity extends AppCompatActivity {
         viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),getApplicationContext());
         viewPagerAdapter.addFragment(new EmptyRoomsFragment(getApplicationContext()),"Empty Rooms");
         viewPagerAdapter.addFragment(new RentDueFragment(getApplicationContext()),"Rent Due");
+        viewPagerAdapter.addFragment(new ProfileFragment(),"My Profile");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawerLayout);
+       setNavigation();
+        ActionBarDrawerToggle actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
+                R.string.open,R.string.closed);
+        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
        Button logout=(Button)findViewById(R.id.logout);
         logout.setClickable(true);
         logout.setVisibility(View.VISIBLE);
@@ -267,18 +359,21 @@ public void setStaticData(String s) {
 }
     @Override
     public void onBackPressed() {
-        if(isVisible)
-        {
-            reasonPage.setVisibility(View.INVISIBLE);
-            isVisible=false;
+        if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible) {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START);
+            }
+            if (isVisible) {
+                reasonPage.setVisibility(View.INVISIBLE);
+                isVisible = false;
+            }
         }
         else {
-            Intent i = new Intent(getApplicationContext(), BuildActivity.class);
-            startActivity(i);
-            finish();
+            moveTaskToBack(true);
         }
+
     }
-    void submit(View v)
+   public void submit(View v)
     {
         reasonPage.setVisibility(View.INVISIBLE);
         isVisible=false;

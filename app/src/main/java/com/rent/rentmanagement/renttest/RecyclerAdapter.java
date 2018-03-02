@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -61,5 +62,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public int getItemCount() {
         return roomModels.size();
+    }
+    public void setFilter(List<RoomModel> filteredList)
+    {
+        roomModels=new ArrayList<>();
+        roomModels.addAll(filteredList);
+        notifyDataSetChanged();
     }
 }

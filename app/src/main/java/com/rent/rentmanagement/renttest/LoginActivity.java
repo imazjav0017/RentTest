@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     public void gotoHome()
     {
 
-        Intent i=new Intent(getApplicationContext(),HomePageActivity.class);
+        Intent i=new Intent(getApplicationContext(),roomActivity.class);
         startActivity(i);
         finish();
     }
