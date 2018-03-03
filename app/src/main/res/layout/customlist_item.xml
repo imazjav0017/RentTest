@@ -109,4 +109,6 @@
         android:textColor="#fff"
         android:background="#3949AB"
         android:id="@+id/checkInOptionButton"
-        /></RelativeLayout>
+        />
+
+</RelativeLayout>
