@@ -162,9 +162,6 @@ public class BuildActivity extends AppCompatActivity {
         rentInput=(EditText)findViewById(R.id.rentInput);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button logout=(Button)findViewById(R.id.logout);
-        logout.setClickable(true);
-        logout.setVisibility(View.VISIBLE);
         setTitle("Add Rooms");
         accessToken=LoginActivity.sharedPreferences.getString("token",null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -66,9 +66,16 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
             onBackPressed();
             return true;
         }
+        if(item.getItemId()==R.id.logoutMenuOption)
+        {
+            LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
+            Log.i("status","Logging out");
+            LoginActivity.sharedPreferences.edit().putString("token",null).apply();
+            Intent i=new Intent(getApplicationContext(),LoginActivity.class);
+            startActivity(i);
+        }
         return false;
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
@@ -241,17 +248,6 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
     }
-
-
-    public void logout(View v)
-    {
-        LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
-        Log.i("status","Logging out");
-        LoginActivity.sharedPreferences.edit().putString("token",null).apply();
-        Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(i);
-
-    }
     void setNavigation() {
         navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -307,9 +303,6 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 R.string.open,R.string.closed);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-       Button logout=(Button)findViewById(R.id.logout);
-        logout.setClickable(true);
-        logout.setVisibility(View.VISIBLE);
         setTitle("Rooms");
         reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
 

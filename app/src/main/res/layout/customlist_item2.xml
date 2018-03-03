@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/squarebg"
+    android:padding="5dp"
     android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:padding="5dp"
+        android:weightSum="3"
+        android:background="@drawable/squarebg"
         android:id="@+id/emptyRoomsLinearLayout"
         android:descendantFocusability="blocksDescendants"
         android:layout_height="wrap_content">
@@ -14,28 +17,29 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            android:layout_marginTop="15dp"
             android:layout_weight="1"
+            android:layout_marginTop="15dp"
             android:layout_height="match_parent">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room Type"
+                android:text="Room 1"
+                android:gravity="center"
+                android:id="@+id/roomNoDisplay"
                 android:padding="5dp"
                 android:textStyle="bold"
                 android:textColor="#424242"
-                android:textSize="15sp"/>
+                android:textSize="20sp"/>
 
             <TextView
                 android:text="Single"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:Layout_gravity="center"
+                android:gravity="center"
                 android:id="@+id/roomTypeDisplay"
                 android:textColor="#424242"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:textStyle="italic"
-
                 android:padding="5dp" />
             />
 
@@ -45,15 +49,17 @@
             android:layout_width="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            android:layout_marginTop="15dp"
+            android:gravity="center"
             android:layout_weight="1"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Room Rent"
                 android:textColor="#424242"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:padding="5dp"
                 android:textStyle="bold"
 
@@ -63,29 +69,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rentDisplay"
-                android:layout_marginLeft="10dp"
                 android:textColor="#424242"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 android:padding="5dp"
                 />
         </LinearLayout>
 
-
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@drawable/round_bg"
             android:textColor="#3200ff"
             android:padding="10dp"
             android:gravity="center"
-            android:
             android:layout_marginTop="25dp"
-            android:id="@+id/collectingButton"
-
+            android:id="@+id/checkInOptionButton"
             android:text="checkin"
             />
+
+
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

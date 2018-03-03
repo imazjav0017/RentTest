@@ -38,9 +38,6 @@ public class roomDetailActivity extends AppCompatActivity {
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button logout=(Button)findViewById(R.id.logout);
-        logout.setClickable(true);
-        logout.setVisibility(View.VISIBLE);
         Intent i=getIntent();
         roomNo=i.getStringExtra("roomNo");
         roomType=i.getStringExtra("roomType");

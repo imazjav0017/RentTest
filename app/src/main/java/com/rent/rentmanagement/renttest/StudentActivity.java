@@ -139,9 +139,6 @@ public class StudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student); Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button logout=(Button)findViewById(R.id.logout);
-        logout.setClickable(true);
-        logout.setVisibility(View.VISIBLE);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
         setTitle("Room No: "+i.getStringExtra("roomNo"));
