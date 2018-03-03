@@ -156,8 +156,8 @@ public class BuildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build);
          addRoomsbutton= (Button) findViewById(R.id.addroomsButton);
-        buildingName=(TextView)findViewById(R.id.buildingname);
-        OwnerName=(TextView)findViewById(R.id.ownername);
+     //   buildingName=(TextView)findViewById(R.id.buildingname);
+//        OwnerName=(TextView)findViewById(R.id.ownername);
         roomNo=(EditText) findViewById(R.id.roomdetailInput);
         rentInput=(EditText)findViewById(R.id.rentInput);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -165,12 +165,12 @@ public class BuildActivity extends AppCompatActivity {
         setTitle("Add Rooms");
         accessToken=LoginActivity.sharedPreferences.getString("token",null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Spinner spinner =(Spinner)findViewById(R.id.spinner);
+      //  Spinner spinner =(Spinner)findViewById(R.id.spinner);
         final String[] items={"Room Type","Single","Double","Triple"};
-        ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items);
+      //  ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items);
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       // spinner.setAdapter(adapter);
+      /*  spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0)
