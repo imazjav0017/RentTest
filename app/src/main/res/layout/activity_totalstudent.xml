@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="5dp"
+    android:layout_height="wrap_content">
+    <include
+        layout="@layout/actionbarlayout"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:padding="5dp"
+        android:background="@drawable/squarebg"
+        android:id="@+id/emptyRoomsLinearLayout"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_height="100dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Room 1"
+                android:gravity="center"
+                android:id="@+id/roomNoDisplay"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:textColor="#424242"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:text="Single"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:id="@+id/roomTypeDisplay"
+                android:textColor="#424242"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:padding="5dp" />
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room Rent"
+                android:textColor="#424242"
+                android:textSize="18sp"
+                android:padding="5dp"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:text="Rs.1000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rentDisplay"
+                android:textColor="#424242"
+                android:textSize="18sp"
+                android:padding="5dp"
+                />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/round_bg"
+            android:textColor="#3200ff"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_marginTop="15dp"
+            android:id="@+id/checkInOptionButton"
+            android:text="checkin"
+            />
+
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
