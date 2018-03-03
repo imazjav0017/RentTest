@@ -71,6 +71,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
             LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
             Log.i("status","Logging out");
             LoginActivity.sharedPreferences.edit().putString("token",null).apply();
+            LoginActivity.sharedPreferences.edit().putString("roomsDetails","0").apply();
             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
             startActivity(i);
         }
@@ -308,47 +309,49 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 
     }
 public void setStaticData(String s) {
-    if(s!=null)
-    {
+    if(s!=null) {
+        if (s.equals("0")) {
+            Toast.makeText(this, "Fetching!", Toast.LENGTH_SHORT).show();
 
-        erooms.clear();
-        oRooms.clear();
-        JSONObject jsonObject= null;
-        try {
-            jsonObject = new JSONObject(s);
+        } else {
 
-            JSONArray array = jsonObject.getJSONArray("room");
+            erooms.clear();
+            oRooms.clear();
+            JSONObject jsonObject = null;
+            try {
+                jsonObject = new JSONObject(s);
 
-
-            Log.i("arrayStatic", array.toString());
-            if (array.length() == 0) {
-
-            } else {
-
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject detail = array.getJSONObject(i);
-                    if (detail.getBoolean("isEmpty") == true) {
-                        //empty rooms
-                        erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                detail.getString("roomRent"), detail.getString("_id")));
+                JSONArray array = jsonObject.getJSONArray("room");
 
 
+                Log.i("arrayStatic", array.toString());
+                if (array.length() == 0) {
+
+                } else {
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject detail = array.getJSONObject(i);
+                        if (detail.getBoolean("isEmpty") == true) {
+                            //empty rooms
+                            erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                    detail.getString("roomRent"), detail.getString("_id")));
+
+
+                        } else {
+                            oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                    detail.getString("roomRent"), detail.getString("_id")));
+
+
+                        }
                     }
-                    else {
-                        oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                detail.getString("roomRent"), detail.getString("_id")));
-
-
-                    }
+                    EmptyRoomsFragment.adapter.notifyDataSetChanged();
+                    RentDueFragment.adapter2.notifyDataSetChanged();
                 }
-                EmptyRoomsFragment.adapter.notifyDataSetChanged();
-                RentDueFragment.adapter2.notifyDataSetChanged();
+            } catch (Exception e) {
+                Log.i("err", "err");
+                e.printStackTrace();
             }
         }
-        catch (Exception e) {
-            Log.i("err","err");
-        e.printStackTrace();
-    }
     }
 }
     @Override

@@ -6,7 +6,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:padding="5dp"
+
         android:weightSum="3"
         android:background="@drawable/squarebg"
         android:id="@+id/emptyRoomsLinearLayout"
@@ -29,7 +29,7 @@
                 android:padding="5dp"
                 android:textStyle="bold"
                 android:textColor="#424242"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
 
             <TextView
                 android:text="Single"
@@ -38,7 +38,7 @@
                 android:gravity="center"
                 android:id="@+id/roomTypeDisplay"
                 android:textColor="#424242"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="italic"
                 android:padding="5dp" />
             />
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="Room Rent"
                 android:textColor="#424242"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:padding="5dp"
                 android:textStyle="bold"
 
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/rentDisplay"
                 android:textColor="#424242"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:padding="5dp"
                 />
         </LinearLayout>
