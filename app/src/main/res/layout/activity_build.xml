@@ -15,19 +15,20 @@
 
 
 
-        <LinearLayout
+        <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="80sp"
             android:orientation="horizontal"
+            android:id="@+id/radioGroup"
             android:padding="5dp"
-
             >
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Single"
+                android:id="@+id/single"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="#707070"
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Double"
+                android:id="@+id/doubleBtn"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="#707070"
@@ -44,12 +46,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Triple"
+                android:id="@+id/triple"
                 android:layout_weight="1"
                 android:textColor="#707070"
                 android:textStyle="bold"
                 android:textSize="25sp"/>
 
-        </LinearLayout>
+        </RadioGroup>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -68,7 +71,7 @@
                 android:textSize="25sp"/>
             <EditText
                 android:id="@+id/roomdetailInput"
-                android:layout_width="180dp"
+                android:layout_width="100dp"
                 android:inputType="number"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
@@ -85,7 +88,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Room Rent: Rs"
+                android:text="Room Rent: \u20B9 "
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:textColor="#424242"
@@ -93,7 +96,7 @@
 
             <EditText
                 android:id="@+id/rentInput"
-                android:layout_width="180sp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:inputType="number"

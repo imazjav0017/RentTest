@@ -103,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:id="@+id/addRoomsButton2"
                 android:text="Add Rooms"
                 android:layout_gravity="center"
                 android:padding="13dp"
@@ -180,7 +181,7 @@
     android:textSize="18sp"
     android:textColor="#000"
     android:textStyle="bold"
-    android:text="TOTAL INCOME :  RS 180,000"/>
+    android:text="TOTAL INCOME :  \u20B9 180,000"/>
 
     <LinearLayout
         android:layout_width="140dp"
@@ -222,7 +223,7 @@
             android:gravity="center"
             android:textColor="#000"
             android:layout_height="wrap_content"
-            android:text="Rs.20,000"
+            android:text="\u20B920,000"
             android:textSize="15sp"/>
     </LinearLayout>
     <LinearLayout
@@ -269,7 +270,7 @@
             android:gravity="center"
             android:textColor="#000"
             android:layout_height="wrap_content"
-            android:text="Rs.100,000"
+            android:text="\u20B9100,000"
             android:textSize="15sp"/>
   </LinearLayout>
     <LinearLayout
@@ -313,7 +314,7 @@
             android:gravity="center"
             android:textColor="#000"
             android:layout_height="wrap_content"
-            android:text="Rs.80,000"
+            android:text="\u20B980,000"
             android:textSize="15sp"/>
     </LinearLayout>
     <LinearLayout

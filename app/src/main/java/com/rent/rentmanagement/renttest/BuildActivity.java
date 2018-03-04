@@ -1,5 +1,7 @@
 package com.rent.rentmanagement.renttest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +32,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BuildActivity extends AppCompatActivity {
-  TextView buildingName,OwnerName;
+    RadioGroup radioGroup;
     EditText rentInput,roomNo;
     Button addRoomsbutton;
     String accessToken,rooms=null,rentAmount=null,roomType=null;
@@ -44,15 +47,6 @@ public class BuildActivity extends AppCompatActivity {
         return false;
     }
 
-    public void logout(View v)
-    {
-        LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
-        Log.i("status","Logging out");
-        LoginActivity.sharedPreferences.edit().putString("token",null).apply();
-        Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(i);
-
-    }
     public void enable()
     {
 
@@ -68,11 +62,24 @@ public class BuildActivity extends AppCompatActivity {
             addRoomsbutton.setClickable(true);
         }
         else {
-            Toast.makeText(this, "Processing!", Toast.LENGTH_SHORT).show();
-            Log.i("sending","sending");
-            Log.i("amo",rentAmount);
-            SendToken task = new SendToken();
-            task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/addRooms");
+            new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Add "+rooms+" rooms!").setMessage("Are You Sure You Wish To Add "+rooms+" "+roomType+" rooms?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getApplicationContext(), "Processing!", Toast.LENGTH_SHORT).show();
+                            Log.i("sending","sending");
+                            Log.i("amo",rentAmount);
+                            SendToken task = new SendToken();
+                            task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/addRooms");
+                        }
+                    }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    enable();
+                }
+            }).show();
+
 
         }
     }
@@ -135,10 +142,6 @@ public class BuildActivity extends AppCompatActivity {
             Intent i = new Intent(BuildActivity.this,roomActivity.class);
             startActivity(i);
             finish();
-            /*TextView description= (TextView)findViewById(R.id.description);
-            int income=Integer.parseInt(rooms)*Integer.parseInt(rentAmount);
-            description.setText("No Of Rooms: "+rooms+"\nExpected Income: "+String.valueOf(income));*/
-
         }
         else
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
@@ -156,8 +159,6 @@ public class BuildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_build);
          addRoomsbutton= (Button) findViewById(R.id.addroomsButton);
-     //   buildingName=(TextView)findViewById(R.id.buildingname);
-//        OwnerName=(TextView)findViewById(R.id.ownername);
         roomNo=(EditText) findViewById(R.id.roomdetailInput);
         rentInput=(EditText)findViewById(R.id.rentInput);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -165,39 +166,26 @@ public class BuildActivity extends AppCompatActivity {
         setTitle("Add Rooms");
         accessToken=LoginActivity.sharedPreferences.getString("token",null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-      //  Spinner spinner =(Spinner)findViewById(R.id.spinner);
         final String[] items={"Room Type","Single","Double","Triple"};
-      //  ArrayAdapter<String>adapter=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,items);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-       // spinner.setAdapter(adapter);
-      /*  spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        radioGroup=(RadioGroup)findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position!=0)
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.single)
                 {
-
-                    roomType=items[position];
-                    enable();
-
+                   roomType=items[1];
                 }
+                else if(checkedId==R.id.doubleBtn)
+                {
+                    roomType=items[2];
+                }
+                else if(checkedId==R.id.triple)
+                {
+                    roomType=items[3];
+                }
+
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-
         });
-
-         /*Button finis =(Button)findViewById(R.id.finish);
-        finis.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(BuildActivity.this,roomActivity.class);
-                startActivity(i);
-            }
-        });*/
 
 
 

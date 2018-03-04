@@ -36,7 +36,7 @@
                 android:id="@+id/roomno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RS 5000"
+                android:text="\u20B95000"
 
                 android:textSize="15sp"
                 />

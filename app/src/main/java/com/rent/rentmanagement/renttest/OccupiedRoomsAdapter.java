@@ -35,7 +35,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     public void onBindViewHolder(final ViewHolder2 holder, int position) {
         final RoomModel model=roomList.get(position);
         holder.roomNo.setText("Room "+model.getRoomNo());
-        holder.amount.setText(model.getRoomRent());
+        holder.amount.setText("\u20B9"+model.getRoomRent());
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,6 +58,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(holder.context,rent_collectedActivity.class);
+                i.putExtra("rentAmount",model.getRoomRent());
                 holder.context.startActivity(i);
             }
         });

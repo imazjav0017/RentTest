@@ -48,6 +48,6 @@ public class roomDetailActivity extends AppCompatActivity {
         rr = (TextView) findViewById(R.id.roomrent);
         rn.setText(roomNo);
         rt.setText(roomType);
-        rr.setText(roomRent);
+        rr.setText("\u20B9"+roomRent);
     }
 }

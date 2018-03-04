@@ -1,4 +1,6 @@
 package com.rent.rentmanagement.renttest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -68,12 +70,21 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         }
         if(item.getItemId()==R.id.logoutMenuOption)
         {
-            LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
-            Log.i("status","Logging out");
-            LoginActivity.sharedPreferences.edit().putString("token",null).apply();
-            LoginActivity.sharedPreferences.edit().putString("roomsDetails","0").apply();
-            Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-            startActivity(i);
+            new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Logout!").setMessage("Are You Sure You Wish To Logout?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
+                            Log.i("status","Logging out");
+                            LoginActivity.sharedPreferences.edit().putString("token",null).apply();
+                            LoginActivity.sharedPreferences.edit().putString("roomsDetails","0").apply();
+                            Intent i=new Intent(getApplicationContext(),LoginActivity.class);
+                            startActivity(i);
+                        }
+                    }).setNegativeButton("No",null).show();
+            return true;
+
         }
         return false;
     }
@@ -295,7 +306,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),getApplicationContext());
         viewPagerAdapter.addFragment(new EmptyRoomsFragment(getApplicationContext()),"Empty Rooms");
         viewPagerAdapter.addFragment(new RentDueFragment(getApplicationContext()),"Rent Due");
-        viewPagerAdapter.addFragment(new ProfileFragment(),"My Profile");
+        viewPagerAdapter.addFragment(new ProfileFragment(getApplicationContext()),"My Profile");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawerLayout);
