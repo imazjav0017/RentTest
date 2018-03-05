@@ -335,7 +335,7 @@ public void setStaticData(String s) {
                 JSONArray array = jsonObject.getJSONArray("room");
 
 
-                Log.i("arrayStatic", array.toString());
+                //Log.i("arrayStatic", array.toString());
                 if (array.length() == 0) {
 
                 } else {
@@ -349,6 +349,8 @@ public void setStaticData(String s) {
 
 
                         } else {
+                            JSONArray a=detail.getJSONArray("students");
+                            Log.i("students",a.toString());
                             oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                                     detail.getString("roomRent"), detail.getString("_id")));
 
