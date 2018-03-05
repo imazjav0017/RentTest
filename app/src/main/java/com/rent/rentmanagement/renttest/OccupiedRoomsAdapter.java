@@ -59,6 +59,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
             public void onClick(View v) {
                 Intent i=new Intent(holder.context,rent_collectedActivity.class);
                 i.putExtra("rentAmount",model.getRoomRent());
+                i.putExtra("roomId",model.get_id());
                 holder.context.startActivity(i);
             }
         });
