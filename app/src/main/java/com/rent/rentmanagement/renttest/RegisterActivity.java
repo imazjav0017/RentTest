@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RegisterActivity extends AppCompatActivity {
-    EditText username,email,password;
+    EditText username,email,password,mobileNo,buildingName;
     Button register;
 
     @Override
@@ -94,9 +94,11 @@ public class RegisterActivity extends AppCompatActivity {
         register.setClickable(false);
         try {
             JSONObject userDetails = new JSONObject();
-            userDetails.put("name", username.getText().toString());
+         userDetails.put("name", username.getText().toString());
             userDetails.put("email", email.getText().toString());
             userDetails.put("password", password.getText().toString());
+            userDetails.put("mobileNo",mobileNo.getText().toString());
+            userDetails.put("buildingName",buildingName.getText().toString());
             RegisterTask task=new RegisterTask();
             Log.i("data:",userDetails.toString());
             task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signup",userDetails.toString());
@@ -126,5 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
         email=(EditText)findViewById(R.id.emailInput);
         password=(EditText)findViewById(R.id.newPasswordInput);
         register=(Button)findViewById(R.id.submitRegister);
+        mobileNo=(EditText)findViewById(R.id.mobileNo);
+        buildingName=(EditText)findViewById(R.id.buildingName);
     }
 }
