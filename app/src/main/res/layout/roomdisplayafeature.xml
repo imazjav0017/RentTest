@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
         app:cardElevation="5dp"
+        android:layout_marginTop="10dp"
 
         android:background="#a49b9b">
 <LinearLayout
@@ -83,29 +84,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_weight="1"
-
-
         android:gravity="center">
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:background="@drawable/round_bg"
             android:textColor="#008000"
-            android:padding="10dp"
+            android:textAllCaps="false"
+
             android:id="@+id/collectingButton"
 
-            android:text="collect"
+            android:text="Collect"
             />
         <Button
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:padding="10dp"
             android:id="@+id/reason"
-            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_height="40dp"
             android:background="@drawable/round_bg"
             android:textColor="#E53935"
-            android:text="REASON"/>
+            android:text="Reason"/>
     </LinearLayout>
 
 </LinearLayout>

@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="2dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    >
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="4dp"
         app:cardElevation="5dp"
+        android:layout_marginTop="5dp"
         android:background="#a49b9b">
 
 
@@ -24,9 +26,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="vertical"
-
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
+            android:gravity="center"
             android:layout_height="match_parent">
             <TextView
                 android:layout_width="match_parent"
@@ -56,10 +58,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="vertical"
-
-            android:gravity="center"
             android:layout_weight="1"
-            android:layout_marginTop="8dp"
+          android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_height="wrap_content">
             <TextView
@@ -77,6 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rentDisplay"
+                android:gravity="center"
+                android:layout_marginLeft="7dp"
                 android:textColor="#424242"
                 android:textSize="18sp"
                 android:padding="5dp"
@@ -84,16 +86,17 @@
         </LinearLayout>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/round_bg"
             android:textColor="#3200ff"
-            android:padding="10dp"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="15dp"
+
             android:id="@+id/checkInOptionButton"
-            android:text="checkin"
+            android:text="Checkin"
             />
 
 
