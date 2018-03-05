@@ -36,7 +36,7 @@ public class StudentActivity extends AppCompatActivity {
             try {
                 URL url = new URL(params[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.addRequestProperty("Accept", "application/json");
+                connection.addRequestProperty("A ccept", "application/json");
                 connection.addRequestProperty("Content-Type", "application/json");
                 connection.setRequestMethod("POST");
                 connection.setDoOutput(true);
@@ -111,7 +111,7 @@ public class StudentActivity extends AppCompatActivity {
         {
             makeJson();
             AddStudentsTask task=new AddStudentsTask();
-            task.execute("https://sleepy-atoll-65823.herokuapp.com/students/addStudents",studentDetails.toString());
+            task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/addStudents",studentDetails.toString());
         }
     }
     @Override

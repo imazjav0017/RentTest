@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 /**
  * Created by imazjav0017 on 02-03-2018.
@@ -18,6 +19,7 @@ public class ProfileFragment extends Fragment {
     View v;
     Button addRoomsBtn;
     Context context;
+    LinearLayout circle;
     public ProfileFragment() {
 
     }
@@ -37,6 +39,15 @@ public class ProfileFragment extends Fragment {
                 v.getContext().startActivity(i);
             }
         });
+        circle=(LinearLayout)v.findViewById(R.id.circleLayout);
+        circle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(v.getContext(),totalRoomsActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+
         return v;
     }
 }

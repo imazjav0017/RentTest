@@ -19,10 +19,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     List<RoomModel> roomModels;
     Context context;
-    public RecyclerAdapter(List<RoomModel> roomModels,Context context)
-    {
-        this.context=context;
-        this.roomModels=roomModels;
+
+    public RecyclerAdapter(List<RoomModel> roomModels, Context context) {
+        this.roomModels = roomModels;
+        this.context = context;
     }
 
     @Override

@@ -5,8 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.rent.rentmanagement.renttest.RegisterActivity">
+
+
     <include
         layout="@layout/actionbarlayout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -34,6 +40,22 @@
             android:ems="10"
             android:id="@+id/emailInput" />
 
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="20dp"
+            android:hint="Mobile No."
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/mobileNo" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="Building Name"
+            android:ems="10"
+            android:id="@+id/buildingName" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,5 +87,6 @@
         </LinearLayout>
 
     </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
