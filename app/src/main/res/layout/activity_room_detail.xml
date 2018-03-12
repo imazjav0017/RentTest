@@ -83,7 +83,7 @@
                 android:id="@+id/roomtype"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="studnet1/student 2"
+                android:text="Single"
                 android:layout_marginTop="30dp"
                 android:textSize="15sp"
                 android:layout_weight="1"

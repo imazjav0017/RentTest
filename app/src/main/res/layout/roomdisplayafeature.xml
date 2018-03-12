@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="RS 5000"
             android:id="@+id/rentToBeCollected"
-            android:gravity="center"
+
             android:textSize="18sp"
             />
 

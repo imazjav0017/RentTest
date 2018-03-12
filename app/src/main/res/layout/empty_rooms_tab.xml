@@ -12,9 +12,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Room No."
+            android:text="Room"
             android:layout_weight="1"
-
+            android:layout_marginLeft="10dp"
             android:id="@+id/roomNoDisplay"
             android:padding="5dp"
             android:textStyle="bold"
@@ -29,6 +29,7 @@
             android:textSize="18sp"
             android:padding="5dp"
             android:textStyle="bold"
+            android:layout_marginLeft="10dp"
 
             />
 
