@@ -34,11 +34,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Room 1"
+            android:text="Room No. 1"
             android:id="@+id/roomNoOccupiedop"
             android:textSize="18sp"
             android:textColor="#424242"
-            android:gravity="center"
+
             android:textStyle="bold"
             />
         <TextView
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="date"
             android:textSize="18sp"
-            android:gravity="center"/>
+         />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -57,16 +57,7 @@
 
         >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Amount"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:textColor="#424242"
 
-            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

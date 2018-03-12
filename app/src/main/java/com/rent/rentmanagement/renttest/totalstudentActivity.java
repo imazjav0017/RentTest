@@ -25,6 +25,7 @@ public class totalstudentActivity extends AppCompatActivity {
         public void setStaticData(String s) {
             if(s!=null) {
                 if (s.equals("0")) {
+                    Log.i("respone",s);
                     Toast.makeText(this, "Fetching!", Toast.LENGTH_SHORT).show();
 
                 } else {
