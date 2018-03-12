@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
+        android:id="@+id/lll"
         android:padding="4dp"
         >
         <LinearLayout
@@ -128,4 +129,24 @@
 
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Students:"
+        android:id="@+id/studTextView"
+        android:layout_below="@+id/lll"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/studTextView"
+        android:id="@+id/studentsRecyclerView">
+
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

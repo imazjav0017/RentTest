@@ -71,10 +71,16 @@ public class StudentActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
                 if(s.equals("success"))
                 {
-                    onBackPressed();
+                    studentName.setText("");
+                    contactNo.setText("");
+                    aadharNo.setText("");
                 }
             }
         }
+    }
+    public void back(View v)
+    {
+        onBackPressed();
     }
     public void makeJson()
     {
