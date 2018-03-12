@@ -1,14 +1,15 @@
-package com.rent.rentmanagement.renttest;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
+        package com.rent.rentmanagement.renttest;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.widget.Toast;
 
-import java.util.ArrayList;
+        import org.json.JSONArray;
+        import org.json.JSONObject;
+
+        import java.util.ArrayList;
 
 public class totalRoomsActivity extends AppCompatActivity {
     static ArrayList<RoomModel> trooms;

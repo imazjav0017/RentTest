@@ -33,7 +33,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room 1"
+                android:text="1"
                 android:gravity="center"
                 android:id="@+id/roomNoDisplay"
                 android:padding="5dp"
@@ -62,16 +62,7 @@
           android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Room Rent"
-                android:textColor="#424242"
-                android:textSize="18sp"
-                android:padding="5dp"
-                android:textStyle="bold"
 
-                />
             <TextView
                 android:text="Rs.1000"
                 android:layout_width="wrap_content"
