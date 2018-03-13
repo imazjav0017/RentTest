@@ -49,7 +49,7 @@ public class totalRoomsActivity extends AppCompatActivity {
 
 
                             trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"), detail.getString("_id")));
+                                    detail.getString("roomRent"), detail.getString("_id"),null));
 
                         }
                     }

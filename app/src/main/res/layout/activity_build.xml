@@ -32,7 +32,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="#707070"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -41,7 +41,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:textColor="#707070"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:textColor="#707070"
                 android:textStyle="bold"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
 
         </RadioGroup>
         <LinearLayout
@@ -68,7 +68,7 @@
                 android:layout_gravity="center"
                 android:textColor="#424242"
                 android:textStyle="bold"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
             <EditText
                 android:id="@+id/roomdetailInput"
                 android:layout_width="100dp"
@@ -92,7 +92,7 @@
                 android:layout_gravity="center"
                 android:textStyle="bold"
                 android:textColor="#424242"
-                android:textSize="25sp"/>
+                android:textSize="20sp"/>
 
             <EditText
                 android:id="@+id/rentInput"

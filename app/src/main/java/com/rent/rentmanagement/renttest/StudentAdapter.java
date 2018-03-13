@@ -1,5 +1,8 @@
 package com.rent.rentmanagement.renttest;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,10 +16,12 @@ import java.util.List;
  */
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentViewHolder> {
-    List<String> studentNames;
+    List<StudentModel> studentsList;
+    Context context1;
 
-    public StudentAdapter(List<String> studentNames) {
-        this.studentNames = studentNames;
+    public StudentAdapter(List<StudentModel> studentsList,Context context) {
+        this.studentsList = studentsList;
+        this.context1=context;
     }
 
     @Override
@@ -26,14 +31,23 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(StudentViewHolder holder, int position) {
-        String name=studentNames.get(position);
-        Log.i(String.valueOf(position),name);
-        holder.studentName.setText(name);
+    public void onBindViewHolder(final StudentViewHolder holder, int position) {
+        final StudentModel model=studentsList.get(position);
+        holder.studentName.setText(model.getName());
+        holder.phNo.setText(model.getPhNo());
+        holder.call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Intent.ACTION_DIAL);
+                i.setData(Uri.parse("tel:"+model.getPhNo()));
+                holder.context.startActivity(i);
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        return studentNames.size();
+        return studentsList.size();
     }
 }
