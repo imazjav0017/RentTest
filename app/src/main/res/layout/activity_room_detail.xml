@@ -157,23 +157,32 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Load Room History"
+            android:onClick="expandStudents"
+            android:text="Students"
+            android:elevation="2dp"
             android:textStyle="bold"
             android:textColor="#424242"
             android:textSize="20sp"/>
     </LinearLayout>
 
-
+<com.github.aakira.expandablelayout.ExpandableRelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/lay2"
+    app:ael_duration="400"
+    app:ael_expanded="false"
+    android:id="@+id/studentsLayout"
+    android:background="#bad7d4d4"
+    app:ael_interpolator="accelerate"
+    app:ael_orientation="vertical"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true" >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Students:"
         android:id="@+id/studTextView"
-        android:layout_below="@+id/lay2"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        />
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -182,5 +191,7 @@
         android:id="@+id/studentsRecyclerView">
 
     </android.support.v7.widget.RecyclerView>
+</com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+
 
 </RelativeLayout>

@@ -241,14 +241,15 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 if(detail.getBoolean("isEmpty")==true) {
                     //empty rooms
                     erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                            detail.getString("roomRent"), detail.getString("_id")));
+                            detail.getString("roomRent"), detail.getString("_id"),null));
 
 
                 }
                 else
                 {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                            detail.getString("roomRent"), detail.getString("_id")));
+                            detail.getString("roomRent"),detail.getString("dueAmount"),
+                            detail.getString("_id"),detail.getString("checkInDate")));
 
 
                 }
@@ -345,14 +346,14 @@ public void setStaticData(String s) {
                         if (detail.getBoolean("isEmpty") == true) {
                             //empty rooms
                             erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"), detail.getString("_id")));
+                                    detail.getString("roomRent"), detail.getString("_id"),null));
 
 
                         } else {
                             JSONArray a=detail.getJSONArray("students");
                             Log.i("students",a.toString());
                             oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"), detail.getString("_id")));
+                                    detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("checkInDate")));
 
 
                         }
