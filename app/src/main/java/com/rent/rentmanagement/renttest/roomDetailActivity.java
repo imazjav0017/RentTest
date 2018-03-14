@@ -23,13 +23,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class roomDetailActivity extends AppCompatActivity {
-    TextView rn,rt,rr,studTextView;
-    RecyclerView studentsRV;
+    TextView rn,rt,rr,studentsExpandingView,paymentsExpandLayout;
+    RecyclerView studentsRV,paymentsHistoryList;
     StudentAdapter adapter;
     List<StudentModel> studentsList;
-    ExpandableRelativeLayout expandableRelativeLayout;
+    List<PaymentHistoryModel>paymentList;
+    PaymentHistoryAdapter pAdapter;
+    ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
     String roomNo,roomType,roomRent,_id;
-    public void setData(String s) {
+    public void setPaymentHistory(String s) {
+        paymentList.clear();
+        if(s!=null) {
+            if (s.equals("0")) {
+                Toast.makeText(this, "Fetching!", Toast.LENGTH_SHORT).show();
+
+            } else {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+                    JSONArray array = jsonObject.getJSONArray("room");
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject detail = array.getJSONObject(i);
+                        if(detail.getString("_id").equals(_id))
+                        {
+                            JSONObject paymentobj=detail.getJSONObject("paymentDetail");
+                            Log.i("payments",paymentobj.toString());
+                            JSONArray payments=paymentobj.getJSONArray("payment");
+                            if(payments.length()>0)
+                            {
+
+                                for(int k=0;k<payments.length();k++) {
+                                    JSONObject paymentDetails = payments.getJSONObject(k);
+                                    paymentList.add(new PaymentHistoryModel(paymentDetails.getString("payee"),
+                                            paymentDetails.getString("amount"),paymentDetails.getString("date")));
+
+                                }
+                                pAdapter.notifyDataSetChanged();
+
+                            }
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public void setStudentsData(String s) {
         studentsList.clear();
         if(s!=null) {
             if (s.equals("0")) {
@@ -49,7 +91,6 @@ public class roomDetailActivity extends AppCompatActivity {
                             if(students.length()>0)
                             {
 
-                                studTextView.setVisibility(View.VISIBLE);
                                 for(int k=0;k<students.length();k++) {
                                     JSONObject studentDetails = students.getJSONObject(k);
                                      studentsList.add(new StudentModel(studentDetails.getString("name"),studentDetails.getString("mobileNo")));
@@ -93,12 +134,13 @@ public class roomDetailActivity extends AppCompatActivity {
         rn = (TextView) findViewById(R.id.roomno);
         rt = (TextView) findViewById(R.id.roomtype);
         rr = (TextView) findViewById(R.id.roomrent);
+        studentsExpandingView = (TextView) findViewById(R.id.studentsExpandingView);
+        paymentsExpandLayout = (TextView) findViewById(R.id.paymentsExpandLayout);
         expandableRelativeLayout=(ExpandableRelativeLayout)findViewById(R.id.studentsLayout);
+        expandablePayments=(ExpandableRelativeLayout)findViewById(R.id.paymentsLayout);
         rn.setText(roomNo);
         rt.setText(roomType);
         rr.setText("\u20B9"+roomRent);
-        studTextView=(TextView)findViewById(R.id.studTextView);
-        studTextView.setVisibility(View.INVISIBLE);
         studentsRV=(RecyclerView)findViewById(R.id.studentsRecyclerView);
         studentsList=new ArrayList<>();
         adapter=new StudentAdapter(studentsList,getApplicationContext());
@@ -106,10 +148,38 @@ public class roomDetailActivity extends AppCompatActivity {
         studentsRV.setLayoutManager(lm);
         studentsRV.setHasFixedSize(true);
         studentsRV.setAdapter(adapter);
-        setData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
+        paymentList=new ArrayList<>();
+        paymentsHistoryList=(RecyclerView)findViewById(R.id.paymentsHistoryList);
+        pAdapter=new PaymentHistoryAdapter(paymentList);
+        LinearLayoutManager lm2=new LinearLayoutManager(getApplicationContext());
+        paymentsHistoryList.setLayoutManager(lm2);
+        paymentsHistoryList.setHasFixedSize(true);
+        paymentsHistoryList.setAdapter(pAdapter);
+        setPaymentHistory(LoginActivity.sharedPreferences.getString("roomsDetails",null));
+        setStudentsData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
     }
     public void expandStudents(View v)
     {
-        expandableRelativeLayout.toggle();
+        if(expandableRelativeLayout.isExpanded())
+        {
+            studentsExpandingView.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_down_arrow,0);
+            expandableRelativeLayout.collapse();
+        }
+        else {
+            studentsExpandingView.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_up_arrow,0);
+            expandableRelativeLayout.toggle();
+        }
+    }
+    public void expandPayments(View v)
+    {
+        if(expandablePayments.isExpanded())
+        {
+            paymentsExpandLayout.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_down_arrow,0);
+            expandablePayments.collapse();
+        }
+        else {
+            paymentsExpandLayout.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_up_arrow,0);
+            expandablePayments.toggle();
+        }
     }
 }
