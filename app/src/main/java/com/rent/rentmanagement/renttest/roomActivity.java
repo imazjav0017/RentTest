@@ -70,7 +70,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         }
         if(item.getItemId()==R.id.logoutMenuOption)
         {
-            new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
+            new AlertDialog.Builder(this)
                     .setTitle("Logout!").setMessage("Are You Sure You Wish To Logout?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override

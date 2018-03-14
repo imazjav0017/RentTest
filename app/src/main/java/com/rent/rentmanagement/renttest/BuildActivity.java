@@ -62,7 +62,7 @@ public class BuildActivity extends AppCompatActivity {
             addRoomsbutton.setClickable(true);
         }
         else {
-            new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
+            new AlertDialog.Builder(this)
                     .setTitle("Add "+rooms+" rooms!").setMessage("Are You Sure You Wish To Add "+rooms+" "+roomType+" rooms?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override

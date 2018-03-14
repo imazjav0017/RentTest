@@ -145,53 +145,111 @@
 
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/lll"
-        android:id="@+id/lay2"
-        android:background="@drawable/squarebg">
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#fff"
+        android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/lll"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lay2"
+                    android:background="@drawable/squarebg">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:onClick="expandStudents"
-            android:text="Students"
-            android:elevation="2dp"
-            android:textStyle="bold"
-            android:textColor="#424242"
-            android:textSize="20sp"/>
-    </LinearLayout>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableEnd="@drawable/ic_up_arrow"
+                        android:onClick="expandStudents"
+                        android:text="Students"
+                        android:id="@+id/studentsExpandingView"
+                        android:elevation="2dp"
+                        android:textStyle="bold"
+                        android:textColor="#424242"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/lay2"
+                    app:ael_duration="400"
+                    app:ael_expanded="true"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/studentsLayout"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" >
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/studentsLayout"
+                        android:id="@+id/studentsRecyclerView">
 
-<com.github.aakira.expandablelayout.ExpandableRelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@+id/lay2"
-    app:ael_duration="400"
-    app:ael_expanded="false"
-    android:id="@+id/studentsLayout"
-    android:background="#bad7d4d4"
-    app:ael_interpolator="accelerate"
-    app:ael_orientation="vertical"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Students:"
-        android:id="@+id/studTextView"
-        />
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/studTextView"
-        android:id="@+id/studentsRecyclerView">
+                    </android.support.v7.widget.RecyclerView>
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lay3"
+                    android:layout_below="@+id/studentsLayout"
+                    android:background="@drawable/squarebg">
 
-    </android.support.v7.widget.RecyclerView>
-</com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:drawableEnd="@drawable/ic_down_arrow"
+                        android:onClick="expandPayments"
+                        android:text="Payment History"
+                        android:id="@+id/paymentsExpandLayout"
+                        android:elevation="2dp"
+                        android:textStyle="bold"
+                        android:textColor="#424242"
+                        android:textSize="20sp"/>
+                </LinearLayout>
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+                    android:layout_below="@+id/lay3"
+                    android:layout_marginLeft="5dp"
+                    android:id="@+id/paymentsLayout"
+                    app:ael_interpolator="accelerate"
+                    app:ael_orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" >
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/paymentsLayout"
+                        android:id="@+id/paymentsHistoryList">
+
+                    </android.support.v7.widget.RecyclerView>
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
+
+    </android.support.v7.widget.CardView>
+
+
 
 
 </RelativeLayout>
