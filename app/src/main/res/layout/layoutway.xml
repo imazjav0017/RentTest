@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.tushar.app7.MainActivity">
+    android:layout_height="match_parent">
 
 
 
@@ -22,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#ffffff"
+            android:id="@+id/ocRoomLl"
             android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="8dp"
@@ -49,7 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Room No. 1,"
-
+                        android:id="@+id/roomNoOccupiedop"
                         android:textColor="#424242"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="20dp"
@@ -64,7 +64,7 @@
                         android:text=" Single, 1st floor,"
                         android:textColor="#424242"
                         android:layout_marginTop="5dp"
-
+                        android:id="@+id/roomTypeOcc"
                         android:textSize="20dp"
 
 
@@ -78,7 +78,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="20dp"
                     android:textColor="#707070"
-
+                    android:id="@+id/rentToBeCollected"
                     android:layout_weight="1"
 
                     />
@@ -88,7 +88,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
-
                     android:layout_marginRight="5dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="horizontal"
@@ -99,7 +98,6 @@
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/calendarcheck"
                         android:scaleType="centerCrop" />
 
                     <TextView
@@ -111,7 +109,7 @@
                         android:textColor="#9e9e9e"
                         android:textStyle="normal"
                         android:layout_weight="1"
-
+                        android:id="@+id/checkInDate"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -170,7 +168,7 @@
                         android:textSize="18sp"
 
                         android:layout_marginBottom="10dp"
-
+                        android:id="@+id/collectingButton"
                         android:background="#f5f5f5"
 
                         />
@@ -185,7 +183,7 @@
                         android:textAllCaps="false"
                         android:textColor="#424242"
                         android:textSize="18sp"
-
+                        android:id="@+id/reason"
                         android:layout_marginBottom="10dp"
                         android:layout_margin="5dp"
 

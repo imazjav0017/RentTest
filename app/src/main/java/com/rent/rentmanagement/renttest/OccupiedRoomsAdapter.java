@@ -27,27 +27,17 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
 
     @Override
     public ViewHolder2 onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v=LayoutInflater.from(parent.getContext()).inflate(R.layout.roomdisplayafeature,parent,false);
+        View v=LayoutInflater.from(parent.getContext()).inflate(R.layout.layoutway,parent,false);
         return new ViewHolder2(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder2 holder, int position) {
         final RoomModel model=roomList.get(position);
-
-
         holder.roomNo.setText("Room No."+model.getRoomNo());
-        holder.amount.setText("      \u20B9"+model.getRoomRent());
-
-       holder.roomNo.setText(model.getRoomNo());
-        holder.amount.setText("      \u20B9"+model.getDueAmount());
+        holder.amount.setText("Due Amount :\u20B9"+model.getDueAmount());
         holder.date.setText(model.getCheckInDate());
-
-        holder.roomNo.setText("Room No."+model.getRoomNo());
-        holder.amount.setText("      \u20B9"+model.getRoomRent());
-        holder.roomNo.setText(model.getRoomNo());
-        holder.amount.setText("      \u20B9"+model.getDueAmount());
-        holder.date.setText(model.getCheckInDate());
+        holder.roomType.setText(","+model.getRoomType()+",First floor");
 
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override

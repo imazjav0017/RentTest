@@ -17,7 +17,7 @@
     android:orientation="horizontal"
     android:descendantFocusability="blocksDescendants"
     android:layout_margin="5dp"
-    android:id="@+id/ocRoomLl"
+
     android:padding="5dp"
     android:weightSum="3">
 
@@ -35,7 +35,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Room No. 1"
-            android:id="@+id/roomNoOccupiedop"
             android:textSize="18sp"
             android:textColor="#424242"
 
@@ -45,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="date"
-            android:id="@+id/checkInDate"
+
             android:textSize="18sp"
          />
     </LinearLayout>
@@ -63,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RS 5000"
-            android:id="@+id/rentToBeCollected"
+
 
             android:textSize="18sp"
             />
@@ -85,14 +84,14 @@
             android:textColor="#008000"
             android:textAllCaps="false"
 
-            android:id="@+id/collectingButton"
+
 
             android:text="Collect"
             />
         <Button
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
-            android:id="@+id/reason"
+
             android:textAllCaps="false"
             android:layout_height="40dp"
             android:background="@drawable/round_bg"
