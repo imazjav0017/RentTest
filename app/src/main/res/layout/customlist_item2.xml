@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:weightSum="3"
         android:padding="5dp"
-        android:id="@+id/emptyRoomsLinearLayout"
+
         android:descendantFocusability="blocksDescendants"
         android:layout_height="100dp">
 
@@ -34,7 +34,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/roomNoDisplay"
 
                 android:textStyle="bold"
                 android:textColor="#424242"
@@ -45,7 +44,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:id="@+id/roomTypeDisplay"
                 android:textColor="#424242"
                 android:textSize="18sp"
                 android:textStyle="italic"
@@ -66,7 +64,7 @@
                 android:text="Rs.1000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rentDisplay"
+
                 android:layout_marginLeft="7dp"
                 android:textColor="#424242"
                 android:textSize="18sp"
@@ -84,7 +82,7 @@
             android:layout_gravity="center"
             android:gravity="center"
 
-            android:id="@+id/checkInOptionButton"
+
             android:text="Checkin"
             />
 
