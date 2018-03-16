@@ -34,10 +34,10 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     @Override
     public void onBindViewHolder(final ViewHolder2 holder, int position) {
         final RoomModel model=roomList.get(position);
-        holder.roomNo.setText("Room No."+model.getRoomNo());
-        holder.amount.setText("Due Amount :\u20B9"+model.getDueAmount());
+        holder.roomNo.setText("Room No. "+model.getRoomNo());
+        holder.amount.setText("Due Amount: \u20B9"+model.getDueAmount());
         holder.date.setText(model.getCheckInDate());
-        holder.roomType.setText(","+model.getRoomType()+",1st floor");
+        holder.roomType.setText(", "+model.getRoomType()+", 1st floor,");
 
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
