@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5463924a231dea30958ba4d92969c9a0bb6063c2
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/occupiedRoomsList"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:layout_below="@+id/l1"
         >
 
     </android.support.v7.widget.RecyclerView>

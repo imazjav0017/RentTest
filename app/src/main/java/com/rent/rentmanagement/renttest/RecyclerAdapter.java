@@ -27,16 +27,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v=LayoutInflater.from(parent.getContext()).inflate(R.layout.customlist_item2,parent,false);
+        View v=LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_rooms_list_item,parent,false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final RoomModel model=roomModels.get(position);
+<<<<<<< HEAD
         holder.roomNo.setText("Room No. "+model.getRoomNo());
         holder.roomType.setText(model.getRoomType());
         holder.roomRent.setText(" \u20B9"+model.getRoomRent());
+=======
+        holder.roomNo.setText("Room No."+model.getRoomNo());
+        holder.roomType.setText(", "+model.getRoomType()+", 1st Floor");
+        holder.roomRent.setText("Room Rent: \u20B9"+model.getRoomRent());
+>>>>>>> 5463924a231dea30958ba4d92969c9a0bb6063c2
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
