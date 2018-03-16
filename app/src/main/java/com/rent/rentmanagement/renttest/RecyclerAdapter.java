@@ -34,15 +34,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final RoomModel model=roomModels.get(position);
-<<<<<<< HEAD
+
         holder.roomNo.setText("Room No. "+model.getRoomNo());
         holder.roomType.setText(model.getRoomType());
         holder.roomRent.setText(" \u20B9"+model.getRoomRent());
-=======
         holder.roomNo.setText("Room No."+model.getRoomNo());
         holder.roomType.setText(", "+model.getRoomType()+", 1st Floor");
         holder.roomRent.setText("Room Rent: \u20B9"+model.getRoomRent());
->>>>>>> 5463924a231dea30958ba4d92969c9a0bb6063c2
+
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

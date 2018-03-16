@@ -17,7 +17,6 @@
     android:orientation="horizontal"
     android:descendantFocusability="blocksDescendants"
     android:layout_margin="5dp"
-
     android:padding="5dp"
     android:weightSum="3">
 
