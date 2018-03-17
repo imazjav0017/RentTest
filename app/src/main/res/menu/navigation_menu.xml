@@ -11,6 +11,8 @@
         android:title="Rent Due"/>
     <item android:id="@+id/profileMenu"
         android:title="Profile"/>
+    <item android:id="@+id/totalTenantsMenu"
+        android:title="All Tenants"/>
 
 </group>
 </menu>

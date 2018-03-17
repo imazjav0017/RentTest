@@ -1,0 +1,50 @@
+package com.rent.rentmanagement.renttest;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.List;
+
+/**
+ * Created by imazjav0017 on 17-03-2018.
+ */
+
+public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsHolder> {
+    List<StudentModel> studentModels;
+
+    public TotalTenantsAdapter(List<StudentModel> studentModels) {
+        this.studentModels = studentModels;
+    }
+
+    @Override
+    public TotalTenantsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.total_students,parent,false);
+        return new TotalTenantsHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(final TotalTenantsHolder holder, int position) {
+        final StudentModel model=studentModels.get(position);
+        holder.studentName.setText(model.getName());
+        holder.phNo.setText("Room No "+model.getRoomNo());
+        holder.call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Intent.ACTION_DIAL);
+                i.setData(Uri.parse("tel:"+model.getPhNo()));
+                holder.context.startActivity(i);
+
+            }
+        });
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return studentModels.size();
+    }
+}

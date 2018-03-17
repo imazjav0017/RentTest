@@ -282,6 +282,10 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                     case R.id.profileMenu:
                         viewPager.setCurrentItem(2);
                         break;
+                    case R.id.totalTenantsMenu:
+                        Intent x=new Intent(getApplicationContext(),TotalTenantsctivity.class);
+                        startActivity(x);
+                        break;
 
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

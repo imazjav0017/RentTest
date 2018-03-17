@@ -20,6 +20,7 @@ public class ProfileFragment extends Fragment {
     Button addRoomsBtn;
     Context context;
     LinearLayout circle;
+    LinearLayout totalStudents;
     public ProfileFragment() {
 
     }
@@ -40,10 +41,18 @@ public class ProfileFragment extends Fragment {
             }
         });
         circle=(LinearLayout)v.findViewById(R.id.circleLayout);
+        totalStudents=(LinearLayout)v.findViewById(R.id.totalStduentsButton);
         circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(v.getContext(),totalstudentActivity.class);
+                v.getContext().startActivity(i);
+            }
+        });
+        totalStudents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(v.getContext(),TotalTenantsctivity.class);
                 v.getContext().startActivity(i);
             }
         });

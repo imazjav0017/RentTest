@@ -35,7 +35,8 @@
         <activity android:name=".rent_collectedActivity" />
         <activity android:name=".totalstudentActivity" />
         <activity android:name=".totalRoomsActivity" />
-        <activity android:name=".newprofile"></activity>
+        <activity android:name=".newprofile" />
+        <activity android:name=".TotalTenantsctivity"></activity>
     </application>
 
 </manifest>

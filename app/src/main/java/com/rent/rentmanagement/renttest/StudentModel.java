@@ -5,7 +5,13 @@ package com.rent.rentmanagement.renttest;
  */
 
 public class StudentModel {
-    String name,phNo;
+    String name,phNo,roomNo;
+
+    public StudentModel(String name, String phNo, String roomNo) {
+        this.name = name;
+        this.phNo = phNo;
+        this.roomNo = roomNo;
+    }
 
     public StudentModel(String name, String phNo) {
         this.name = name;
@@ -18,5 +24,9 @@ public class StudentModel {
 
     public String getPhNo() {
         return phNo;
+    }
+
+    public String getRoomNo() {
+        return roomNo;
     }
 }
