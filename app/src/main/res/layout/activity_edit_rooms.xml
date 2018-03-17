@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rent.rentmanagement.renttest.edit_rooms">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:padding="15dp"
+
+        android:id="@+id/relativeLayout">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Room No."
+        android:textColor="#3389ca"
+        android:textSize="20sp"
+        android:id="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="#3389ca"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="20dp"
+        android:text="Rent "
+        android:textSize="20sp"/>
+
+
+
+    <EditText
+        android:id="@+id/studentNameInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_toRightOf="@+id/textView"
+        android:ems="10"
+        android:layout_marginLeft="40dp"
+        android:inputType="textPersonName"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/studentContactNoInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginLeft="80dp"
+        android:inputType="number"
+        android:layout_below="@+id/studentNameInput"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120sp"
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup"
+            android:padding="5dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Single"
+                android:id="@+id/sin"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="#707070"
+                android:textSize="20sp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Double"
+                android:id="@+id/doub"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="#707070"
+                android:textSize="20sp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Triple"
+                android:id="@+id/trip"
+                android:layout_weight="1"
+                android:textColor="#707070"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+        </RadioGroup>
+
+    </RelativeLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:text="Edit"
+        android:textAllCaps="false"
+        android:background="@drawable/square_blue"
+        android:layout_marginTop="86dp" />
+
+
+</RelativeLayout>>
