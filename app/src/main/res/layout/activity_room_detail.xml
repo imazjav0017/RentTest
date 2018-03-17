@@ -117,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="Delete"
+                android:onClick="deleteRoom"
                 android:textAllCaps="false"
                 android:id="@+id/delete"
                 android:layout_marginRight="10dp"

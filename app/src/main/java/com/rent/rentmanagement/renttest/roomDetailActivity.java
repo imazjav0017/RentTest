@@ -1,5 +1,7 @@
 package com.rent.rentmanagement.renttest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +33,13 @@ public class roomDetailActivity extends AppCompatActivity {
     PaymentHistoryAdapter pAdapter;
     ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
     String roomNo,roomType,roomRent,_id;
+    public void deleteRoom(View v)
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete!").setMessage("Are You Sure You Wish To Delete Room No "+roomNo)
+                .setPositiveButton("Yes",null)
+               .setNegativeButton("No",null).show();
+    }
     public void setPaymentHistory(String s) {
         paymentList.clear();
         if(s!=null) {

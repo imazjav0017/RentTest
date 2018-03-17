@@ -48,8 +48,8 @@ public class totalstudentActivity extends AppCompatActivity {
                                 JSONObject detail = array.getJSONObject(i);
 
 
-                                    trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                            detail.getString("roomRent"), detail.getString("_id"),null));
+                                   // trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                     //       detail.getString("roomRent"), detail.getString("_id"),null));
 
                                 }
                             }

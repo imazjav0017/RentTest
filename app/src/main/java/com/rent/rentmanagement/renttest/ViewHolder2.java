@@ -16,6 +16,7 @@ import org.w3c.dom.Text;
 
 public class ViewHolder2 extends RecyclerView.ViewHolder {
     LinearLayout ll;
+    LinearLayout status;
     TextView roomNo;
     TextView roomType;
     TextView amount;
@@ -26,6 +27,7 @@ public class ViewHolder2 extends RecyclerView.ViewHolder {
     public ViewHolder2(View itemView) {
         super(itemView);
         ll=(LinearLayout)itemView.findViewById(R.id.ocRoomLl);
+        status=(LinearLayout)itemView.findViewById(R.id.statusRoom);
         context=itemView.getContext();
         date=(TextView)itemView.findViewById(R.id.checkInDate);
         roomNo=(TextView)itemView.findViewById(R.id.roomNoOccupiedop);

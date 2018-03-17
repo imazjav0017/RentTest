@@ -6,22 +6,26 @@ package com.rent.rentmanagement.renttest;
 
 public class RoomModel {
     String roomType,roomNo,roomRent,_id,checkInDate,dueAmount;
+    boolean isEmpty,isRentDue;
 
-    public RoomModel(String roomType, String roomNo, String roomRent, String _id,String checkInDate) {
+    public RoomModel(String roomType, String roomNo, String roomRent, String _id,String checkInDate,boolean isEmpty) {
         this.roomType = roomType;
         this.roomNo = roomNo;
         this.roomRent = roomRent;
         this._id = _id;
+        this.isEmpty=isEmpty;
         this.checkInDate=checkInDate;
     }
 
-    public RoomModel(String roomType, String roomNo, String roomRent, String dueAmount, String _id, String checkInDate) {
+    public RoomModel(String roomType, String roomNo, String roomRent, String dueAmount, String _id, String checkInDate,boolean isEmpty,boolean isRentDue) {
         this.roomType = roomType;
         this.roomNo = roomNo;
         this.roomRent = roomRent;
         this._id = _id;
         this.checkInDate = checkInDate;
         this.dueAmount = dueAmount;
+        this.isEmpty=isEmpty;
+        this.isRentDue=isRentDue;
     }
 
     public String getDueAmount() {
@@ -46,5 +50,13 @@ public class RoomModel {
 
     public String get_id() {
         return _id;
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
+    public boolean isRentDue() {
+        return isRentDue;
     }
 }

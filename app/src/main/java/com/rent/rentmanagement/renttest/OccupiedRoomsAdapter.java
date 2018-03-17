@@ -2,6 +2,7 @@ package com.rent.rentmanagement.renttest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,13 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         holder.roomType.setText(", "+model.getRoomType()+", 1st floor,");
 
         holder.roomType.setText(", "+model.getRoomType()+", 1st floor");
-
-
+        if(model.isEmpty==false)
+        {
+            if(model.isRentDue==false)
+            {
+                holder.status.setBackgroundColor(Color.parseColor("#0ed747"));
+            }
+        }
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

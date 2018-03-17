@@ -241,7 +241,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 if(detail.getBoolean("isEmpty")==true) {
                     //empty rooms
                     erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                            detail.getString("roomRent"), detail.getString("_id"),null));
+                            detail.getString("roomRent"), detail.getString("_id"),null,detail.getBoolean("isEmpty")));
 
 
                 }
@@ -249,7 +249,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"),detail.getString("dueAmount"),
-                            detail.getString("_id"),detail.getString("checkInDate")));
+                            detail.getString("_id"),detail.getString("checkInDate"),detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue")));
 
 
                 }
@@ -350,14 +350,15 @@ public void setStaticData(String s) {
                         if (detail.getBoolean("isEmpty") == true) {
                             //empty rooms
                             erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"), detail.getString("_id"),null));
+                                    detail.getString("roomRent"), detail.getString("_id"),null,detail.getBoolean("isEmpty")));
 
 
                         } else {
                             JSONArray a=detail.getJSONArray("students");
                             Log.i("students",a.toString());
                             oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("checkInDate")));
+                                    detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("checkInDate")
+                                    ,detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue")));
 
 
                         }
