@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
         circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(v.getContext(),totalstudentActivity.class);
+                Intent i=new Intent(v.getContext(),AllRoomsActivity.class);
                 v.getContext().startActivity(i);
             }
         });

@@ -36,11 +36,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         final RoomModel model=roomModels.get(position);
 
         holder.roomNo.setText("Room No. "+model.getRoomNo());
-        holder.roomType.setText(model.getRoomType());
+        holder.roomType.setText(", "+model.getRoomType()+", 1st Floor,");
         holder.roomRent.setText(" \u20B9"+model.getRoomRent());
-        holder.roomNo.setText("Room No."+model.getRoomNo());
-        holder.roomType.setText(", "+model.getRoomType()+", 1st Floor");
-        holder.roomRent.setText("Room Rent: \u20B9"+model.getRoomRent());
 
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override

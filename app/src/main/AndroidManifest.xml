@@ -33,11 +33,10 @@
         <activity android:name=".roomDetailActivity" />
         <activity android:name=".StudentActivity" />
         <activity android:name=".rent_collectedActivity" />
-        <activity android:name=".totalstudentActivity" />
-        <activity android:name=".totalRoomsActivity" />
         <activity android:name=".newprofile" />
         <activity android:name=".TotalTenantsctivity" />
-        <activity android:name=".edit_rooms"></activity>
+        <activity android:name=".edit_rooms" />
+        <activity android:name=".AllRoomsActivity"></activity>
     </application>
 
 </manifest>
