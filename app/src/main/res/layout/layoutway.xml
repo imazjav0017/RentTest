@@ -113,16 +113,17 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
+                    android:layout_height="match_parent"
+
                     android:background="#ffffff"
                     android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
+                    android:padding="2dp"
                     >
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:layout_weight="1.8"
                         android:layout_marginTop="5dp"
                         android:background="#f5f5f5"
                         android:layout_marginRight="5dp"
@@ -160,7 +161,7 @@
                         android:layout_height="40dp"
                         android:text="Collect"
                         android:layout_marginTop="5dp"
-                        android:layout_weight="1.4"
+
                         android:textAllCaps="false"
                         android:drawableLeft="@drawable/check"
                         android:textColor="#424242"
@@ -173,17 +174,19 @@
 
                     <Button
 
-                        android:layout_weight="0.2"
+
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="Reason"
                         android:background="#f5f5f5"
+                        android:drawableLeft="@drawable/alert"
                         android:textAllCaps="false"
                         android:textColor="#424242"
                         android:textSize="18sp"
                         android:id="@+id/reason"
                         android:layout_marginBottom="10dp"
-                        android:layout_margin="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
 
 
                         />
