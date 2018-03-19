@@ -39,7 +39,7 @@
 
 
     <EditText
-        android:id="@+id/studentNameInput"
+        android:id="@+id/newRoomNoInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView"
@@ -50,13 +50,13 @@
         android:text="" />
 
     <EditText
-        android:id="@+id/studentContactNoInput"
+        android:id="@+id/newRoomRentInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginLeft="80dp"
         android:inputType="number"
-        android:layout_below="@+id/studentNameInput"
+        android:layout_below="@+id/newRoomNoInput"
         android:layout_toRightOf="@+id/textView2"
         android:layout_toEndOf="@+id/textView2" />
 
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="120sp"
             android:orientation="horizontal"
-            android:id="@+id/radioGroup"
+            android:id="@+id/newRoomTypeGroup"
             android:padding="5dp"
             >
 
@@ -109,6 +109,7 @@
         android:layout_below="@+id/relativeLayout"
         android:layout_centerHorizontal="true"
         android:text="Edit"
+        android:onClick="editDetails"
         android:textAllCaps="false"
         android:background="@drawable/square_blue"
         android:layout_marginTop="86dp" />

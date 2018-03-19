@@ -51,6 +51,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
         }
         else
         {
+            holder.date.setText(model.getCheckInDate());
             holder.roomNo.setText("Room No. "+model.getRoomNo());
             holder.roomType.setText(", "+model.getRoomType()+" ,1st floor,");
             holder.amount.setText(" \u20B9"+model.getRoomRent());

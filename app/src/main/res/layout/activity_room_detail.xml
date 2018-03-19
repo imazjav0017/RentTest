@@ -122,6 +122,7 @@
                 android:layout_gravity="end"
                 android:text="Edit"
                 android:textAllCaps="false"
+                android:onClick="editRoom"
 
                 android:layout_alignParentRight="true"
                 android:id="@+id/edit"
@@ -170,6 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="Checkout"
+                android:onClick="checkOut"
                 android:layout_alignParentRight="true"
                 android:textAllCaps="false"
                 android:id="@+id/empt_checkin"

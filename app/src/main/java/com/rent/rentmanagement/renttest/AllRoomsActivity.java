@@ -54,7 +54,6 @@ public class AllRoomsActivity extends AppCompatActivity {
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
         trooms = new ArrayList<>();
         totalRoomsList=(RecyclerView)findViewById(R.id.totalRoomsList);
         adapter=new TotalRoomsAdapter(trooms);
@@ -87,13 +86,14 @@ public class AllRoomsActivity extends AppCompatActivity {
                             JSONObject detail = array.getJSONObject(i);
                             if (detail.getBoolean("isEmpty") == true) {
                                 trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                        detail.getString("roomRent"), detail.getString("_id"),null,detail.getBoolean("isEmpty")));
+                                        detail.getString("roomRent"), detail.getString("_id"),
+                                        detail.getString("createDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
 
                             } else {
                                 JSONArray a=detail.getJSONArray("students");
                                 trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                                         detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("checkInDate")
-                                        ,detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue")));
+                                        ,detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue"),detail.getString("emptyDays")));
 
 
                             }

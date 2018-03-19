@@ -3,6 +3,7 @@ package com.rent.rentmanagement.renttest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +22,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +41,199 @@ public class roomDetailActivity extends AppCompatActivity {
     List<PaymentHistoryModel>paymentList;
     PaymentHistoryAdapter pAdapter;
     ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
-    String roomNo,roomType,roomRent,_id;
+    String roomNo,roomType,roomRent,_id,response;
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),roomActivity.class);
+        startActivity(i);
+    }
+
+    public void setTokenJson(String mode)
+    {
+        try {
+            if(LoginActivity.sharedPreferences.getString("token",null)!=null) {
+                JSONObject token = new JSONObject();
+                token.put("auth",LoginActivity.sharedPreferences.getString("token", null));
+                token.put("roomId",_id);
+                if(mode.equals("delete")) {
+                    DeleteRoomsTask task = new DeleteRoomsTask();
+                    task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/deleteRooms", token.toString());
+                }
+                else if(mode.equals("ch"))
+                {
+                    CheckoutTask task = new CheckoutTask();
+                    task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/vacateRooms", token.toString());
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public class CheckoutTask extends AsyncTask<String,Void,String>
+    {
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.addRequestProperty("Accept", "application/json");
+                connection.addRequestProperty("Content-Type", "application/json");
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.connect();
+                DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+                outputStream.writeBytes(params[1]);
+                Log.i("data", params[1]);
+                int resp = connection.getResponseCode();
+                Log.i("checkoutResp",String.valueOf(resp));
+                if(resp==422)
+                {
+                    return "First clear Dues!";
+                }
+                else if(resp==200)
+                {
+                    return "checked out from Room";
+                }
+                else
+                {
+                    return null;
+                }
+
+            }catch(MalformedURLException e)
+            {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (s != null) {
+                Toast.makeText(roomDetailActivity.this,s,Toast.LENGTH_SHORT).show();
+                if(s.equals("checked out from Room"))
+                {
+                    onBackPressed();
+                }
+            }
+            else
+            {
+                Toast.makeText(roomDetailActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
+                super.onPostExecute(s);
+            }
+        }
+    }
+    public String  getResponse(HttpURLConnection connection)
+    {
+        try {
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            connection.getInputStream()));
+            StringBuffer sb = new StringBuffer("");
+            String line = "";
+
+            while ((line = in.readLine()) != null) {
+
+                sb.append(line);
+                break;
+            }
+
+            in.close();
+            return sb.toString();
+        }catch(Exception e)
+        {
+            return e.getMessage();
+        }
+    }
+    public class DeleteRoomsTask extends AsyncTask<String,Void,String>
+    {
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.addRequestProperty("Accept", "application/json");
+                connection.addRequestProperty("Content-Type", "application/json");
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.connect();
+                DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
+                outputStream.writeBytes(params[1]);
+                Log.i("data", params[1]);
+                int resp = connection.getResponseCode();
+                Log.i("deletRoomResp",String.valueOf(resp));
+                if(resp==200)
+                {
+                    response=getResponse(connection);
+                    return response;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }catch(MalformedURLException e)
+            {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            if (s != null) {
+                Toast.makeText(roomDetailActivity.this, "Room Deleted!", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+            }
+            else
+            {
+                Toast.makeText(roomDetailActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
+                super.onPostExecute(s);
+            }
+        }
+    }
     public void deleteRoom(View v)
     {
         new AlertDialog.Builder(this)
                 .setTitle("Delete!").setMessage("Are You Sure You Wish To Delete Room No "+roomNo)
-                .setPositiveButton("Yes",null)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setTokenJson("delete");
+                    }
+                })
                .setNegativeButton("No",null).show();
+    }
+    public void checkOut(View v)
+    {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete!").setMessage("Are You Sure You Wish To Checkout from Room No "+roomNo+"?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setTokenJson("ch");
+                    }
+                })
+                .setNegativeButton("No",null).show();
+
+    }
+    public void editRoom(View v)
+    {
+        Intent i=new Intent(getApplicationContext(),edit_rooms.class);
+        i.putExtra("roomNo",roomNo);
+        i.putExtra("roomRent",roomRent);
+        i.putExtra("roomType",roomType);
+        i.putExtra("id",_id);
+        startActivity(i);
+        finish();
     }
     public void setPaymentHistory(String s) {
         paymentList.clear();

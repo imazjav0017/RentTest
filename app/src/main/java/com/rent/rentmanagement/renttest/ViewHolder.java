@@ -18,11 +18,15 @@ public class ViewHolder extends RecyclerView.ViewHolder {
     public TextView roomRent;
     public Context context;
     LinearLayout ll;
+    TextView emptyDays;
+    TextView date;
     Button checkIn;
     public ViewHolder(View itemView) {
         super(itemView);
         context=itemView.getContext();
          roomNo=(TextView)itemView.findViewById(R.id.roomNoDisplay);
+        date=(TextView)itemView.findViewById(R.id.checkInDate2);
+        emptyDays=(TextView)itemView.findViewById(R.id.emptyDays);
         roomType=(TextView)itemView.findViewById(R.id.roomTypeDisplay);
         roomRent=(TextView)itemView.findViewById(R.id.rentDisplay);
         checkIn=(Button)itemView.findViewById(R.id.checkInOptionButton);

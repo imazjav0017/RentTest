@@ -24,12 +24,14 @@ public class ViewHolder2 extends RecyclerView.ViewHolder {
     Context context;
     Button reason;
     Button collect;
+    TextView dueDays;
     public ViewHolder2(View itemView) {
         super(itemView);
         ll=(LinearLayout)itemView.findViewById(R.id.ocRoomLl);
         status=(LinearLayout)itemView.findViewById(R.id.statusRoom);
         context=itemView.getContext();
         date=(TextView)itemView.findViewById(R.id.checkInDate);
+        dueDays=(TextView)itemView.findViewById(R.id.dueDays);
         roomNo=(TextView)itemView.findViewById(R.id.roomNoOccupiedop);
         roomType=(TextView)itemView.findViewById(R.id.roomTypeOcc);
         amount=(TextView)itemView.findViewById(R.id.rentToBeCollected);

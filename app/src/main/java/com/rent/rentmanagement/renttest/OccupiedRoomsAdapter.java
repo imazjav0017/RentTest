@@ -38,7 +38,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         holder.roomNo.setText("Room No. "+model.getRoomNo());
         holder.amount.setText("Due Amount: \u20B9"+model.getDueAmount());
         holder.date.setText(model.getCheckInDate());
-
+        holder.dueDays.setText(model.getDays()+" left!");
         holder.roomType.setText(", "+model.getRoomType()+", 1st floor,");
 
         holder.roomType.setText(", "+model.getRoomType()+", 1st floor");
@@ -47,6 +47,10 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
             if(model.isRentDue==false)
             {
                 holder.status.setBackgroundColor(Color.parseColor("#0ed747"));
+            }
+            else
+            {
+                holder.status.setBackgroundColor(Color.parseColor("#D32F2F"));
             }
         }
         holder.ll.setOnClickListener(new View.OnClickListener() {
