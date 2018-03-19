@@ -36,16 +36,7 @@
         android:textSize="18sp"
         android:id="@+id/ownerNameTextView" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/ownerNameTextView"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="17dp"
-        android:layout_marginRight="17dp"
-        android:hint="profile" />
+
 
     <LinearLayout
         android:layout_width="match_parent"

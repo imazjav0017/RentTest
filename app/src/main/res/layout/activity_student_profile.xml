@@ -21,6 +21,7 @@
         android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
         android:layout_gravity="center_vertical"
         android:src="@drawable/img" />
 
@@ -83,11 +84,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="3dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_margin=".1dp"
+
                 android:id="@+id/c1"
                 android:background="#ffffff">
 
@@ -97,6 +96,7 @@
                     android:layout_below="@id/l2"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
                     android:id="@+id/l3"
                     android:orientation="horizontal">
                     <LinearLayout
@@ -112,13 +112,20 @@
                             android:text="Room No"
                             android:textSize="15sp"
                             android:textColor="#43b360"/>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@android:color/transparent"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true">
+                        </LinearLayout>
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:textSize="18sp"
                             android:text="B102"
                             android:id="@+id/studentRoomNoField"
-
+                            android:inputType="textPersonName"
                             android:background="@android:color/transparent"
                             android:layout_marginTop="5dp"/>
 
@@ -133,12 +140,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="3dp"
                 android:layout_below="@id/c1"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
+                android:layout_margin=".1dp"
+
                 android:id="@+id/c2"
                 android:background="#ffffff">
 
@@ -147,6 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -168,6 +173,7 @@
                             android:layout_height="match_parent"
                             android:textSize="18sp"
                             android:text="9792919485"
+
                             android:inputType="number"
                             android:background="@android:color/transparent"
                             android:layout_marginTop="5dp"/>
@@ -183,12 +189,9 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="3dp"
                 android:layout_below="@id/c2"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
+                android:layout_margin=".1dp"
+
                 android:id="@+id/c3"
                 android:background="#ffffff">
 
@@ -197,6 +200,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
                     android:orientation="horizontal">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -217,6 +221,7 @@
                             android:textSize="18sp"
                             android:id="@+id/studentAadharNoField"
                             android:text="55050525545202"
+
                             android:inputType="number"
                             android:background="@android:color/transparent"
                             android:layout_marginTop="5dp"/>
@@ -231,12 +236,8 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="3dp"
                 android:layout_below="@id/c3"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="25dp"
+                android:layout_margin=".1dp"
                 android:id="@+id/c4"
                 android:background="#ffffff">
 
@@ -264,6 +265,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:textSize="18sp"
+                            android:inputType="textPersonName"
                             android:id="@+id/studentAddressField"
                             android:text="j12/38wfgbvcsdgfhn"
                             android:background="@android:color/transparent"
