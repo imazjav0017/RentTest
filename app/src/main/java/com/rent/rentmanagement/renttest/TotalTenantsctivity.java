@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -131,7 +132,8 @@ public class TotalTenantsctivity extends AppCompatActivity {
             JSONArray array1=array.getJSONArray(k);
             for (int i = 0; i < array1.length(); i++) {
                 JSONObject detail = array1.getJSONObject(i);
-                studentModelList.add(new StudentModel(detail.getString("name"),detail.getString("mobileNo"),String.valueOf(rNo)));
+                studentModelList.add(new StudentModel(detail.getString("name"),detail.getString("mobileNo"),String.valueOf(rNo)
+                ,detail.getString("_id")));
             }
         }
         adapter.notifyDataSetChanged();
@@ -163,5 +165,12 @@ public class TotalTenantsctivity extends AppCompatActivity {
         totalTenants.setLayoutManager(lm);
         totalTenants.setHasFixedSize(true);
         totalTenants.setAdapter(adapter);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i=new Intent(getApplicationContext(),roomActivity.class);
+        startActivity(i);
+        finish();
     }
 }

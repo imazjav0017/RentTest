@@ -52,7 +52,7 @@ import android.widget.Toast;
 
 public class roomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
     static ArrayList<RoomModel>erooms,oRooms;
-    String response="";
+    String response="",buildingName;
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
@@ -61,6 +61,23 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     SearchView searchView;
+    public void setBuildingName()
+    {
+        String s=LoginActivity.sharedPreferences.getString("ownerDetails",null);
+        if(s!=null)
+        {
+            try {
+                JSONObject jsonObject=new JSONObject(s);
+                buildingName=jsonObject.getString("buildingName").toUpperCase();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            buildingName="Rooms";
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==android.R.id.home)
@@ -227,8 +244,11 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         erooms.clear();
         oRooms.clear();
         JSONObject jsonObject=new JSONObject(s);
+        LoginActivity.sharedPreferences.edit().putInt("totalTenants",jsonObject.getInt("totalStudents")).apply();
         JSONArray array=jsonObject.getJSONArray("room");
         Log.i("array",array.toString());
+        LoginActivity.sharedPreferences.edit().putInt("totalRooms",array.length()).apply();
+        ProfileFragment.setData();
         LoginActivity.sharedPreferences.edit().putString("roomsDetails",s).apply();
         if(array.length()==0)
         {
@@ -320,7 +340,8 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 R.string.open,R.string.closed);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        setTitle("Rooms");
+        setBuildingName();
+        setTitle(buildingName);
         reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
 
     }

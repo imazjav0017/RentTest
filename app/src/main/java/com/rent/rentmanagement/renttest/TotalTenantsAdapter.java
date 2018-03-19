@@ -40,6 +40,18 @@ public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsHolder
 
             }
         });
+        holder.rl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(holder.context,studentProfile.class);
+                i.putExtra("name",model.getName());
+                i.putExtra("id",model.get_id());
+                i.putExtra("roomNo",model.getRoomNo());
+                i.putExtra("phNo",model.getPhNo());
+                i.putExtra("total",true);
+                holder.context.startActivity(i);
+            }
+        });
 
     }
 

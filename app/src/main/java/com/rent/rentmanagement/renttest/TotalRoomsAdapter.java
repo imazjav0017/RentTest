@@ -46,6 +46,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
             {
                 holder.checkIn.setText("Collect");
                 holder.status.setText("Rent Due");
+                holder.statusBar.setBackgroundColor(Color.parseColor("#D32F2F"));
             }
         }
         else
