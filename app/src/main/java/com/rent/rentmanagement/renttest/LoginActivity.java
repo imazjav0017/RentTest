@@ -59,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
             tokenJson=new JSONObject(token);
             accessToken=tokenJson.getString("token");
             sharedPreferences.edit().putString("token",accessToken).apply();
+            JSONObject details=tokenJson.getJSONObject("user");
+            Log.i("respone111",details.toString());
+            sharedPreferences.edit().putString("ownerDetails",details.toString()).apply();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -93,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(resp!=200) {
                     enableButton();
                     String response=getResponse(connection);
-                    Log.i("respone111",response);
+
                     Log.i("resp",String.valueOf(resp));
                     return String.valueOf(resp);
                 }
@@ -103,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
                    String response=getResponse(connection);
                     Log.i("resp",String.valueOf(resp));
                     setToken(response);
+                    Log.i("ressss",response);
                     outputStream.flush();
                     outputStream.close();
                     gotoHome();
@@ -136,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
 
     public void login(View v)  {
         loginButton.setClickable(false);

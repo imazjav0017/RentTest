@@ -5,12 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rent.rentmanagement.renttest.newprofile">
-
-
-
-
+    tools:context="com.rent.rentmanagement.renttest.studentProfile">
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@drawable/background"
@@ -25,7 +22,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="49dp"
         android:src="@drawable/img" />
 
 
@@ -37,7 +33,7 @@
         android:layout_marginTop="10dp"
         android:text="Jade magician"
         android:textSize="18sp"
-        android:id="@+id/textView" />
+        android:id="@+id/studentNameField" />
 
 
     <LinearLayout
@@ -75,201 +71,215 @@
        />
 
     </LinearLayout>
-
-
-    <android.support.v7.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="3dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/l2"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:id="@+id/c1"
-        android:background="#ffffff">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/l2"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/l3"
-        android:orientation="horizontal">
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_below="@+id/l2">
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
 
             >
-
-            <TextView
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Room No"
-                android:textSize="15sp"
-                android:textColor="#43b360"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="18sp"
-                android:hint="B102"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/c1"
+                android:background="#ffffff">
 
-                android:background="@android:color/transparent"
-                android:layout_marginTop="5dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    </android.support.v7.widget.CardView>
-
-
-
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="3dp"
-        android:layout_below="@id/c1"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:id="@+id/c2"
-        android:background="#ffffff">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/l4"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                >
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Phone"
+                    android:layout_below="@id/l2"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/l3"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
 
-                    android:textSize="15sp"
-                    android:textColor="#43b360"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:hint="9792919485"
-                    android:inputType="number"
-                    android:background="@android:color/transparent"
-                    android:layout_marginTop="5dp"/>
+                        >
 
-            </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Room No"
+                            android:textSize="15sp"
+                            android:textColor="#43b360"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="18sp"
+                            android:text="B102"
+                            android:id="@+id/studentRoomNoField"
 
-        </LinearLayout>
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="5dp"/>
 
-    </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
 
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="3dp"
-        android:layout_below="@id/c2"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:id="@+id/c3"
-        android:background="#ffffff">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/l4"
-            android:orientation="horizontal">
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp"
+                android:layout_below="@id/c1"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/c2"
+                android:background="#ffffff">
 
-                >
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Adhaar No"
-                    android:textSize="15sp"
-                    android:textColor="#43b360"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:hint="55050525545202"
-                     android:inputType="number"
-                    android:background="@android:color/transparent"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
 
-            </LinearLayout>
+                        >
 
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Phone"
 
-    </android.support.v7.widget.CardView>
+                            android:textSize="15sp"
+                            android:textColor="#43b360"/>
+                        <EditText
+                            android:id="@+id/studentPhNoField"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="18sp"
+                            android:text="9792919485"
+                            android:inputType="number"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="5dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="3dp"
-        android:layout_below="@id/c3"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="25dp"
-        android:id="@+id/c4"
-        android:background="#ffffff">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:id="@+id/l4"
-            android:orientation="horizontal">
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp"
+                android:layout_below="@id/c2"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/c3"
+                android:background="#ffffff">
 
-                >
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textSize="15sp"
-                    android:textColor="#43b360"/>
-                <EditText
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Adhaar No"
+                            android:textSize="15sp"
+                            android:textColor="#43b360"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="18sp"
+                            android:id="@+id/studentAadharNoField"
+                            android:text="55050525545202"
+                            android:inputType="number"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="5dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="3dp"
+                android:layout_below="@id/c3"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
+                android:id="@+id/c4"
+                android:background="#ffffff">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textSize="18sp"
-                    android:hint="j12/38wfgbvcsdgfhn"
-                    android:background="@android:color/transparent"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/l4"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
 
-            </LinearLayout>
+                        >
 
-        </LinearLayout>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Address"
+                            android:textSize="15sp"
+                            android:textColor="#43b360"/>
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textSize="18sp"
+                            android:id="@+id/studentAddressField"
+                            android:text="j12/38wfgbvcsdgfhn"
+                            android:background="@android:color/transparent"
+                            android:layout_marginTop="5dp"/>
 
-    </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
 
 
 

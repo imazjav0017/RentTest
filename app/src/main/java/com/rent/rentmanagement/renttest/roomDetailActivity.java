@@ -102,7 +102,8 @@ public class roomDetailActivity extends AppCompatActivity {
 
                                 for(int k=0;k<students.length();k++) {
                                     JSONObject studentDetails = students.getJSONObject(k);
-                                     studentsList.add(new StudentModel(studentDetails.getString("name"),studentDetails.getString("mobileNo")));
+                                     studentsList.add(new StudentModel(studentDetails.getString("name"),studentDetails.getString("mobileNo"),
+                                             studentDetails.getString("_id")));
                                 }
                                 adapter.notifyDataSetChanged();
 
