@@ -90,7 +90,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                     case "Collect":
                         Intent x=new Intent(holder.context,rent_collectedActivity.class);
                         x.putExtra("roomId",model.get_id());
-                        x.putExtra("rentAmount",model.getRoomRent());
+                        x.putExtra("rentAmount",model.getDueAmount());
                         x.putExtra("fromTotal",true);
                         holder.context.startActivity(x);
                         break;
