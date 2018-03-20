@@ -261,7 +261,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 if(detail.getBoolean("isEmpty")==true) {
                     //empty rooms
                     erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                            detail.getString("roomRent"), detail.getString("_id"),detail.getString("createDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
+                            detail.getString("roomRent"), detail.getString("_id"),detail.getString("checkOutDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
 
 
                 }
@@ -269,7 +269,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                 {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"),detail.getString("dueAmount"),
-                            detail.getString("_id"),detail.getString("checkInDate"),detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue")
+                            detail.getString("_id"),detail.getString("dueDate"),detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue")
                     ,detail.getString("dueDays")));
 
 
@@ -373,14 +373,14 @@ public void setStaticData(String s) {
                             //empty rooms
                             erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                                     detail.getString("roomRent"), detail.getString("_id"),
-                                    detail.getString("createDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
+                                    detail.getString("checkOutDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
 
 
                         } else {
                             JSONArray a=detail.getJSONArray("students");
                             Log.i("students",a.toString());
                             oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("checkInDate")
+                                    detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("dueDate")
                                     ,detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue"),detail.getString("dueDays")));
 
 

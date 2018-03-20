@@ -128,11 +128,11 @@ public class TotalTenantsctivity extends AppCompatActivity {
         JSONArray roomNo=jsonObject.getJSONArray("roomNo");
         for(int k=0;k<array.length();k++)
         {
-            int rNo=roomNo.getInt(k);
+            String rNo=roomNo.getString(k);
             JSONArray array1=array.getJSONArray(k);
             for (int i = 0; i < array1.length(); i++) {
                 JSONObject detail = array1.getJSONObject(i);
-                studentModelList.add(new StudentModel(detail.getString("name"),detail.getString("mobileNo"),String.valueOf(rNo)
+                studentModelList.add(new StudentModel(detail.getString("name"),detail.getString("mobileNo"),rNo
                 ,detail.getString("_id")));
             }
         }

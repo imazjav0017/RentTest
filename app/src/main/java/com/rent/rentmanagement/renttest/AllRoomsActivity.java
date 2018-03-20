@@ -87,12 +87,12 @@ public class AllRoomsActivity extends AppCompatActivity {
                             if (detail.getBoolean("isEmpty") == true) {
                                 trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                                         detail.getString("roomRent"), detail.getString("_id"),
-                                        detail.getString("createDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
+                                        detail.getString("checkOutDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
 
                             } else {
                                 JSONArray a=detail.getJSONArray("students");
                                 trooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                        detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("checkInDate")
+                                        detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("dueDate")
                                         ,detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue"),detail.getString("emptyDays")));
 
 
