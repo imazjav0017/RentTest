@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@drawable/background"
+        android:background="@drawable/building"
         android:id="@+id/l1"
         >
     </LinearLayout>
@@ -22,7 +22,7 @@
         android:layout_marginTop="100dp"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/img"
+        android:src="@drawable/owner"
         android:id="@+id/img"/>
 
 
@@ -35,7 +35,6 @@
         android:text="Jade magician"
         android:textSize="18sp"
         android:id="@+id/ownerNameTextView" />
-
 
 
     <LinearLayout
@@ -74,7 +73,7 @@
            android:gravity="center"
             android:textSize="16sp"
             android:layout_weight="1"
-            android:textColor="#424242"
+            android:textColor="#4db4e7"
             android:text="Total Rooms"
             android:textAllCaps="false"
             android:id="@+id/button2" />
@@ -109,7 +108,7 @@
                 android:gravity="center"
                 android:textSize="16sp"
                 android:layout_weight="1"
-                android:textColor="#424242"
+                android:textColor="#4db4e7"
                 android:text="Total Tenants"
                 android:textAllCaps="false"
               />
@@ -118,6 +117,283 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l2"
+        android:id="@+id/l3"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/squarebg">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="#424242"
+                android:text="Total Occupied Rooms"
+                android:textAllCaps="false"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="375"
+                android:gravity="center"
+                android:textColor="#424242"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/squarebg">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="#424242"
+                android:text="Total Empty Rooms"
+                android:textAllCaps="false"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="300"
+
+                android:gravity="center"
+                android:textColor="#424242"/>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l3"
+        android:id="@+id/l4"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/squarebg">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="#424242"
+                android:text="Total Income"
+                android:textAllCaps="false"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="Rs. 375000"
+                android:gravity="center"
+                android:textColor="#424242"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/squarebg">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="#424242"
+                android:text="Today's Income"
+                android:textAllCaps="false"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="Rs. 30000"
+                android:gravity="center"
+                android:textColor="#424242"/>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/l4"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/squarebg">
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="#424242"
+                android:text="Total Rent Due"
+                android:textAllCaps="false"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="Rs. 3750"
+                android:gravity="center"
+                android:textColor="#424242"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/squarebg">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="#424242"
+                android:text="Total Rent Collected"
+                android:textAllCaps="false"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_weight="1"
+                android:text="Rs. 300220"
+                android:gravity="center"
+                android:textColor="#424242"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
 
 
 
