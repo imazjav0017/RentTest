@@ -30,6 +30,7 @@ EditText rentCollectedInput,payee;
     Button collectedButton;
     String _id,date;
     JSONObject rentdetails;
+    boolean fromTotal;
     public class RentCollectionTask extends AsyncTask<String,Void,String>
     {
         @Override
@@ -104,6 +105,7 @@ EditText rentCollectedInput,payee;
         setContentView(R.layout.activity_rent_collected);
         String rent=getIntent().getStringExtra("rentAmount");
         _id=getIntent().getStringExtra("roomId");
+        fromTotal=getIntent().getBooleanExtra("fromTotal",false);
         rentCollectedInput=(EditText)findViewById(R.id.rentcollectedinput);
         payee=(EditText)findViewById(R.id.payee);
         rentCollectedInput.setText(rent);
@@ -158,9 +160,19 @@ EditText rentCollectedInput,payee;
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),roomActivity.class);
+        if(fromTotal)
+        {
+            Intent i = new Intent(getApplicationContext(), AllRoomsActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else {
+        Intent i = new Intent(getApplicationContext(), roomActivity.class);
+        roomActivity.mode = 1;
         startActivity(i);
         finish();
+        }
+
     }
 }
 

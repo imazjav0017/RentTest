@@ -6,12 +6,16 @@ package com.rent.rentmanagement.renttest;
 
 public class PaymentHistoryModel {
     String payee,amount,date;
+    boolean status;
 
-    public PaymentHistoryModel(String payee, String amount, String date) {
+
+    public PaymentHistoryModel(String payee, String amount, String date,boolean status) {
         this.payee = payee;
         this.amount = amount;
         this.date = date;
+        this.status=status;
     }
+
 
     public String getPayee() {
         return payee;

@@ -140,6 +140,7 @@ public class BuildActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(BuildActivity.this,roomActivity.class);
+            roomActivity.mode=0;
             startActivity(i);
             finish();
         }

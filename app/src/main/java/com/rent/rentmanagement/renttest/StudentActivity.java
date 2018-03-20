@@ -29,6 +29,7 @@ public class StudentActivity extends AppCompatActivity {
     String sName,sNo,sAad;
     String _id;
     JSONObject studentDetails;
+    boolean fromTotal;
     public class AddStudentsTask extends AsyncTask<String,Void,String>
     {
         @Override
@@ -147,6 +148,7 @@ public class StudentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
+        fromTotal=i.getBooleanExtra("fromTotal",false);
         setTitle("Room No: "+i.getStringExtra("roomNo"));
         Log.i("id",_id);
         studentName=(EditText)findViewById(R.id.studentNameInput);
@@ -157,8 +159,17 @@ public class StudentActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),roomActivity.class);
-        startActivity(i);
-        finish();
+        if(fromTotal)
+        {
+            Intent i = new Intent(getApplicationContext(), AllRoomsActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else {
+            Intent i = new Intent(getApplicationContext(), roomActivity.class);
+            roomActivity.mode = 1;
+            startActivity(i);
+            finish();
+        }
     }
 }

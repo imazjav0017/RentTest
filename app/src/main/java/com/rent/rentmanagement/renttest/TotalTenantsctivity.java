@@ -170,6 +170,7 @@ public class TotalTenantsctivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i=new Intent(getApplicationContext(),roomActivity.class);
+        roomActivity.mode=2;
         startActivity(i);
         finish();
     }

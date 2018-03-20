@@ -44,13 +44,13 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         holder.roomType.setText(", "+model.getRoomType()+", 1st floor");
         if(model.isEmpty==false)
         {
-            if(model.isRentDue==false)
+            if(model.getDueAmount().equals(model.getRoomRent()))
             {
-                holder.status.setBackgroundColor(Color.parseColor("#0ed747"));
+                holder.status.setBackgroundColor(Color.parseColor("#D32F2F"));
             }
             else
             {
-                holder.status.setBackgroundColor(Color.parseColor("#D32F2F"));
+                holder.status.setBackgroundColor(Color.parseColor("#b2df3e"));
             }
         }
         holder.ll.setOnClickListener(new View.OnClickListener() {

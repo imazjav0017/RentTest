@@ -42,11 +42,28 @@ public class roomDetailActivity extends AppCompatActivity {
     PaymentHistoryAdapter pAdapter;
     ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
     String roomNo,roomType,roomRent,_id,response;
+    boolean fromTotal;
 
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),roomActivity.class);
-        startActivity(i);
+        if(fromTotal)
+        {
+            Intent i=new Intent(getApplicationContext(),AllRoomsActivity.class);
+            startActivity(i);
+            finish();
+        }
+        else
+        {
+            Intent i=new Intent(getApplicationContext(),roomActivity.class);
+            if(studentsList.size()>0)
+            {
+                roomActivity.mode=1;
+            }
+            else
+                roomActivity.mode=0;
+            startActivity(i);
+            finish();
+        }
     }
 
     public void setTokenJson(String mode)
@@ -260,7 +277,8 @@ public class roomDetailActivity extends AppCompatActivity {
                                 for(int k=0;k<payments.length();k++) {
                                     JSONObject paymentDetails = payments.getJSONObject(k);
                                     paymentList.add(new PaymentHistoryModel(paymentDetails.getString("payee"),
-                                            paymentDetails.getString("amount"),paymentDetails.getString("date")));
+                                            paymentDetails.getString("amount"),paymentDetails.getString("date")
+                                            ,paymentDetails.getBoolean("payStatus")));
 
                                 }
                                 pAdapter.notifyDataSetChanged();
@@ -334,6 +352,7 @@ public class roomDetailActivity extends AppCompatActivity {
         _id=i.getStringExtra("id");
         roomNo=i.getStringExtra("roomNo");
         roomType=i.getStringExtra("roomType");
+        fromTotal=i.getBooleanExtra("fromTotal",false);
         roomRent=i.getStringExtra("roomRent");
         setTitle("RoomNo: "+i.getStringExtra("roomNo"));
         rn = (TextView) findViewById(R.id.roomno);

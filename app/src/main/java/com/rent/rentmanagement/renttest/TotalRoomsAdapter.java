@@ -44,9 +44,13 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
             }
             else
             {
+
                 holder.checkIn.setText("Collect");
                 holder.status.setText("Rent Due");
+                if(model.getDueAmount().equals(model.getRoomRent()))
                 holder.statusBar.setBackgroundColor(Color.parseColor("#D32F2F"));
+                else
+                    holder.statusBar.setBackgroundColor(Color.parseColor("#b2df3e"));
             }
         }
         else
@@ -67,7 +71,31 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                 i.putExtra("roomNo",model.getRoomNo());
                 i.putExtra("roomType",model.getRoomType());
                 i.putExtra("roomRent",model.getRoomRent());
+                i.putExtra("fromTotal",true);
                 holder.context.startActivity(i);
+            }
+        });
+        holder.checkIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch(holder.checkIn.getText().toString())
+                {
+                    case "CheckIn":
+                        Intent i=new Intent(holder.context,StudentActivity.class);
+                        i.putExtra("id",model.get_id());
+                        i.putExtra("roomNo",model.getRoomNo());
+                        i.putExtra("fromTotal",true);
+                        holder.context.startActivity(i);
+                        break;
+                    case "Collect":
+                        Intent x=new Intent(holder.context,rent_collectedActivity.class);
+                        x.putExtra("roomId",model.get_id());
+                        x.putExtra("rentAmount",model.getRoomRent());
+                        x.putExtra("fromTotal",true);
+                        holder.context.startActivity(x);
+                        break;
+
+                }
             }
         });
     }

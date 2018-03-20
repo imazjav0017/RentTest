@@ -61,6 +61,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     SearchView searchView;
+    static int mode=2;
     public void setBuildingName()
     {
         String s=LoginActivity.sharedPreferences.getString("ownerDetails",null);
@@ -265,7 +266,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
                 }
-                else
+                else if(detail.getBoolean("isRentDue")==true)
                 {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
                             detail.getString("roomRent"),detail.getString("dueAmount"),
@@ -345,8 +346,22 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         setTitle(buildingName);
         reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
 
+
     }
-public void setStaticData(String s) {
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewPager.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPager.setCurrentItem(mode);
+            }
+        },100);
+
+    }
+
+    public void setStaticData(String s) {
     if(s!=null) {
         if (s.equals("0")) {
             Toast.makeText(this, "Fetching!", Toast.LENGTH_SHORT).show();
@@ -376,7 +391,7 @@ public void setStaticData(String s) {
                                     detail.getString("checkOutDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
 
 
-                        } else {
+                        }  else if(detail.getBoolean("isRentDue")==true){
                             JSONArray a=detail.getJSONArray("students");
                             Log.i("students",a.toString());
                             oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),

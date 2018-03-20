@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,18 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryVi
     @Override
     public void onBindViewHolder(PaymentHistoryViewHolder holder, int position) {
         PaymentHistoryModel model=paymentList.get(position);
-        holder.paymentHistory.setText("Paid ₹"+model.getAmount()+" by "+model.getPayee()+" on "+model.getDate());
+
+        holder.date.setText(model.getDate());
+        if(model.status==true)
+        {
+            holder.paymentHistory.setText("₹ "+model.getAmount()+"-"+model.getPayee());
+            holder.status.setText("Paid");
+            holder.status.setTextColor(Color.parseColor("#3230ff"));
+        }
+        else {
+            holder.status.setTextColor(Color.parseColor("#FFC20720"));
+            holder.status.setText("Not Paid!");
+        }
     }
 
     @Override
