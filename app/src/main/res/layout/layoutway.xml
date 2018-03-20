@@ -42,21 +42,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="10dp">
-                    <TextView
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Room No. 1,"
+                    <TextView
                         android:id="@+id/roomNoOccupiedop"
-                        android:textColor="#424242"
-                        android:layout_marginTop="5dp"
+                        android:layout_width="1dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:text="Room No. 1,"
+                        android:textColor="#424242"
                         android:textSize="22sp"
 
 
                         />
                     <TextView
-
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=" Single,"
