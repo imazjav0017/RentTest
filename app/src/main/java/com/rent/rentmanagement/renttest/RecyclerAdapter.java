@@ -36,7 +36,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         final RoomModel model=roomModels.get(position);
 
         holder.roomNo.setText("Room No. "+model.getRoomNo());
-        holder.roomType.setText(", "+model.getRoomType()+", 1st Floor,");
+        holder.roomType.setText(", "+model.getRoomType()+",");
         holder.roomRent.setText(" \u20B9"+model.getRoomRent());
         holder.emptyDays.setText("Empty From "+model.getDays());
         holder.date.setText(model.getCheckInDate());
