@@ -112,7 +112,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                         final EditText payee=(EditText)view.findViewById(R.id.payee);
                         rentCollectedInput.setText(model.getDueAmount());
                         rentCollectedInput.setSelection(rentCollectedInput.getText().toString().length());
-                        Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
+                        final Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
                         DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
                         Date dateObj=new Date();
                         String date=dateFormat.format(dateObj).toString();
@@ -120,13 +120,22 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                             @Override
                             public void onClick(View v) {
                                 makeJson(model.get_id(),payee,rentCollectedInput,"c",null);
+                                collectedButton.setClickable(false);
                                 PaymentTask task=new PaymentTask();
                                 try {
                                     String response=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
                                     if(response!=null)
                                     {
                                         Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                        goBack(holder.context);
+                                        if(response.equals("Some Error,check if fields are missings!"))
+                                            enable(collectedButton);
+                                        else
+                                            goBack(holder.context);
+                                    }
+                                    else
+                                    {
+                                        enable(collectedButton);
+                                        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
@@ -217,5 +226,9 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
         Intent i=new Intent(context,AllRoomsActivity.class);
         roomActivity.mode=1;
         context.startActivity(i);
+    }
+    void enable(Button btn)
+    {
+        btn.setClickable(true);
     }
 }

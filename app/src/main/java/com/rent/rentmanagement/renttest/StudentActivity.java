@@ -30,6 +30,11 @@ public class StudentActivity extends AppCompatActivity {
     String _id;
     JSONObject studentDetails;
     boolean fromTotal;
+    Button checkin;
+    void enable()
+    {
+        checkin.setClickable(true);
+    }
     public class AddStudentsTask extends AsyncTask<String,Void,String>
     {
         @Override
@@ -67,6 +72,8 @@ public class StudentActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            enable();
+
             if(s!=null)
             {
                 Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
@@ -76,6 +83,8 @@ public class StudentActivity extends AppCompatActivity {
                     contactNo.setText("");
                     aadharNo.setText("");
                 }
+            }else {
+                Toast.makeText(StudentActivity.this, "No Internet!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -107,11 +116,13 @@ public class StudentActivity extends AppCompatActivity {
     }
     public void checkIn(View v)
     {
+        checkin.setClickable(false);
         sName=studentName.getText().toString();
         sNo=contactNo.getText().toString();
         sAad=aadharNo.getText().toString();
         if(sName.equals("")||sNo.equals("")||sAad.equals(""))
         {
+            enable();
             Toast.makeText(this, "Missing Fields", Toast.LENGTH_SHORT).show();
         }
         else
@@ -146,6 +157,7 @@ public class StudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student); Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        checkin=(Button)findViewById(R.id.checkInButton);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
         fromTotal=i.getBooleanExtra("fromTotal",false);
