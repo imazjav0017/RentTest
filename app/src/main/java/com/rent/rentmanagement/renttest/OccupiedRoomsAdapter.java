@@ -91,19 +91,22 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                     @Override
                     public void onClick(View v) {
                          String reason=input.getText().toString();
-                        makeJson(model.get_id(),null,null,"r",reason);
-                        PaymentTask task=new PaymentTask();
-                        try {
-                            String response=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
-                            if(response!=null)
-                            {
-                                Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                goBack(holder.context);
+                        if(reason.isEmpty())
+                            Toast.makeText(context, "Please Give A Reason..", Toast.LENGTH_SHORT).show();
+                        else {
+                            makeJson(model.get_id(), null, null, "r", reason);
+                            PaymentTask task = new PaymentTask();
+                            try {
+                                String response = task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail", rentdetails.toString()).get();
+                                if (response != null) {
+                                    Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                                    goBack(holder.context);
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
                             }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
                         }
                     }
                 });
