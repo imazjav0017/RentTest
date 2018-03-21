@@ -28,7 +28,6 @@ public class ProfileFragment extends Fragment {
     TextView noOfRooms;
     TextView noOfTenants;
     static String oName,rooms,tenants;
-
     public ProfileFragment() {
 
     }
@@ -41,6 +40,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.activity_newprofile,container,false);
         name=(TextView)v.findViewById(R.id.ownerNameTextView);
+        roomActivity.mode=2;
         noOfRooms=(TextView)v.findViewById(R.id.totalRoomsTextView);
         noOfTenants=(TextView)v.findViewById(R.id.totalTenantsTextView);
         totalRooms=(LinearLayout)v.findViewById(R.id.totalRoomsButton);

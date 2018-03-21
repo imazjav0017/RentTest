@@ -97,6 +97,8 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                             Log.i("status","Logging out");
                             LoginActivity.sharedPreferences.edit().putString("token",null).apply();
                             LoginActivity.sharedPreferences.edit().putString("roomsDetails","0").apply();
+                            LoginActivity.sharedPreferences.edit().putInt("totalTenants",0).apply();
+                            LoginActivity.sharedPreferences.edit().putInt("totalRooms",0).apply();
                             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(i);
                         }
@@ -357,7 +359,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
             public void run() {
                 viewPager.setCurrentItem(mode);
             }
-        },100);
+        },0);
 
     }
 
@@ -413,6 +415,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 }
     @Override
     public void onBackPressed() {
+        mode=2;
         if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible ||!(searchView.isIconified())) {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START);

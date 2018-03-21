@@ -16,6 +16,11 @@ public class PaymentHistoryModel {
         this.status=status;
     }
 
+    public PaymentHistoryModel(String payee, String date, boolean status) {
+        this.payee = payee;
+        this.date = date;
+        this.status = status;
+    }
 
     public String getPayee() {
         return payee;

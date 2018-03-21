@@ -35,7 +35,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
             holder.roomNo.setText("Room No. "+model.getRoomNo());
             holder.amount.setText("Due Amount: \u20B9"+model.getDueAmount());
             holder.date.setText(model.getCheckInDate());
-            holder.roomType.setText(", "+model.getRoomType()+",");
+            holder.roomType.setText(", "+model.getRoomType()+", 1st floor,");
             if(model.isRentDue==false)
             {
                 holder.checkIn.setText("CheckOut");
@@ -57,7 +57,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
         {
             holder.date.setText(model.getCheckInDate());
             holder.roomNo.setText("Room No. "+model.getRoomNo());
-            holder.roomType.setText(", "+model.getRoomType()+" ,");
+            holder.roomType.setText(", "+model.getRoomType()+" ,1st floor,");
             holder.amount.setText(" \u20B9"+model.getRoomRent());
             holder.checkIn.setText("CheckIn");
             holder.status.setText("Vacant");
