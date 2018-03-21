@@ -453,8 +453,12 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 }
     @Override
     public void onBackPressed() {
+<<<<<<< HEAD
         mode=viewPager.getCurrentItem();
         Log.i("mode",String.valueOf(mode));
+=======
+
+>>>>>>> f3aa519f8e7953d763e95f88bcb23fa805f16af7
         if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible ||!(searchView.isIconified())) {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START);
