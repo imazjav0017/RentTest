@@ -14,22 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class HomePageActivity extends AppCompatActivity {
-Button logout;
-public void logout(View v)
-{
-    LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
-    Log.i("status","Logging out");
-    LoginActivity.sharedPreferences.edit().putString("token",null).apply();
-    Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-    startActivity(i);
 
-}
-    public void addRoom(View v)
-    {
-        Intent i=new Intent(getApplicationContext(),BuildActivity.class);
-        startActivity(i);
-        finish();
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
