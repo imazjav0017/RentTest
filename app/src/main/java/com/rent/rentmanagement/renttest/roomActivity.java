@@ -357,7 +357,22 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         setBuildingName();
         setTitle(buildingName);
         reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mode=tab.getPosition();
+            }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 
@@ -438,11 +453,8 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 }
     @Override
     public void onBackPressed() {
-<<<<<<< HEAD
-
-=======
-        mode=2;
->>>>>>> 3d943b5293d5d22a0cb0c9d1579eaa894ff24ffb
+        mode=viewPager.getCurrentItem();
+        Log.i("mode",String.valueOf(mode));
         if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible ||!(searchView.isIconified())) {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START);

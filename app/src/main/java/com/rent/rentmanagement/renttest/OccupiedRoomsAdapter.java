@@ -116,10 +116,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         holder.collect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent i=new Intent(holder.context,rent_collectedActivity.class);
-                i.putExtra("rentAmount",model.getDueAmount());
-                i.putExtra("roomId",model.get_id());
-                holder.context.startActivity(i);*/
+
                 AlertDialog.Builder builder=new AlertDialog.Builder(context);
                 View view=LayoutInflater.from(context).inflate(R.layout.collect_dialog,null,false);
                 final EditText rentCollectedInput=(EditText)view.findViewById(R.id.rentcollectedinput);

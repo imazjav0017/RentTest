@@ -208,7 +208,7 @@ public class AllRoomsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         trooms = new ArrayList<>();
         totalRoomsList=(RecyclerView)findViewById(R.id.totalRoomsList);
-        adapter=new TotalRoomsAdapter(trooms);
+        adapter=new TotalRoomsAdapter(trooms,AllRoomsActivity.this);
         LinearLayoutManager lm=new LinearLayoutManager(getApplicationContext());
         totalRoomsList.setLayoutManager(lm);
         totalRoomsList.setHasFixedSize(true);
