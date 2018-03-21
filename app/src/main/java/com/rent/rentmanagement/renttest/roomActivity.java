@@ -280,6 +280,16 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
             }
             EmptyRoomsFragment.adapter.notifyDataSetChanged();
             RentDueFragment.adapter2.notifyDataSetChanged();
+           /* if(erooms.size()==0)
+            {
+                EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
+                EmptyRoomsFragment.emptyList.setClickable(true);
+
+            }
+            else {
+                EmptyRoomsFragment.emptyList.setVisibility(View.INVISIBLE);
+                EmptyRoomsFragment.emptyList.setClickable(false);
+            }*/
         }
 
 
@@ -334,7 +344,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         viewPager=(ViewPager)findViewById(R.id.viewPager);
         viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),getApplicationContext());
         viewPagerAdapter.addFragment(new EmptyRoomsFragment(getApplicationContext()),"Empty Rooms");
-        viewPagerAdapter.addFragment(new RentDueFragment(getApplicationContext()),"Rent Due");
+        viewPagerAdapter.addFragment(new RentDueFragment(roomActivity.this),"Rent Due");
         viewPagerAdapter.addFragment(new ProfileFragment(getApplicationContext()),"My Profile");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -405,17 +415,30 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                     }
                     EmptyRoomsFragment.adapter.notifyDataSetChanged();
                     RentDueFragment.adapter2.notifyDataSetChanged();
+                    /*if(erooms.size()==0)
+                    {
+                        EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
+                        EmptyRoomsFragment.emptyList.setClickable(true);
+
+                    }
+                    else {
+                        EmptyRoomsFragment.emptyList.setVisibility(View.INVISIBLE);
+                        EmptyRoomsFragment.emptyList.setClickable(false);
+                    }*/
                 }
             } catch (Exception e) {
                 Log.i("err", "err");
                 e.printStackTrace();
             }
         }
-    }
+    } /*else {
+        EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
+        EmptyRoomsFragment.emptyList.setClickable(true);
+    }*/
 }
     @Override
     public void onBackPressed() {
-        mode=2;
+
         if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible ||!(searchView.isIconified())) {
             if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 drawerLayout.closeDrawer(GravityCompat.START);

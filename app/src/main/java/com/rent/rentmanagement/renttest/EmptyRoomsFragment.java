@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class EmptyRoomsFragment extends Fragment {
     View v;
     Context context;
     RecyclerView emptyRoomsListView;
+    static TextView emptyList;
 
    static RecyclerAdapter adapter;
 
@@ -34,6 +36,7 @@ public class EmptyRoomsFragment extends Fragment {
         v=inflater.inflate(R.layout.empty_rooms_tab,container,false);
         emptyRoomsListView=(RecyclerView)v. findViewById(R.id.emptyRoomsList);
         adapter=new RecyclerAdapter(roomActivity.erooms,context);
+        emptyList=(TextView)v.findViewById(R.id.addBuildingText);
         LinearLayoutManager lm=new LinearLayoutManager(context);
         emptyRoomsListView.setLayoutManager(lm);
         emptyRoomsListView.setHasFixedSize(true);

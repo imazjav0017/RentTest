@@ -7,20 +7,7 @@
     tools:context="com.rent.rentmanagement.renttest.HomePageActivity">
     <include
         layout="@layout/actionbarlayout"/>
-    <TextView
-        android:padding="10sp"
-        android:text="please add Rooms,\nBy Clicking\non Building Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="addRoom"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal|center_vertical"
-        android:id="@+id/addBuildingText"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textSize="30sp"
-        android:fontFamily="cursive"
-        android:background="@drawable/squarebg" />
+
 
 
 
