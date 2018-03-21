@@ -43,7 +43,6 @@ public class roomDetailActivity extends AppCompatActivity {
     ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
     String roomNo,roomType,roomRent,_id,response;
     boolean fromTotal;
-
     @Override
     public void onBackPressed() {
         if(fromTotal)
@@ -139,6 +138,7 @@ public class roomDetailActivity extends AppCompatActivity {
             }
             else
             {
+
                 Toast.makeText(roomDetailActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
                 super.onPostExecute(s);
             }
@@ -276,9 +276,14 @@ public class roomDetailActivity extends AppCompatActivity {
 
                                 for(int k=0;k<payments.length();k++) {
                                     JSONObject paymentDetails = payments.getJSONObject(k);
+                                    if(paymentDetails.getBoolean("payStatus")==true)
                                     paymentList.add(new PaymentHistoryModel(paymentDetails.getString("payee"),
                                             paymentDetails.getString("amount"),paymentDetails.getString("date")
                                             ,paymentDetails.getBoolean("payStatus")));
+                                    else
+                                        paymentList.add(new PaymentHistoryModel(paymentDetails.getString("reason"),paymentDetails.getString("date")
+                                                ,paymentDetails.getBoolean("payStatus")));
+
 
                                 }
                                 pAdapter.notifyDataSetChanged();

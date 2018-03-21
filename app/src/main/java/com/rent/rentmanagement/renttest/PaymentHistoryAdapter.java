@@ -37,6 +37,7 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryVi
             holder.status.setTextColor(Color.parseColor("#3230ff"));
         }
         else {
+            holder.paymentHistory.setText("Not paid due to : "+model.getPayee());
             holder.status.setTextColor(Color.parseColor("#FFC20720"));
             holder.status.setText("Not Paid!");
         }

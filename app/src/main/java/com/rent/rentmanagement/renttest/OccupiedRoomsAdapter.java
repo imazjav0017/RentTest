@@ -52,9 +52,9 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         holder.amount.setText("Due Amount: \u20B9"+model.getDueAmount());
         holder.date.setText(model.getCheckInDate());
         holder.dueDays.setText(model.getDays()+" left!");
-        holder.roomType.setText(", "+model.getRoomType()+",");
+        holder.roomType.setText(", "+model.getRoomType()+", 1st floor,");
 
-        holder.roomType.setText(", "+model.getRoomType()+",");
+        holder.roomType.setText(", "+model.getRoomType()+", 1st floor");
         if(model.isEmpty==false)
         {
             if(model.getDueAmount().equals(model.getRoomRent()))
