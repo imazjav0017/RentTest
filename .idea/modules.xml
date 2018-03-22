@@ -3,13 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RentTest.iml" filepath="$PROJECT_DIR$/RentTest.iml" />
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-=======
-      <module fileurl="file://C:\Users\nitish\Documents\GitHub\RentTest\RentTest.iml" filepath="C:\Users\nitish\Documents\GitHub\RentTest\RentTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\nitish\Documents\GitHub\RentTest\app\app.iml" filepath="C:\Users\nitish\Documents\GitHub\RentTest\app\app.iml" />
->>>>>>> f3aa519f8e7953d763e95f88bcb23fa805f16af7
     </modules>
   </component>
 </project>
