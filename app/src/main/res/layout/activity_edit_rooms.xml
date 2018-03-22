@@ -109,6 +109,7 @@
         android:layout_below="@+id/relativeLayout"
         android:layout_centerHorizontal="true"
         android:text="Edit"
+        android:id="@+id/editButtonRoom"
         android:onClick="editDetails"
         android:textAllCaps="false"
         android:background="@drawable/square_blue"

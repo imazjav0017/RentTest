@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,9 @@ import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by imazjav0017 on 02-03-2018.
@@ -28,6 +33,9 @@ public class ProfileFragment extends Fragment {
     TextView noOfRooms;
     TextView noOfTenants;
     static String oName,rooms,tenants;
+    RecyclerView detailsRv;
+    ProfileDetailsAdapter adapter;
+    List<ProfileDetailsModel>pList;
     public ProfileFragment() {
 
     }
@@ -45,6 +53,13 @@ public class ProfileFragment extends Fragment {
         noOfTenants=(TextView)v.findViewById(R.id.totalTenantsTextView);
         totalRooms=(LinearLayout)v.findViewById(R.id.totalRoomsButton);
         totalStudents=(LinearLayout)v.findViewById(R.id.totalTenantsButton);
+        detailsRv=(RecyclerView)v.findViewById(R.id.profileDetailsRv);
+        pList=new ArrayList<>();
+        adapter=new ProfileDetailsAdapter(pList);
+        LinearLayoutManager lm1=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+        detailsRv.setLayoutManager(lm1);
+        detailsRv.setHasFixedSize(true);
+        detailsRv.setAdapter(adapter);
         totalRooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +78,13 @@ public class ProfileFragment extends Fragment {
             name.setText(oName);
             noOfRooms.setText(rooms);
         noOfTenants.setText(tenants);
+        pList.add(new ProfileDetailsModel("Total Occupied Rooms","375"));
+        pList.add(new ProfileDetailsModel("Total Empty Rooms","300"));
+        pList.add(new ProfileDetailsModel("Total Income","Rs 3,75,000"));
+        pList.add(new ProfileDetailsModel("Today's Income","Rs 30000"));
+        pList.add(new ProfileDetailsModel("Total Rent Due","3750"));
+        pList.add(new ProfileDetailsModel("Total Rent Collected","3300"));
+        adapter.notifyDataSetChanged();
         return v;
     }
     public static void setData(){
@@ -78,5 +100,6 @@ public class ProfileFragment extends Fragment {
         }
         rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
         tenants=String.valueOf(LoginActivity.sharedPreferences.getInt("totalTenants",0));
+
     }
 }

@@ -20,6 +20,9 @@ public class RentDueFragment extends Fragment {
     static OccupiedRoomsAdapter adapter2;
     RecyclerView occupiedRoomsListView;
 
+    public RentDueFragment() {
+    }
+
     public RentDueFragment(Context context) {
         this.context=context;
     }

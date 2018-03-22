@@ -29,8 +29,8 @@ public class StudentActivity extends AppCompatActivity {
     String sName,sNo,sAad;
     String _id;
     JSONObject studentDetails;
-    boolean fromTotal;
-    Button checkin;
+    boolean fromTotal,added=false;
+    Button checkin,finish;
     void enable()
     {
         checkin.setClickable(true);
@@ -76,6 +76,8 @@ public class StudentActivity extends AppCompatActivity {
 
             if(s!=null)
             {
+                added=true;
+                finish.setClickable(true);
                 Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
                 if(s.equals("success"))
                 {
@@ -158,11 +160,12 @@ public class StudentActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         checkin=(Button)findViewById(R.id.checkInButton);
+        finish=(Button)findViewById(R.id.addExtraStudentButton);
+        finish.setClickable(false);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
         fromTotal=i.getBooleanExtra("fromTotal",false);
         setTitle("Room No: "+i.getStringExtra("roomNo"));
-        Log.i("id",_id);
         studentName=(EditText)findViewById(R.id.studentNameInput);
         contactNo=(EditText)findViewById(R.id.studentContactNoInput);
         aadharNo=(EditText)findViewById(R.id.studentAadharNoInput);
@@ -177,11 +180,18 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-        else {
+        else if(added) {
             Intent i = new Intent(getApplicationContext(), roomActivity.class);
             roomActivity.mode = 1;
             startActivity(i);
             finish();
         }
+        else
+        {
+            Intent i = new Intent(getApplicationContext(), roomActivity.class);
+            startActivity(i);
+            finish();
+        }
+        }
     }
-}
+
