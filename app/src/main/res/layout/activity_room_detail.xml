@@ -188,6 +188,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/scv"
         android:layout_below="@+id/c1">
 
     <RelativeLayout
@@ -326,6 +327,13 @@
     </RelativeLayout>
 
     </ScrollView>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scv"
+        android:text="+1"
+        android:id="@+id/addMoreStudents"
+        android:onClick="addStudent"/>
 
 
 </RelativeLayout>

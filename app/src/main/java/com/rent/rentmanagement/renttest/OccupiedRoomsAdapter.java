@@ -85,25 +85,39 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 AlertDialog.Builder builder=new AlertDialog.Builder(context);
                 View view=LayoutInflater.from(context).inflate(R.layout.reason_dialog,null,false);
                 final EditText input=(EditText)view.findViewById(R.id.reasonInputText);
-                Button btn=(Button)view.findViewById(R.id.reasonButtonDialog);
+                final Button btn=(Button)view.findViewById(R.id.reasonButtonDialog);
 
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        btn.setClickable(false);
                          String reason=input.getText().toString();
-                        makeJson(model.get_id(),null,null,"r",reason);
-                        PaymentTask task=new PaymentTask();
-                        try {
-                            String response=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
-                            if(response!=null)
-                            {
-                                Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                goBack(holder.context);
+                        if(reason.isEmpty()) {
+                            enable(btn);
+                            Toast.makeText(context, "Please Give A Reason..", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            makeJson(model.get_id(), null, null, "r", reason);
+                            PaymentTask task = new PaymentTask();
+                            try {
+                                String response = task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail", rentdetails.toString()).get();
+                                if (response != null) {
+                                    Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                                    if(response.equals("Some Error,check if fields are missings!"))
+                                        enable(btn);
+                                    else
+                                        goBack(holder.context);
+                                }
+                                else
+                                {
+                                    enable(btn);
+                                    Toast.makeText(context, "No Internet!", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
                             }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
                         }
                     }
                 });
@@ -123,13 +137,14 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 final EditText payee=(EditText)view.findViewById(R.id.payee);
                 rentCollectedInput.setText(model.getDueAmount());
                 rentCollectedInput.setSelection(rentCollectedInput.getText().toString().length());
-                Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
+                final Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
                 DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
                 Date dateObj=new Date();
                String date=dateFormat.format(dateObj).toString();
                 collectedButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        collectedButton.setClickable(false);
                         makeJson(model.get_id(),payee,rentCollectedInput,"c",null);
                         PaymentTask task=new PaymentTask();
                         try {
@@ -137,7 +152,15 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                             if(response!=null)
                             {
                                 Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                goBack(holder.context);
+                                if(response.equals("Some Error,check if fields are missings!"))
+                                enable(collectedButton);
+                                else
+                                    goBack(holder.context);
+                            }
+                            else
+                            {
+                                enable(collectedButton);
+                                Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show();
                             }
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -232,5 +255,9 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         Intent i=new Intent(context,roomActivity.class);
         roomActivity.mode=1;
         context.startActivity(i);
+    }
+    void enable(Button btn)
+    {
+        btn.setClickable(true);
     }
 }
