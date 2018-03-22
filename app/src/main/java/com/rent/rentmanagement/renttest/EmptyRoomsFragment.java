@@ -26,6 +26,9 @@ public class EmptyRoomsFragment extends Fragment {
 
    static RecyclerAdapter adapter;
 
+    public EmptyRoomsFragment() {
+    }
+
     public EmptyRoomsFragment(Context context) {
                this.context=context;
     }

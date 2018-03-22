@@ -29,7 +29,12 @@ public class StudentActivity extends AppCompatActivity {
     String sName,sNo,sAad;
     String _id;
     JSONObject studentDetails;
-    boolean fromTotal;
+    boolean fromTotal,added=false;
+    Button checkin,finish;
+    void enable()
+    {
+        checkin.setClickable(true);
+    }
     public class AddStudentsTask extends AsyncTask<String,Void,String>
     {
         @Override
@@ -67,8 +72,12 @@ public class StudentActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            enable();
+
             if(s!=null)
             {
+                added=true;
+                finish.setClickable(true);
                 Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
                 if(s.equals("success"))
                 {
@@ -76,6 +85,8 @@ public class StudentActivity extends AppCompatActivity {
                     contactNo.setText("");
                     aadharNo.setText("");
                 }
+            }else {
+                Toast.makeText(StudentActivity.this, "No Internet!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -107,11 +118,13 @@ public class StudentActivity extends AppCompatActivity {
     }
     public void checkIn(View v)
     {
+        checkin.setClickable(false);
         sName=studentName.getText().toString();
         sNo=contactNo.getText().toString();
         sAad=aadharNo.getText().toString();
         if(sName.equals("")||sNo.equals("")||sAad.equals(""))
         {
+            enable();
             Toast.makeText(this, "Missing Fields", Toast.LENGTH_SHORT).show();
         }
         else
@@ -146,11 +159,13 @@ public class StudentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student); Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        checkin=(Button)findViewById(R.id.checkInButton);
+        finish=(Button)findViewById(R.id.addExtraStudentButton);
+        finish.setClickable(false);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
         fromTotal=i.getBooleanExtra("fromTotal",false);
         setTitle("Room No: "+i.getStringExtra("roomNo"));
-        Log.i("id",_id);
         studentName=(EditText)findViewById(R.id.studentNameInput);
         contactNo=(EditText)findViewById(R.id.studentContactNoInput);
         aadharNo=(EditText)findViewById(R.id.studentAadharNoInput);
@@ -165,11 +180,18 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-        else {
+        else if(added) {
             Intent i = new Intent(getApplicationContext(), roomActivity.class);
             roomActivity.mode = 1;
             startActivity(i);
             finish();
         }
+        else
+        {
+            Intent i = new Intent(getApplicationContext(), roomActivity.class);
+            startActivity(i);
+            finish();
+        }
+        }
     }
-}
+

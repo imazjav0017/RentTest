@@ -2,6 +2,7 @@ package com.rent.rentmanagement.renttest;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -75,7 +76,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
         {
             holder.date.setText(model.getCheckInDate());
             holder.roomNo.setText("Room No. "+model.getRoomNo());
-            holder.roomType.setText(", "+model.getRoomType()+" ,1st floor,");
+            holder.roomType.setText(", "+model.getRoomType());
             holder.amount.setText(" \u20B9"+model.getRoomRent());
             holder.checkIn.setText("CheckIn");
             holder.status.setText("Vacant");
@@ -112,7 +113,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                         final EditText payee=(EditText)view.findViewById(R.id.payee);
                         rentCollectedInput.setText(model.getDueAmount());
                         rentCollectedInput.setSelection(rentCollectedInput.getText().toString().length());
-                        Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
+                        final Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
                         DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
                         Date dateObj=new Date();
                         String date=dateFormat.format(dateObj).toString();
@@ -120,13 +121,22 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                             @Override
                             public void onClick(View v) {
                                 makeJson(model.get_id(),payee,rentCollectedInput,"c",null);
+                                collectedButton.setClickable(false);
                                 PaymentTask task=new PaymentTask();
                                 try {
                                     String response=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
                                     if(response!=null)
                                     {
                                         Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                        goBack(holder.context);
+                                        if(response.equals("Some Error,check if fields are missings!"))
+                                            enable(collectedButton);
+                                        else
+                                            goBack(holder.context);
+                                    }
+                                    else
+                                    {
+                                        enable(collectedButton);
+                                        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
@@ -143,6 +153,18 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
                         AlertDialog dialog=builder.create();
                         dialog.show();
                         break;
+                    case "CheckOut":
+                        new AlertDialog.Builder(context)
+                                .setTitle("Delete!").setMessage("Are You Sure You Wish To Checkout from Room No "+model.getRoomNo()+"?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        setTokenJson("ch",model.get_id());
+                                    }
+                                })
+                                .setNegativeButton("No",null).show();
+                        break;
+
                     
                 }
             }
@@ -217,5 +239,45 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
         Intent i=new Intent(context,AllRoomsActivity.class);
         roomActivity.mode=1;
         context.startActivity(i);
+    }
+    void enable(Button btn)
+    {
+        btn.setClickable(true);
+    }
+    public void setTokenJson(String mode,String _id)
+    {
+        try {
+            if(LoginActivity.sharedPreferences.getString("token",null)!=null) {
+                JSONObject token = new JSONObject();
+                token.put("auth",LoginActivity.sharedPreferences.getString("token", null));
+                token.put("roomId",_id);
+               /* if(mode.equals("delete")) {
+                    roomDetailActivity.DeleteRoomsTask task = new roomDetailActivity.DeleteRoomsTask();
+                    task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/deleteRooms", token.toString());
+                }*/
+                if(mode.equals("ch"))
+                {
+                    CheckoutTask task = new CheckoutTask();
+                    String s=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/vacateRooms", token.toString()).get();
+                    if (s != null) {
+                        Toast.makeText(context,s,Toast.LENGTH_SHORT).show();
+                        if(s.equals("checked out from Room"))
+                        {
+                           goBack(context);
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(context, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }

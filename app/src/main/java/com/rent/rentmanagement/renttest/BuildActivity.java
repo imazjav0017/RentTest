@@ -112,13 +112,11 @@ public class BuildActivity extends AppCompatActivity {
 
 
             } catch (MalformedURLException e) {
-                enable();
+
                 e.printStackTrace();
             } catch (IOException e) {
-                enable();
                 e.printStackTrace();
             } catch (JSONException e) {
-                enable();
                 e.printStackTrace();
             }
             return null;
@@ -128,24 +126,27 @@ public class BuildActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             response(s);
-            Log.i("response",s);
-            enable();
+
 
 
         }
     }
-    public void response(String s)
-    {
-        if(s.equals("200"))
-        {
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(BuildActivity.this,roomActivity.class);
-            roomActivity.mode=0;
-            startActivity(i);
-            finish();
+    public void response(String s) {
+        if (s != null)
+            if (s.equals("200")) {
+                Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(BuildActivity.this, roomActivity.class);
+                roomActivity.mode = 0;
+                startActivity(i);
+                finish();
+            } else {
+                enable();
+                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        else {
+            enable();
+            Toast.makeText(this, "Please Check Your Internet Connection And Try Later!", Toast.LENGTH_SHORT).show();
         }
-        else
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
     }
 
     @Override

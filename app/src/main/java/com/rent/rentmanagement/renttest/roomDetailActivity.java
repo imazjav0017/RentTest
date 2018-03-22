@@ -32,6 +32,7 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class roomDetailActivity extends AppCompatActivity {
     TextView rn,rt,rr,studentsExpandingView,paymentsExpandLayout;
@@ -39,6 +40,7 @@ public class roomDetailActivity extends AppCompatActivity {
     StudentAdapter adapter;
     List<StudentModel> studentsList;
     List<PaymentHistoryModel>paymentList;
+    Button checkOut;
     PaymentHistoryAdapter pAdapter;
     ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
     String roomNo,roomType,roomRent,_id,response;
@@ -79,71 +81,29 @@ public class roomDetailActivity extends AppCompatActivity {
                 else if(mode.equals("ch"))
                 {
                     CheckoutTask task = new CheckoutTask();
-                    task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/vacateRooms", token.toString());
+                    String s=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/vacateRooms", token.toString()).get();
+                    if (s != null) {
+                        Toast.makeText(roomDetailActivity.this,s,Toast.LENGTH_SHORT).show();
+                        if(s.equals("checked out from Room"))
+                        {
+                            onBackPressed();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(roomDetailActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
     }
-    public class CheckoutTask extends AsyncTask<String,Void,String>
-    {
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                URL url = new URL(params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.addRequestProperty("Accept", "application/json");
-                connection.addRequestProperty("Content-Type", "application/json");
-                connection.setRequestMethod("POST");
-                connection.setDoOutput(true);
-                connection.connect();
-                DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-                outputStream.writeBytes(params[1]);
-                Log.i("data", params[1]);
-                int resp = connection.getResponseCode();
-                Log.i("checkoutResp",String.valueOf(resp));
-                if(resp==422)
-                {
-                    return "First clear Dues!";
-                }
-                else if(resp==200)
-                {
-                    return "checked out from Room";
-                }
-                else
-                {
-                    return null;
-                }
 
-            }catch(MalformedURLException e)
-            {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            if (s != null) {
-                Toast.makeText(roomDetailActivity.this,s,Toast.LENGTH_SHORT).show();
-                if(s.equals("checked out from Room"))
-                {
-                    onBackPressed();
-                }
-            }
-            else
-            {
-
-                Toast.makeText(roomDetailActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
-                super.onPostExecute(s);
-            }
-        }
-    }
     public String  getResponse(HttpURLConnection connection)
     {
         try {
@@ -249,8 +209,16 @@ public class roomDetailActivity extends AppCompatActivity {
         i.putExtra("roomRent",roomRent);
         i.putExtra("roomType",roomType);
         i.putExtra("id",_id);
+        i.putExtra("fromTotal",fromTotal);
         startActivity(i);
-        finish();
+    }
+    public  void addStudent(View v)
+    {
+        Intent i=new Intent(getApplicationContext(),StudentActivity.class);
+        i.putExtra("id",_id);
+        i.putExtra("roomNo",roomNo);
+        i.putExtra("fromDetails",true);
+        startActivity(i);
     }
     public void setPaymentHistory(String s) {
         paymentList.clear();
@@ -360,6 +328,7 @@ public class roomDetailActivity extends AppCompatActivity {
         fromTotal=i.getBooleanExtra("fromTotal",false);
         roomRent=i.getStringExtra("roomRent");
         setTitle("RoomNo: "+i.getStringExtra("roomNo"));
+        checkOut=(Button)findViewById(R.id.empt_checkin);
         rn = (TextView) findViewById(R.id.roomno);
         rt = (TextView) findViewById(R.id.roomtype);
         rr = (TextView) findViewById(R.id.roomrent);

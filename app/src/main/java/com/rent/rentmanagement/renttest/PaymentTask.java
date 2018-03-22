@@ -32,7 +32,7 @@ import java.net.URL;
                 if (resp == 200) {
                     return "success";
                 } else
-                    return "try again later";
+                    return "Some Error,check if fields are missings!";
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();

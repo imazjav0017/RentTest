@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -28,16 +29,34 @@ public class edit_rooms extends AppCompatActivity {
 String roomNo,roomType,roomRent,_id,response,type;
     EditText roomNoInput,roomRentInput;
     RadioGroup newRoomType;
+    boolean isChanged=false,from;
+    Button edit;
 
+    void enableButton(Button btn,boolean val)
+    {
+        btn.setClickable(val);
+    }
     @Override
     public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),roomActivity.class);
-        startActivity(i);
-        finish();
+        if(isChanged) {
+                Intent i = new Intent(getApplicationContext(), roomDetailActivity.class);
+                i.putExtra("id", _id);
+                i.putExtra("roomNo", roomNo);
+                i.putExtra("roomType", roomType);
+                i.putExtra("roomRent", roomRent);
+            if(from)
+                i.putExtra("fromTotal",from);
+                startActivity(i);
+                finish();
+
+        }
+        else
+            super.onBackPressed();
     }
 
     public void editDetails(View v)
     {
+        enableButton(edit,false);
         roomNo=roomNoInput.getText().toString();
         roomRent=roomRentInput.getText().toString();
         roomType=type;
@@ -45,6 +64,7 @@ String roomNo,roomType,roomRent,_id,response,type;
             if(LoginActivity.sharedPreferences.getString("token",null)!=null) {
                 if(roomNo.equals("")||roomRent.equals(""))
                 {
+                    enableButton(edit,true);
                     Toast.makeText(getApplicationContext(), "Missing Fields!", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -104,10 +124,12 @@ String roomNo,roomType,roomRent,_id,response,type;
         protected void onPostExecute(String s) {
             if (s != null) {
                 Toast.makeText(edit_rooms.this,"Saved Changes",Toast.LENGTH_SHORT).show();
+                isChanged=true;
                 onBackPressed();
             }
             else
             {
+                enableButton(edit,true);
                 Toast.makeText(edit_rooms.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
                 super.onPostExecute(s);
             }
@@ -144,6 +166,8 @@ String roomNo,roomType,roomRent,_id,response,type;
         roomNo=i.getStringExtra("roomNo");
         roomType=i.getStringExtra("roomType");
         roomRent=i.getStringExtra("roomRent");
+        from=i.getBooleanExtra("fromTotal",false);
+        edit=(Button)findViewById(R.id.editButtonRoom);
         roomNoInput=(EditText)findViewById(R.id.newRoomNoInput);
         roomRentInput=(EditText)findViewById(R.id.newRoomRentInput);
         newRoomType=(RadioGroup)findViewById(R.id.newRoomTypeGroup);
@@ -155,12 +179,15 @@ String roomNo,roomType,roomRent,_id,response,type;
         {
             case "Single":
                 newRoomType.check(R.id.sin);
+                type="Single";
                 break;
             case "Double":
                 newRoomType.check(R.id.doub);
+                type="Double";
                 break;
             case "Triple":
                 newRoomType.check(R.id.trip);
+                type="Triple";
                 break;
 
         }
