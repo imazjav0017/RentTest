@@ -93,6 +93,10 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                             LoginActivity.sharedPreferences.edit().putString("roomsDetails","0").apply();
                             LoginActivity.sharedPreferences.edit().putInt("totalTenants",0).apply();
                             LoginActivity.sharedPreferences.edit().putInt("totalRooms",0).apply();
+                            LoginActivity.sharedPreferences.edit().putString("totalIncome",null).apply();
+                            LoginActivity.sharedPreferences.edit().putString("todayIncome",null).apply();
+                            LoginActivity.sharedPreferences.edit().putString("collected",null).apply();
+
                             Intent i=new Intent(getApplicationContext(),LoginActivity.class);
                             startActivity(i);
                         }
