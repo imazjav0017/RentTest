@@ -23,9 +23,14 @@
         android:layout_marginTop="50dp"
         android:id="@+id/reasonInputText" />
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reasonButtonDialog"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+    android:textAllCaps="false"
+        android:background="#ffff"
+        android:textColor="#FF0000"
         android:layout_below="@+id/reasonInputText"
         android:text="Save"/>
 

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp"
     android:gravity="center_vertical">
 
@@ -10,10 +11,14 @@
         android:layout_width="155dp"
         android:padding="3dp"
         android:layout_height="match_parent"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="2dp"
+        android:layout_margin="5dp"
+        android:id="@+id/c1">
+
         android:layout_margin=".5dp"
         android:id="@+id/c1"
      >
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -40,7 +45,6 @@
                     android:layout_weight="1"
                     android:id="@+id/titleText"
                     android:layout_margin="5dp"
-                    android:textColor="#424242"
                     android:text="Total Occupied Rooms"
                     android:textAllCaps="false"
                     />
@@ -52,7 +56,7 @@
                     android:textSize="18sp"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:text="375"
+                    android:text="70"
                     android:gravity="center"
                     android:textColor="#424242"/>
 
