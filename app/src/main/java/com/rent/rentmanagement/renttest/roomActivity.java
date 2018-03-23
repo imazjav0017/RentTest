@@ -245,6 +245,9 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         JSONArray array=jsonObject.getJSONArray("room");
         Log.i("array",array.toString());
         LoginActivity.sharedPreferences.edit().putInt("totalRooms",array.length()).apply();
+        LoginActivity.sharedPreferences.edit().putString("totalIncome",String.valueOf(jsonObject.getInt("totalIncome"))).apply();
+        LoginActivity.sharedPreferences.edit().putString("todayIncome",String.valueOf(jsonObject.getInt("todayIncome"))).apply();
+        LoginActivity.sharedPreferences.edit().putString("collected",String.valueOf(jsonObject.getInt("collected"))).apply();
         ProfileFragment.setData();
         LoginActivity.sharedPreferences.edit().putString("roomsDetails",s).apply();
         if(array.length()==0)

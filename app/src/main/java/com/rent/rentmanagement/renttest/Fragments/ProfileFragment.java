@@ -42,7 +42,7 @@ public class ProfileFragment extends Fragment {
     static String oName,rooms,tenants;
     RecyclerView detailsRv;
     ProfileDetailsAdapter adapter;
-    List<ProfileDetailsModel>pList;
+    static List<ProfileDetailsModel>pList;
     public ProfileFragment() {
 
     }
@@ -85,16 +85,11 @@ public class ProfileFragment extends Fragment {
             name.setText(oName);
             noOfRooms.setText(rooms);
         noOfTenants.setText(tenants);
-        pList.add(new ProfileDetailsModel("Total Occupied Rooms","375"));
-        pList.add(new ProfileDetailsModel("Total Empty Rooms","300"));
-        pList.add(new ProfileDetailsModel("Total Income","Rs 3,75,000"));
-        pList.add(new ProfileDetailsModel("Today's Income","Rs 30000"));
-        pList.add(new ProfileDetailsModel("Total Rent Due","3750"));
-        pList.add(new ProfileDetailsModel("Total Rent Collected","3300"));
         adapter.notifyDataSetChanged();
         return v;
     }
     public static void setData(){
+        pList.clear();
         String s= LoginActivity.sharedPreferences.getString("ownerDetails",null);
         if(s!=null)
         {
@@ -107,6 +102,21 @@ public class ProfileFragment extends Fragment {
         }
         rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
         tenants=String.valueOf(LoginActivity.sharedPreferences.getInt("totalTenants",0));
+        String emptySize= String.valueOf(roomActivity.erooms.size());
+        String occRoomsSize= String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0)-(roomActivity.erooms.size()));
+        String ti=LoginActivity.sharedPreferences.getString("totalIncome",null);
+        String todI=LoginActivity.sharedPreferences.getString("todayIncome",null);
+        String col=LoginActivity.sharedPreferences.getString("collected",null);
+        pList.add(new ProfileDetailsModel("Total Occupied Rooms",occRoomsSize));
+        pList.add(new ProfileDetailsModel("Total Empty Rooms",emptySize));
+        if(ti!=null)
+        pList.add(new ProfileDetailsModel("Total Income",ti));
+        if(todI!=null)
+        pList.add(new ProfileDetailsModel("Today's Income",todI));
+        pList.add(new ProfileDetailsModel("Total Rent Due","3750"));
+        if(col!=null)
+        pList.add(new ProfileDetailsModel("Total Rent Collected",col));
+
 
     }
 }
