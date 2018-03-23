@@ -1,9 +1,14 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.rent.rentmanagement.renttest.DataModels.ProfileDetailsModel;
+import com.rent.rentmanagement.renttest.R;
 
 import java.util.List;
 
@@ -11,7 +16,7 @@ import java.util.List;
  * Created by imazjav0017 on 22-03-2018.
  */
 
-public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsHolder> {
+public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsAdapter.ProfileDetailsHolder> {
     List<ProfileDetailsModel> modelList;
 
     public ProfileDetailsAdapter(List<ProfileDetailsModel> modelList) {
@@ -34,5 +39,21 @@ public class ProfileDetailsAdapter extends RecyclerView.Adapter<ProfileDetailsHo
     @Override
     public int getItemCount() {
         return modelList.size();
+    }
+
+    /**
+     * Created by imazjav0017 on 22-03-2018.
+     */
+
+    public static class ProfileDetailsHolder extends RecyclerView.ViewHolder {
+        TextView title,value;
+        Context context;
+        public ProfileDetailsHolder(View itemView) {
+            super(itemView);
+            context=itemView.getContext();
+            title=(TextView)itemView.findViewById(R.id.titleText);
+            value=(TextView)itemView.findViewById(R.id.valueText);
+
+        }
     }
 }

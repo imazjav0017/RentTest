@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Adapters.TotalTenantsAdapter;
+import com.rent.rentmanagement.renttest.DataModels.StudentModel;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

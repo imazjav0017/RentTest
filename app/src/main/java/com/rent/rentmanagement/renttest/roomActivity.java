@@ -12,15 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,22 +31,21 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.Fragments.EmptyRoomsFragment;
+import com.rent.rentmanagement.renttest.Fragments.ProfileFragment;
+import com.rent.rentmanagement.renttest.Fragments.RentDueFragment;
 
 
 public class roomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
-    static ArrayList<RoomModel>erooms,oRooms;
+    public static ArrayList<RoomModel>erooms;
+    public static ArrayList<RoomModel> oRooms;
     String response="",buildingName;
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -61,7 +55,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     SearchView searchView;
-    static int mode=2;
+   public static int mode=2;
     public void setBuildingName()
     {
         String s=LoginActivity.sharedPreferences.getString("ownerDetails",null);

@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.DataModels;
 
 /**
  * Created by imazjav0017 on 22-03-2018.

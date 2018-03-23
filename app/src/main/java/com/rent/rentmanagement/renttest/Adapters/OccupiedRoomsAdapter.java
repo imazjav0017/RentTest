@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -9,11 +9,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.rent.rentmanagement.renttest.LoginActivity;
+import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
+import com.rent.rentmanagement.renttest.R;
+import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.roomActivity;
+import com.rent.rentmanagement.renttest.roomDetailActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +36,31 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by imazjav0017 on 12-02-2018.
  */
+class ViewHolder2 extends RecyclerView.ViewHolder {
+    LinearLayout ll;
+    LinearLayout status;
+    TextView roomNo;
+    TextView roomType;
+    TextView amount;
+    TextView date;
+    Context context;
+    Button reason;
+    Button collect;
+    TextView dueDays;
+    public ViewHolder2(View itemView) {
+        super(itemView);
+        ll=(LinearLayout)itemView.findViewById(R.id.ocRoomLl);
+        status=(LinearLayout)itemView.findViewById(R.id.statusRoom);
+        context=itemView.getContext();
+        date=(TextView)itemView.findViewById(R.id.checkInDate);
+        dueDays=(TextView)itemView.findViewById(R.id.dueDays);
+        roomNo=(TextView)itemView.findViewById(R.id.roomNoOccupiedop);
+        roomType=(TextView)itemView.findViewById(R.id.roomTypeOcc);
+        amount=(TextView)itemView.findViewById(R.id.rentToBeCollected);
+        reason=(Button)itemView.findViewById(R.id.reason);
+        collect=(Button)itemView.findViewById(R.id.collectingButton);
+    }
+}
 
 public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     List<RoomModel> roomList;

@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.DataModels;
 
 /**
  * Created by imazjav0017 on 11-02-2018.
@@ -6,7 +6,8 @@ package com.rent.rentmanagement.renttest;
 
 public class RoomModel {
     String roomType,roomNo,roomRent,_id,checkInDate,dueAmount,days;
-    boolean isEmpty,isRentDue;
+    public boolean isEmpty;
+    public boolean isRentDue;
 
 
     public RoomModel(String roomType, String roomNo, String roomRent, String _id,String checkInDate,boolean isEmpty,String days) {

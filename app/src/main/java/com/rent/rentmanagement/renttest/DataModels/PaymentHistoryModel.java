@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.DataModels;
 
 /**
  * Created by imazjav0017 on 14-03-2018.
@@ -6,7 +6,7 @@ package com.rent.rentmanagement.renttest;
 
 public class PaymentHistoryModel {
     String payee,amount,date;
-    boolean status;
+    public boolean status;
 
 
     public PaymentHistoryModel(String payee, String amount, String date,boolean status) {

@@ -1,10 +1,14 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Adapters;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.rent.rentmanagement.renttest.DataModels.PaymentHistoryModel;
+import com.rent.rentmanagement.renttest.R;
 
 import java.util.List;
 
@@ -12,7 +16,7 @@ import java.util.List;
  * Created by imazjav0017 on 14-03-2018.
  */
 
-public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryViewHolder> {
+public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryAdapter.PaymentHistoryViewHolder> {
     List<PaymentHistoryModel> paymentList;
 
     public PaymentHistoryAdapter(List<PaymentHistoryModel> paymentList) {
@@ -46,5 +50,22 @@ public class PaymentHistoryAdapter extends RecyclerView.Adapter<PaymentHistoryVi
     @Override
     public int getItemCount() {
         return paymentList.size();
+    }
+
+    /**
+     * Created by imazjav0017 on 14-03-2018.
+     */
+
+    public static class PaymentHistoryViewHolder extends RecyclerView.ViewHolder {
+        TextView paymentHistory;
+        TextView date;
+        TextView status;
+
+        public PaymentHistoryViewHolder(View itemView) {
+            super(itemView);
+            paymentHistory=(TextView)itemView.findViewById(R.id.paymentHistory);
+            date=(TextView)itemView.findViewById(R.id.paymentDateView);
+            status=(TextView)itemView.findViewById(R.id.paymentStatus);
+        }
     }
 }

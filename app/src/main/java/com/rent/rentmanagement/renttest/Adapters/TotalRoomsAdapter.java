@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,8 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.rent.rentmanagement.renttest.AllRoomsActivity;
+import com.rent.rentmanagement.renttest.AsyncTasks.CheckoutTask;
+import com.rent.rentmanagement.renttest.LoginActivity;
+import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
+import com.rent.rentmanagement.renttest.R;
+import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.StudentActivity;
+import com.rent.rentmanagement.renttest.roomActivity;
+import com.rent.rentmanagement.renttest.roomDetailActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +40,7 @@ import java.util.concurrent.ExecutionException;
  * Created by imazjav0017 on 18-03-2018.
  */
 
-public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
+public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.TotalRoomsHolder> {
     List<RoomModel> roomList;
     JSONObject rentdetails;
     Context context;
@@ -278,6 +289,34 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsHolder> {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Created by imazjav0017 on 18-03-2018.
+     */
+
+    public static class TotalRoomsHolder extends RecyclerView.ViewHolder {
+        LinearLayout ll;
+        LinearLayout statusBar;
+        TextView roomNo;
+        TextView roomType;
+        TextView amount;
+        TextView date;
+        TextView status;
+        Context context;
+        Button checkIn;
+        public TotalRoomsHolder(View itemView) {
+            super(itemView);
+            ll=(LinearLayout)itemView.findViewById(R.id.TotalLl);
+            statusBar=(LinearLayout)itemView.findViewById(R.id.totalStatusBar);
+            context=itemView.getContext();
+            date=(TextView)itemView.findViewById(R.id.totalCheckInDate);
+            roomNo=(TextView)itemView.findViewById(R.id.totalRoomNo);
+            status=(TextView)itemView.findViewById(R.id.TotalStatus);
+            roomType=(TextView)itemView.findViewById(R.id.totalRoomType);
+            amount=(TextView)itemView.findViewById(R.id.TotalRentToBeCollected);
+            checkIn=(Button)itemView.findViewById(R.id.totalCheckinButton);
         }
     }
 }

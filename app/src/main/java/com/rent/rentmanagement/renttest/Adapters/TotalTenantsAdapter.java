@@ -1,11 +1,19 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Adapters;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.rent.rentmanagement.renttest.R;
+import com.rent.rentmanagement.renttest.DataModels.StudentModel;
+import com.rent.rentmanagement.renttest.studentProfile;
 
 import java.util.List;
 
@@ -13,7 +21,7 @@ import java.util.List;
  * Created by imazjav0017 on 17-03-2018.
  */
 
-public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsHolder> {
+public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsAdapter.TotalTenantsHolder> {
     List<StudentModel> studentModels;
 
     public TotalTenantsAdapter(List<StudentModel> studentModels) {
@@ -58,5 +66,25 @@ public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsHolder
     @Override
     public int getItemCount() {
         return studentModels.size();
+    }
+
+    /**
+     * Created by imazjav0017 on 17-03-2018.
+     */
+
+    public static class TotalTenantsHolder extends RecyclerView.ViewHolder {
+        TextView studentName,phNo;
+        Button call;
+        Context context;
+        RelativeLayout rl;
+        public TotalTenantsHolder(View itemView) {
+            super(itemView);
+            studentName=(TextView)itemView.findViewById(R.id.studentNameTextView2);
+            phNo=(TextView)itemView.findViewById(R.id.studentPhoneNumber2);
+            call=(Button)itemView.findViewById(R.id.callButton1);
+            rl=(RelativeLayout)itemView.findViewById(R.id.viewDetailsRl);
+            context=itemView.getContext();
+
+        }
     }
 }

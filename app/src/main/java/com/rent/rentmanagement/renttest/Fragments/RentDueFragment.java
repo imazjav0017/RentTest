@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.rent.rentmanagement.renttest.Adapters.OccupiedRoomsAdapter;
+import com.rent.rentmanagement.renttest.R;
+import com.rent.rentmanagement.renttest.roomActivity;
+
 /**
  * Created by imazjav0017 on 01-03-2018.
  */
@@ -17,7 +21,7 @@ import android.view.ViewGroup;
 public class RentDueFragment extends Fragment {
     View v;
     Context context;
-    static OccupiedRoomsAdapter adapter2;
+    public static OccupiedRoomsAdapter adapter2;
     RecyclerView occupiedRoomsListView;
 
     public RentDueFragment() {

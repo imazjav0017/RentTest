@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.rent.rentmanagement.renttest.Adapters.ProfileDetailsAdapter;
+import com.rent.rentmanagement.renttest.AllRoomsActivity;
+import com.rent.rentmanagement.renttest.LoginActivity;
+import com.rent.rentmanagement.renttest.DataModels.ProfileDetailsModel;
+import com.rent.rentmanagement.renttest.R;
+import com.rent.rentmanagement.renttest.TotalTenantsctivity;
+import com.rent.rentmanagement.renttest.roomActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,7 +95,7 @@ public class ProfileFragment extends Fragment {
         return v;
     }
     public static void setData(){
-        String s=LoginActivity.sharedPreferences.getString("ownerDetails",null);
+        String s= LoginActivity.sharedPreferences.getString("ownerDetails",null);
         if(s!=null)
         {
             try {

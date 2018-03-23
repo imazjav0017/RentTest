@@ -1,4 +1,4 @@
-package com.rent.rentmanagement.renttest;
+package com.rent.rentmanagement.renttest.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.rent.rentmanagement.renttest.R;
+import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.StudentActivity;
+import com.rent.rentmanagement.renttest.roomDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +22,7 @@ import java.util.List;
  * Created by imazjav0017 on 28-02-2018.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     List<RoomModel> roomModels;
     Context context;
@@ -71,5 +78,32 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         roomModels=new ArrayList<>();
         roomModels.addAll(filteredList);
         notifyDataSetChanged();
+    }
+
+    /**
+     * Created by imazjav0017 on 28-02-2018.
+     */
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+       public TextView roomNo;
+        public TextView roomType;
+        public TextView roomRent;
+        public Context context;
+        LinearLayout ll;
+        TextView emptyDays;
+        TextView date;
+        Button checkIn;
+        public ViewHolder(View itemView) {
+            super(itemView);
+            context=itemView.getContext();
+             roomNo=(TextView)itemView.findViewById(R.id.roomNoDisplay);
+            date=(TextView)itemView.findViewById(R.id.checkInDate2);
+            emptyDays=(TextView)itemView.findViewById(R.id.emptyDays);
+            roomType=(TextView)itemView.findViewById(R.id.roomTypeDisplay);
+            roomRent=(TextView)itemView.findViewById(R.id.rentDisplay);
+            checkIn=(Button)itemView.findViewById(R.id.checkInOptionButton);
+            ll=(LinearLayout)itemView.findViewById(R.id.emptyRoomsLinearLayout);
+
+        }
     }
 }
