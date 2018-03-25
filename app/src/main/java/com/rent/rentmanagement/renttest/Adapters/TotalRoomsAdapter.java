@@ -252,7 +252,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
     {
        // RoomsFragment ob=new RoomsFragment();
         //ob.refresh();
-       // new RoomsFragment(context).onResume();
+        new RoomsFragment(context).onResume();
     }
     void enable(Button btn)
     {

@@ -285,7 +285,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     }
     void goBack(Context context)
     {
-        //new RoomsFragment(context).onResume();
+        new RoomsFragment(context).onResume();
     }
     void enable(Button btn)
     {

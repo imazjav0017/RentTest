@@ -8,22 +8,13 @@
 
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:background="@drawable/building"
-        android:id="@+id/l1"
-        >
-    </LinearLayout>
+        android:orientation="horizontal"></LinearLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/owner"
-        android:id="@+id/img"/>
+
 
 
     <TextView
@@ -31,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="160dp"
         android:text="Jade magician"
         android:textSize="18sp"
         android:id="@+id/ownerNameTextView" />
@@ -48,35 +39,35 @@
         >
 
         <LinearLayout
+            android:id="@+id/totalRoomsButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:background="@drawable/squarebg"
             android:orientation="vertical"
-            android:id="@+id/totalRoomsButton"
-            android:paddingTop="5dp"
             android:paddingBottom="5dp"
-            android:background="@drawable/squarebg">
+            android:paddingTop="5dp">
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:textSize="20sp"
-          android:layout_weight="1"
-          android:id="@+id/totalRoomsTextView"
-          android:text="375"
-          android:gravity="center"
-          android:textColor="#424242"/>
+            <TextView
+                android:id="@+id/totalRoomsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="375"
+                android:textColor="#424242"
+                android:textSize="20sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           android:gravity="center"
-            android:textSize="16sp"
-            android:layout_weight="1"
-            android:textColor="#4db4e7"
-            android:text="Total Rooms"
-            android:textAllCaps="false"
-            android:id="@+id/button2" />
+            <TextView
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Total Rooms"
+                android:textAllCaps="false"
+                android:textColor="#4db4e7"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -93,14 +84,14 @@
 
 
             <TextView
+                android:id="@+id/totalTenantsTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
                 android:layout_weight="1"
-                android:text="300"
-                android:id="@+id/totalTenantsTextView"
                 android:gravity="center"
-                android:textColor="#424242"/>
+                android:text="300"
+                android:textColor="#424242"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -119,20 +110,16 @@
     </LinearLayout>
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/profileDetailsRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="80dp">
 
-
-
-
-
-
-<android.support.v7.widget.RecyclerView
-    android:layout_width="match_parent"
-    android:id="@+id/profileDetailsRv"
-    android:layout_below="@+id/l2"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="30dp">
-
-</android.support.v7.widget.RecyclerView>
+    </android.support.v7.widget.RecyclerView>
 
 
 
