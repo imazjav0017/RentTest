@@ -36,6 +36,8 @@
         <activity android:name=".edit_rooms" />
         <activity android:name=".AllRoomsActivity" />
         <activity android:name=".studentProfile" />
+        <activity android:name=".automanualActivity" />
+        <activity android:name=".manualActivity"></activity>
     </application>
 
 </manifest>
