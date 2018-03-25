@@ -21,7 +21,7 @@ import com.rent.rentmanagement.renttest.roomActivity;
 public class RentDueFragment extends Fragment {
     View v;
     Context context;
-    public static OccupiedRoomsAdapter adapter2;
+
     RecyclerView occupiedRoomsListView;
 
     public RentDueFragment() {
@@ -36,11 +36,10 @@ public class RentDueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.rent_due_tab,container,false);
         occupiedRoomsListView=(RecyclerView)v.findViewById(R.id.occupiedRoomsList);
-        adapter2=new OccupiedRoomsAdapter(roomActivity.oRooms,context);
         LinearLayoutManager lm1=new LinearLayoutManager(context);
         occupiedRoomsListView.setLayoutManager(lm1);
         occupiedRoomsListView.setHasFixedSize(true);
-        occupiedRoomsListView.setAdapter(adapter2);
+        occupiedRoomsListView.setAdapter(RoomsFragment.adapter2);
         return v;
     }
 }

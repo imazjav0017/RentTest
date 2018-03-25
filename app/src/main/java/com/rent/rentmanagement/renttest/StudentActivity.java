@@ -172,14 +172,9 @@ public class StudentActivity extends AppCompatActivity {
 
     }
 
-    @Override
+   /* @Override
     public void onBackPressed() {
-        if(fromTotal)
-        {
-            Intent i = new Intent(getApplicationContext(), AllRoomsActivity.class);
-            startActivity(i);
-            finish();
-        }
+
         else if(added) {
             Intent i = new Intent(getApplicationContext(), roomActivity.class);
             roomActivity.mode = 1;
@@ -192,6 +187,6 @@ public class StudentActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-        }
+        }*/
     }
 

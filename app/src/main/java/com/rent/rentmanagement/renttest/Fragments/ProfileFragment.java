@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rent.rentmanagement.renttest.Adapters.ProfileDetailsAdapter;
-import com.rent.rentmanagement.renttest.AllRoomsActivity;
 import com.rent.rentmanagement.renttest.LoginActivity;
 import com.rent.rentmanagement.renttest.DataModels.ProfileDetailsModel;
 import com.rent.rentmanagement.renttest.R;
@@ -55,7 +54,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.activity_newprofile,container,false);
         name=(TextView)v.findViewById(R.id.ownerNameTextView);
-        roomActivity.mode=2;
+        //roomActivity.mode=2;
         noOfRooms=(TextView)v.findViewById(R.id.totalRoomsTextView);
         noOfTenants=(TextView)v.findViewById(R.id.totalTenantsTextView);
         totalRooms=(LinearLayout)v.findViewById(R.id.totalRoomsButton);
@@ -67,13 +66,13 @@ public class ProfileFragment extends Fragment {
         detailsRv.setLayoutManager(lm1);
         detailsRv.setHasFixedSize(true);
         detailsRv.setAdapter(adapter);
-        totalRooms.setOnClickListener(new View.OnClickListener() {
+       /* totalRooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(v.getContext(),AllRoomsActivity.class);
+
                 v.getContext().startActivity(i);
             }
-        });
+        });*/
         totalStudents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,13 +101,13 @@ public class ProfileFragment extends Fragment {
         }
         rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
         tenants=String.valueOf(LoginActivity.sharedPreferences.getInt("totalTenants",0));
-        String emptySize= String.valueOf(roomActivity.erooms.size());
-        String occRoomsSize= String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0)-(roomActivity.erooms.size()));
+//        String emptySize= String.valueOf(RoomsFragment.erooms.size());
+      //  String occRoomsSize= String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0)-(RoomsFragment.erooms.size()));
         String ti=LoginActivity.sharedPreferences.getString("totalIncome",null);
         String todI=LoginActivity.sharedPreferences.getString("todayIncome",null);
         String col=LoginActivity.sharedPreferences.getString("collected",null);
-        pList.add(new ProfileDetailsModel("Total Occupied Rooms",occRoomsSize));
-        pList.add(new ProfileDetailsModel("Total Empty Rooms",emptySize));
+        //pList.add(new ProfileDetailsModel("Total Occupied Rooms",occRoomsSize));
+       // pList.add(new ProfileDetailsModel("Total Empty Rooms",emptySize));
         if(ti!=null)
         pList.add(new ProfileDetailsModel("Total Income",ti));
         if(todI!=null)

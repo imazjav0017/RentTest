@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/profileViewItem"
+    android:title="Profile"
+    android:orderInCategory="1"
+    android:icon="@drawable/owner"/>
+    <item android:id="@+id/roomViewItem"
+        android:title="Rooms"
+        android:icon="@drawable/img"
+        android:orderInCategory="2"/>
+    <item android:id="@+id/tenantsViewiTem"
+        android:title="Tenants"
+        android:icon="@drawable/ic_action_username"
+        android:orderInCategory="3"/>
+</menu>

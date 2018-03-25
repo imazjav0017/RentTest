@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -58,6 +59,7 @@ public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsAdapte
                 i.putExtra("phNo",model.getPhNo());
                 i.putExtra("total",true);
                 holder.context.startActivity(i);
+                ((Activity)holder.context).finish();
             }
         });
 

@@ -30,6 +30,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import android.content.Intent;
 import android.support.v7.widget.Toolbar;
@@ -37,84 +38,51 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.AsyncTasks.GetRoomsTask;
 import com.rent.rentmanagement.renttest.DataModels.RoomModel;
 import com.rent.rentmanagement.renttest.Fragments.EmptyRoomsFragment;
 import com.rent.rentmanagement.renttest.Fragments.ProfileFragment;
 import com.rent.rentmanagement.renttest.Fragments.RentDueFragment;
 
 
-public class roomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
-    public static ArrayList<RoomModel>erooms;
+public class roomActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+    public static ArrayList<RoomModel> erooms;
     public static ArrayList<RoomModel> oRooms;
-    String response="",buildingName;
+    String response = "", buildingName;
     TabLayout tabLayout;
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     static RelativeLayout reasonPage;
-    static boolean isVisible=false;
+    static boolean isVisible = false;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    SearchView searchView;
-   public static int mode=2;
-    public void setBuildingName()
-    {
-        String s=LoginActivity.sharedPreferences.getString("ownerDetails",null);
-        if(s!=null)
-        {
+
+    public static int mode = 2;
+
+    public void setBuildingName() {
+        String s = LoginActivity.sharedPreferences.getString("ownerDetails", null);
+        if (s != null) {
             try {
-                JSONObject jsonObject=new JSONObject(s);
-                buildingName=jsonObject.getString("buildingName").toUpperCase();
+                JSONObject jsonObject = new JSONObject(s);
+                buildingName = jsonObject.getString("buildingName").toUpperCase();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
-        else
-        {
-            buildingName="Rooms";
+        } else {
+            buildingName = "Rooms";
         }
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==android.R.id.home)
-        {
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
-        if(item.getItemId()==R.id.logoutMenuOption)
-        {
-            new AlertDialog.Builder(this)
-                    .setTitle("Logout!").setMessage("Are You Sure You Wish To Logout?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
-                            Log.i("status","Logging out");
-                            LoginActivity.sharedPreferences.edit().putString("token",null).apply();
-                            LoginActivity.sharedPreferences.edit().putString("roomsDetails","0").apply();
-                            LoginActivity.sharedPreferences.edit().putInt("totalTenants",0).apply();
-                            LoginActivity.sharedPreferences.edit().putInt("totalRooms",0).apply();
-                            LoginActivity.sharedPreferences.edit().putString("totalIncome",null).apply();
-                            LoginActivity.sharedPreferences.edit().putString("todayIncome",null).apply();
-                            LoginActivity.sharedPreferences.edit().putString("collected",null).apply();
 
-                            Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-                            startActivity(i);
-                        }
-                    }).setNegativeButton("No",null).show();
-            return true;
-
-        }
         return false;
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search_menu,menu);
-        MenuItem item=menu.findItem(R.id.searchMenu);
-        searchView=(SearchView)MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(this);
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        return true;
-    }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
 
@@ -123,164 +91,91 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        newText=newText.toLowerCase();
-        ArrayList<RoomModel>filteredList=new ArrayList<>();
-        ArrayList<RoomModel>filteredOcList=new ArrayList<>();
+        newText = newText.toLowerCase();
+        ArrayList<RoomModel> filteredList = new ArrayList<>();
+        ArrayList<RoomModel> filteredOcList = new ArrayList<>();
         filteredList.clear();
         filteredOcList.clear();
-        for(RoomModel model : erooms)
-        {
-            if(model.getRoomNo().toLowerCase().contains(newText))
-            {
+        for (RoomModel model : erooms) {
+            if (model.getRoomNo().toLowerCase().contains(newText)) {
                 filteredList.add(model);
             }
         }
-        for(RoomModel model : oRooms)
-        {
-            if(model.getRoomNo().toLowerCase().contains(newText))
-            {
+        for (RoomModel model : oRooms) {
+            if (model.getRoomNo().toLowerCase().contains(newText)) {
                 filteredOcList.add(model);
             }
         }
 
-        EmptyRoomsFragment.adapter.setFilter(filteredList);
-        RentDueFragment.adapter2.setFilter(filteredOcList);
+        //EmptyRoomsFragment.adapter.setFilter(filteredList);
+        //RentDueFragment.adapter2.setFilter(filteredOcList);
         return true;
     }
-    public void setTokenJson()
-    {
+
+    public void setTokenJson() {
         try {
-            if(LoginActivity.sharedPreferences.getString("token",null)!=null) {
-            JSONObject token = new JSONObject();
-                token.put("auth",LoginActivity.sharedPreferences.getString("token", null));
-            GetRoomsTask task = new GetRoomsTask();
-            task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/getRooms", token.toString());
-        }
+            if (LoginActivity.sharedPreferences.getString("token", null) != null) {
+                JSONObject token = new JSONObject();
+                token.put("auth", LoginActivity.sharedPreferences.getString("token", null));
+                GetRoomsTask task = new GetRoomsTask();
+                String s = task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/getRooms", token.toString()).get();
+                if (s != null) {
+                    Log.i("getRooms", s);
+                    try {
+                        setData(s);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(roomActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
+                }
+            }
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
     }
-    public String  getResponse(HttpURLConnection connection)
-    {
-        try {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(
-                            connection.getInputStream()));
-            StringBuffer sb = new StringBuffer("");
-            String line = "";
-
-            while ((line = in.readLine()) != null) {
-
-                sb.append(line);
-                break;
-            }
-
-            in.close();
-            return sb.toString();
-        }catch(Exception e)
-        {
-            return e.getMessage();
-        }
-    }
 
 
-
-
-    public class GetRoomsTask extends AsyncTask<String,Void,String>
-    {
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                URL url = new URL(params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.addRequestProperty("Accept", "application/json");
-                connection.addRequestProperty("Content-Type", "application/json");
-                connection.setRequestMethod("POST");
-                connection.setDoOutput(true);
-                connection.connect();
-                DataOutputStream outputStream = new DataOutputStream(connection.getOutputStream());
-                outputStream.writeBytes(params[1]);
-                Log.i("data", params[1]);
-                int resp = connection.getResponseCode();
-                Log.i("getRoomsResp",String.valueOf(resp));
-                if(resp==200)
-                {
-                    response=getResponse(connection);
-                    return response;
-                }
-                else
-                {
-                    return null;
-                }
-
-            }catch(MalformedURLException e)
-            {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            if (s != null) {
-                Log.i("getRooms", s);
-                try {
-                    setData(s);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            else
-            {
-                Toast.makeText(roomActivity.this, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
-                super.onPostExecute(s);
-            }
-        }
-    }
     public void setData(String s) throws JSONException {
         erooms.clear();
         oRooms.clear();
-        JSONObject jsonObject=new JSONObject(s);
-        LoginActivity.sharedPreferences.edit().putInt("totalTenants",jsonObject.getInt("totalStudents")).apply();
-        JSONArray array=jsonObject.getJSONArray("room");
-        Log.i("array",array.toString());
-        LoginActivity.sharedPreferences.edit().putInt("totalRooms",array.length()).apply();
-        LoginActivity.sharedPreferences.edit().putString("totalIncome",String.valueOf(jsonObject.getInt("totalIncome"))).apply();
-        LoginActivity.sharedPreferences.edit().putString("todayIncome",String.valueOf(jsonObject.getInt("todayIncome"))).apply();
-        LoginActivity.sharedPreferences.edit().putString("collected",String.valueOf(jsonObject.getInt("collected"))).apply();
-        ProfileFragment.setData();
-        LoginActivity.sharedPreferences.edit().putString("roomsDetails",s).apply();
-        if(array.length()==0)
-        {
+        JSONObject jsonObject = new JSONObject(s);
+        LoginActivity.sharedPreferences.edit().putInt("totalTenants", jsonObject.getInt("totalStudents")).apply();
+        JSONArray array = jsonObject.getJSONArray("room");
+        Log.i("array", array.toString());
+        LoginActivity.sharedPreferences.edit().putInt("totalRooms", array.length()).apply();
+        LoginActivity.sharedPreferences.edit().putString("totalIncome", String.valueOf(jsonObject.getInt("totalIncome"))).apply();
+        LoginActivity.sharedPreferences.edit().putString("todayIncome", String.valueOf(jsonObject.getInt("todayIncome"))).apply();
+        LoginActivity.sharedPreferences.edit().putString("collected", String.valueOf(jsonObject.getInt("collected"))).apply();
+        //  ProfileFragment.setData();
+        LoginActivity.sharedPreferences.edit().putString("roomsDetails", s).apply();
+        if (array.length() == 0) {
 
-        }
-        else {
+        } else {
             Toast.makeText(this, "Refreshed!", Toast.LENGTH_SHORT).show();
             for (int i = 0; i < array.length(); i++) {
                 JSONObject detail = array.getJSONObject(i);
-                if(detail.getBoolean("isEmpty")==true) {
+                if (detail.getBoolean("isEmpty") == true) {
                     //empty rooms
                     erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                            detail.getString("roomRent"), detail.getString("_id"),detail.getString("checkOutDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
+                            detail.getString("roomRent"), detail.getString("_id"), detail.getString("checkOutDate"), detail.getBoolean("isEmpty"), detail.getString("emptyDays")));
 
 
-                }
-                else if(detail.getBoolean("isRentDue")==true)
-                {
+                } else if (detail.getBoolean("isRentDue") == true) {
                     oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                            detail.getString("roomRent"),detail.getString("dueAmount"),
-                            detail.getString("_id"),detail.getString("dueDate"),detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue")
-                    ,detail.getString("dueDays")));
+                            detail.getString("roomRent"), detail.getString("dueAmount"),
+                            detail.getString("_id"), detail.getString("dueDate"), detail.getBoolean("isEmpty"), detail.getBoolean("isRentDue")
+                            , detail.getString("dueDays")));
 
 
                 }
             }
-            EmptyRoomsFragment.adapter.notifyDataSetChanged();
-            RentDueFragment.adapter2.notifyDataSetChanged();
+            //EmptyRoomsFragment.adapter.notifyDataSetChanged();
+            // RentDueFragment.adapter2.notifyDataSetChanged();
            /* if(erooms.size()==0)
             {
                 EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
@@ -294,8 +189,8 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         }
 
 
-
     }
+
     void setNavigation() {
         navigationView = (NavigationView) findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -318,7 +213,7 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                         viewPager.setCurrentItem(2);
                         break;
                     case R.id.totalTenantsMenu:
-                        Intent x=new Intent(getApplicationContext(),TotalTenantsctivity.class);
+                        Intent x = new Intent(getApplicationContext(), TotalTenantsctivity.class);
                         startActivity(x);
                         break;
 
@@ -330,38 +225,39 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
 
         });
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rooms_activity);
-        erooms=new ArrayList<>();
-        oRooms=new ArrayList<>();
-        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
+        erooms = new ArrayList<>();
+        oRooms = new ArrayList<>();
+        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails", null));
         setTokenJson();
-        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        tabLayout=(TabLayout)findViewById(R.id.tabLayout);
-        viewPager=(ViewPager)findViewById(R.id.viewPager);
-        viewPagerAdapter=new ViewPagerAdapter(getSupportFragmentManager(),getApplicationContext());
-        viewPagerAdapter.addFragment(new EmptyRoomsFragment(getApplicationContext()),"Empty Rooms");
-        viewPagerAdapter.addFragment(new RentDueFragment(roomActivity.this),"Rent Due");
-        viewPagerAdapter.addFragment(new ProfileFragment(getApplicationContext()),"My Profile");
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), getApplicationContext());
+        viewPagerAdapter.addFragment(new EmptyRoomsFragment(getApplicationContext()), "Empty Rooms");
+        viewPagerAdapter.addFragment(new RentDueFragment(roomActivity.this), "Rent Due");
+        viewPagerAdapter.addFragment(new ProfileFragment(getApplicationContext()), "My Profile");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
-        drawerLayout=(DrawerLayout)findViewById(R.id.drawerLayout);
-       setNavigation();
-        ActionBarDrawerToggle actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,
-                R.string.open,R.string.closed);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        setNavigation();
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.open, R.string.closed);
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         setBuildingName();
         setTitle(buildingName);
-        reasonPage=(RelativeLayout)findViewById(R.id.reasonPage);
+        reasonPage = (RelativeLayout) findViewById(R.id.reasonPage);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                mode=tab.getPosition();
+                mode = tab.getPosition();
             }
 
             @Override
@@ -385,52 +281,52 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
             public void run() {
                 viewPager.setCurrentItem(mode);
             }
-        },0);
+        }, 0);
 
     }
 
     public void setStaticData(String s) {
-    if(s!=null) {
-        if (s.equals("0")) {
-            Toast.makeText(this, "Fetching!", Toast.LENGTH_SHORT).show();
+        if (s != null) {
+            if (s.equals("0")) {
+                Toast.makeText(this, "Fetching!", Toast.LENGTH_SHORT).show();
 
-        } else {
+            } else {
 
-            erooms.clear();
-            oRooms.clear();
-            JSONObject jsonObject = null;
-            try {
-                jsonObject = new JSONObject(s);
+                erooms.clear();
+                oRooms.clear();
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
 
-                JSONArray array = jsonObject.getJSONArray("room");
-
-
-                //Log.i("arrayStatic", array.toString());
-                if (array.length() == 0) {
-
-                } else {
-
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject detail = array.getJSONObject(i);
-                        if (detail.getBoolean("isEmpty") == true) {
-                            //empty rooms
-                            erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"), detail.getString("_id"),
-                                    detail.getString("checkOutDate"),detail.getBoolean("isEmpty"),detail.getString("emptyDays")));
+                    JSONArray array = jsonObject.getJSONArray("room");
 
 
-                        }  else if(detail.getBoolean("isRentDue")==true){
-                            JSONArray a=detail.getJSONArray("students");
-                            Log.i("students",a.toString());
-                            oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
-                                    detail.getString("roomRent"),detail.getString("dueAmount"), detail.getString("_id"),detail.getString("dueDate")
-                                    ,detail.getBoolean("isEmpty"),detail.getBoolean("isRentDue"),detail.getString("dueDays")));
+                    //Log.i("arrayStatic", array.toString());
+                    if (array.length() == 0) {
+
+                    } else {
+
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject detail = array.getJSONObject(i);
+                            if (detail.getBoolean("isEmpty") == true) {
+                                //empty rooms
+                                erooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                        detail.getString("roomRent"), detail.getString("_id"),
+                                        detail.getString("checkOutDate"), detail.getBoolean("isEmpty"), detail.getString("emptyDays")));
 
 
+                            } else if (detail.getBoolean("isRentDue") == true) {
+                                JSONArray a = detail.getJSONArray("students");
+                                Log.i("students", a.toString());
+                                oRooms.add(new RoomModel(detail.getString("roomType"), detail.getString("roomNo"),
+                                        detail.getString("roomRent"), detail.getString("dueAmount"), detail.getString("_id"), detail.getString("dueDate")
+                                        , detail.getBoolean("isEmpty"), detail.getBoolean("isRentDue"), detail.getString("dueDays")));
+
+
+                            }
                         }
-                    }
-                    EmptyRoomsFragment.adapter.notifyDataSetChanged();
-                    RentDueFragment.adapter2.notifyDataSetChanged();
+                        //EmptyRoomsFragment.adapter.notifyDataSetChanged();
+                        // RentDueFragment.adapter2.notifyDataSetChanged();
                     /*if(erooms.size()==0)
                     {
                         EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
@@ -441,43 +337,21 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                         EmptyRoomsFragment.emptyList.setVisibility(View.INVISIBLE);
                         EmptyRoomsFragment.emptyList.setClickable(false);
                     }*/
+                    }
+                } catch (Exception e) {
+                    Log.i("err", "err");
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                Log.i("err", "err");
-                e.printStackTrace();
             }
-        }
-    } /*else {
+        } /*else {
         EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
         EmptyRoomsFragment.emptyList.setClickable(true);
     }*/
-}
+    }
+
     @Override
     public void onBackPressed() {
 
-        mode=viewPager.getCurrentItem();
-        Log.i("mode",String.valueOf(mode));
-        if(drawerLayout.isDrawerOpen(GravityCompat.START) || isVisible ||!(searchView.isIconified())) {
-            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                drawerLayout.closeDrawer(GravityCompat.START);
-            }
-            if (isVisible) {
-                reasonPage.setVisibility(View.INVISIBLE);
-                isVisible = false;
-            }
-            if(!(searchView.isIconified()))
-            {
-                searchView.setIconified(true);
-            }
-        }
-        else {
-            moveTaskToBack(true);
-        }
 
-    }
-   public void submit(View v)
-    {
-        reasonPage.setVisibility(View.INVISIBLE);
-        isVisible=false;
     }
 }

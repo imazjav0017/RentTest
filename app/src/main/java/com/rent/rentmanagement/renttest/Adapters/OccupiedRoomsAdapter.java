@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
 import com.rent.rentmanagement.renttest.LoginActivity;
 import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
 import com.rent.rentmanagement.renttest.R;
@@ -284,9 +285,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     }
     void goBack(Context context)
     {
-        Intent i=new Intent(context,roomActivity.class);
-        roomActivity.mode=1;
-        context.startActivity(i);
+        //new RoomsFragment(context).onResume();
     }
     void enable(Button btn)
     {

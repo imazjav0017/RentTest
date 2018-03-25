@@ -1,10 +1,12 @@
 package com.rent.rentmanagement.renttest.Adapters;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,8 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rent.rentmanagement.renttest.AllRoomsActivity;
+
 import com.rent.rentmanagement.renttest.AsyncTasks.CheckoutTask;
+import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
 import com.rent.rentmanagement.renttest.LoginActivity;
 import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
 import com.rent.rentmanagement.renttest.R;
@@ -247,9 +250,9 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
     }
     void goBack(Context context)
     {
-        Intent i=new Intent(context,AllRoomsActivity.class);
-        roomActivity.mode=1;
-        context.startActivity(i);
+       // RoomsFragment ob=new RoomsFragment();
+        //ob.refresh();
+       // new RoomsFragment(context).onResume();
     }
     void enable(Button btn)
     {

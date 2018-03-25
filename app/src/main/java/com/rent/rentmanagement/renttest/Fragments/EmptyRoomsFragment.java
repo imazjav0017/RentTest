@@ -25,7 +25,7 @@ public class EmptyRoomsFragment extends Fragment {
     RecyclerView emptyRoomsListView;
     static TextView emptyList;
 
-   public static RecyclerAdapter adapter;
+
 
     public EmptyRoomsFragment() {
     }
@@ -34,17 +34,22 @@ public class EmptyRoomsFragment extends Fragment {
                this.context=context;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RoomsFragment.adapter.notifyDataSetChanged();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.empty_rooms_tab,container,false);
         emptyRoomsListView=(RecyclerView)v. findViewById(R.id.emptyRoomsList);
-        adapter=new RecyclerAdapter(roomActivity.erooms,context);
         emptyList=(TextView)v.findViewById(R.id.addBuildingText);
         LinearLayoutManager lm=new LinearLayoutManager(context);
         emptyRoomsListView.setLayoutManager(lm);
         emptyRoomsListView.setHasFixedSize(true);
-        emptyRoomsListView.setAdapter(adapter);
+        emptyRoomsListView.setAdapter(RoomsFragment.adapter);
         return v;
     }
 }

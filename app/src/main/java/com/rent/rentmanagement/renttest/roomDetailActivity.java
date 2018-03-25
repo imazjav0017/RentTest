@@ -52,24 +52,8 @@ public class roomDetailActivity extends AppCompatActivity {
     boolean fromTotal;
     @Override
     public void onBackPressed() {
-        if(fromTotal)
-        {
-            Intent i=new Intent(getApplicationContext(),AllRoomsActivity.class);
-            startActivity(i);
-            finish();
-        }
-        else
-        {
-            Intent i=new Intent(getApplicationContext(),roomActivity.class);
-            if(studentsList.size()>0)
-            {
-                roomActivity.mode=1;
-            }
-            else
-                roomActivity.mode=0;
-            startActivity(i);
-            finish();
-        }
+        //super.onBackPressed();
+        this.finish();
     }
 
     public void setTokenJson(String mode)
@@ -216,6 +200,7 @@ public class roomDetailActivity extends AppCompatActivity {
         i.putExtra("id",_id);
         i.putExtra("fromTotal",fromTotal);
         startActivity(i);
+        finish();
     }
     public  void addStudent(View v)
     {
