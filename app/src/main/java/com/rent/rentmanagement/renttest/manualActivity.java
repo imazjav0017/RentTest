@@ -130,10 +130,7 @@ public class manualActivity extends AppCompatActivity {
         if (s != null)
             if (s.equals("200")) {
                 Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(manualActivity.this, roomActivity.class);
-                roomActivity.mode = 0;
-                startActivity(i);
-                finish();
+              onBackPressed();
             } else {
                 enable();
                 Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();

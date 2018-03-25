@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 Intent intent = new Intent(MainActivity.this,automanualActivity.class);
                 startActivity(intent);
+
             }
         });
     }
