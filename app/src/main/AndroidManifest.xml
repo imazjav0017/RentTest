@@ -35,7 +35,12 @@
         <activity android:name=".TotalTenantsctivity" />
         <activity android:name=".edit_rooms" />
         <activity android:name=".studentProfile" />
+<<<<<<< HEAD
         <activity android:name=".MainActivity"></activity>
+=======
+        <activity android:name=".automanualActivity" />
+        <activity android:name=".manualActivity"></activity>
+>>>>>>> b22052ee4b5e909eb1e654c7aa0a5d5174978cd1
     </application>
 
 </manifest>
