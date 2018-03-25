@@ -15,7 +15,6 @@
         app:cardElevation="2dp"
         android:layout_margin="5dp"
         android:id="@+id/c1">
-
         android:layout_margin=".5dp"
         android:id="@+id/c1"
      >

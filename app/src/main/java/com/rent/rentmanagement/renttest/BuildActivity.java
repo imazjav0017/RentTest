@@ -93,7 +93,7 @@ public class BuildActivity extends AppCompatActivity {
                 URL url = new URL(params[0]);
                 roomsData.put("roomType",roomType);
                 roomsData.put("roomRent",Integer.parseInt(rentAmount));
-                roomsData.put("roomNo",Integer.parseInt(rooms));
+                roomsData.put("noOfRooms",Integer.parseInt(rooms));
                 if(accessToken!=null)
                     roomsData.put("auth",accessToken);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -149,12 +149,6 @@ public class BuildActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent i=new Intent(getApplicationContext(),roomActivity.class);
-        startActivity(i);
-        finish();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,14 +7,24 @@
     android:layout_height="match_parent"
     tools:context="com.rent.rentmanagement.renttest.automanualActivity">
 
+    <include
+        layout="@layout/actionbarlayout"/>
+
+
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_marginTop="150dp"
+        android:orientation="vertical"
+    android:clickable="true">
 
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:layout_margin=".1dp"
-        android:layout_marginTop="150dp"
+        android:layout_margin="1dp"
         android:id="@+id/c1"
         android:background="#ffffff">
     <LinearLayout
@@ -35,6 +45,7 @@
             android:gravity="center"
             android:textSize="20dp"
             android:textStyle="bold"
+
             android:textColor="#424242"
 
 
@@ -61,8 +72,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:clickable="true"
+        android:id="@+id/l2"
         android:layout_marginTop="10dp"
-
         android:padding="10dp">
 
         <TextView
@@ -72,6 +83,7 @@
             android:text="Manual"
             android:gravity="center"
             android:textSize="20dp"
+
             android:textStyle="bold"
             android:textColor="#424242"
 
@@ -80,7 +92,7 @@
     </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
+    </LinearLayout>
 
 
 </RelativeLayout>
