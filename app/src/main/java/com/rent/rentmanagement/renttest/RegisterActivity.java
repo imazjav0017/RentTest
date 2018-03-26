@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText username,email,password,mobileNo,buildingName;
@@ -90,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
     public void Register(View v)  {
+        DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
         Toast.makeText(this, "Registering..!", Toast.LENGTH_SHORT).show();
         register.setClickable(false);
         try {
@@ -99,6 +103,8 @@ public class RegisterActivity extends AppCompatActivity {
             userDetails.put("password", password.getText().toString());
             userDetails.put("mobileNo",mobileNo.getText().toString());
             userDetails.put("buildingName",buildingName.getText().toString());
+            userDetails.put("date",dateFormat.format(new Date()).toString());
+
             RegisterTask task=new RegisterTask();
             Log.i("data:",userDetails.toString());
             task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signup",userDetails.toString());
