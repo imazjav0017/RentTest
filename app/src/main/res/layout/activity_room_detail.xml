@@ -327,14 +327,20 @@
     </RelativeLayout>
 
     </ScrollView>
-    <Button
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addMoreStudents"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/scv"
-        android:text="+1"
-        android:id="@+id/addMoreStudents"
-        android:onClick="addStudent"/>
-
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="16dp"
+        android:onClick="addStudent"
+        android:src="@drawable/plus"
+        app:fabSize="normal"
+        android:elevation="8dp"
+        />
 
 </RelativeLayout>
 

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rent.rentmanagement.renttest.BuildActivity">
+    <include
+        layout="@layout/actionbarlayout"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80sp"
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup"
+            android:padding="5dp"
+            >
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Apartments"
+                android:id="@+id/single"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="#707070"
+                android:textSize="20sp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Lodge"
+                android:id="@+id/doubleBtn"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textColor="#707070"
+                android:textSize="20sp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Others"
+                android:id="@+id/triple"
+                android:layout_weight="1"
+                android:textColor="#707070"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp"
+            android:padding="5dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. of Floors "
+                android:layout_gravity="center"
+                android:textColor="#424242"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/roomdetailInput"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:inputType="number"
+                android:textStyle="italic"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Building Name"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="#424242"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:id="@+id/rentInput"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+
+                android:gravity="center"
+                android:textStyle="italic"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="end"
+            android:orientation="horizontal">
+            <Button
+
+                android:onClick="saveRooms"
+                android:layout_width="wrap_content"
+                android:padding="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/addroomsButton"
+                android:textSize="18sp"
+                android:background="#172ea4"
+                android:textColor="#fff"
+                android:text="Add Building"
+                android:layout_marginRight="10dp"/>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#610321"/>
+
+
+
+
+
+
+    </LinearLayout>
+</RelativeLayout>

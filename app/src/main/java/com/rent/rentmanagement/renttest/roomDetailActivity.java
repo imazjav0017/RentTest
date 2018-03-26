@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -35,7 +37,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -57,12 +62,13 @@ public class roomDetailActivity extends AppCompatActivity {
     }
 
     public void setTokenJson(String mode)
-    {
+    {    DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             if(LoginActivity.sharedPreferences.getString("token",null)!=null) {
                 JSONObject token = new JSONObject();
                 token.put("auth",LoginActivity.sharedPreferences.getString("token", null));
                 token.put("roomId",_id);
+                token.put("date" ,dateFormat.format(new Date()).toString());
                 if(mode.equals("delete")) {
                     DeleteRoomsTask task = new DeleteRoomsTask();
                     task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/deleteRooms", token.toString());
@@ -346,6 +352,7 @@ public class roomDetailActivity extends AppCompatActivity {
         setPaymentHistory(LoginActivity.sharedPreferences.getString("roomsDetails",null));
         setStudentsData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
     }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void expandStudents(View v)
     {
         if(expandableRelativeLayout.isExpanded())
@@ -358,6 +365,7 @@ public class roomDetailActivity extends AppCompatActivity {
             expandableRelativeLayout.toggle();
         }
     }
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void expandPayments(View v)
     {
         if(expandablePayments.isExpanded())

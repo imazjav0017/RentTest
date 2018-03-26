@@ -221,6 +221,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
     }
     public void makeJson(String _id,EditText payee,EditText rentCollectedInput,String mode,String reason)
     {
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         rentdetails=new JSONObject();
         try {
 
@@ -231,9 +232,11 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
             else {
                 rentdetails.put("roomId",_id);
                 rentdetails.put("auth", LoginActivity.sharedPreferences.getString("token", null));
+                dateFormat.format(new Date()).toString();
                 if(mode.equals("c")) {
                     rentdetails.put("payee", payee.getText().toString());
                     rentdetails.put("amount", Integer.parseInt(rentCollectedInput.getText().toString()));
+                    dateFormat.format(new Date()).toString();
                 }else if(mode.equals("r"))
                 {
                     Log.i("reason",reason);
