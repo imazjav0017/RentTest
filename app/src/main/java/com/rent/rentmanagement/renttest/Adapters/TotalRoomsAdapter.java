@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -131,6 +132,12 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
                         DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
                         Date dateObj=new Date();
                         String date=dateFormat.format(dateObj).toString();
+                        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,model.get_id());
+                        TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
+                        dateCollected.setText(date);
+                        builder.setView(view);
+                        final AlertDialog dialog=builder.create();
+                        dialog.show();
                         collectedButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -144,8 +151,11 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
                                         Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
                                         if(response.equals("Some Error,check if fields are missings!"))
                                             enable(collectedButton);
-                                        else
+                                        else {
+                                            dialog.dismiss();
                                             goBack(holder.context);
+                                        }
+
                                     }
                                     else
                                     {
@@ -160,12 +170,6 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
 
                             }
                         });
-                        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,model.get_id());
-                        TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
-                        dateCollected.setText(date);
-                        builder.setView(view);
-                        AlertDialog dialog=builder.create();
-                        dialog.show();
                         break;
                     case "CheckOut":
                         new AlertDialog.Builder(context)
@@ -221,6 +225,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
     }
     public void makeJson(String _id,EditText payee,EditText rentCollectedInput,String mode,String reason)
     {
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         rentdetails=new JSONObject();
         try {
 
@@ -231,9 +236,11 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
             else {
                 rentdetails.put("roomId",_id);
                 rentdetails.put("auth", LoginActivity.sharedPreferences.getString("token", null));
+                dateFormat.format(new Date()).toString();
                 if(mode.equals("c")) {
                     rentdetails.put("payee", payee.getText().toString());
                     rentdetails.put("amount", Integer.parseInt(rentCollectedInput.getText().toString()));
+                    dateFormat.format(new Date()).toString();
                 }else if(mode.equals("r"))
                 {
                     Log.i("reason",reason);
@@ -247,6 +254,12 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
             e.printStackTrace();
         }
 
+    }
+    public void setFilter(List<RoomModel> filteredList)
+    {
+        roomList=new ArrayList<>();
+        roomList.addAll(filteredList);
+        notifyDataSetChanged();
     }
     void goBack(Context context)
     {

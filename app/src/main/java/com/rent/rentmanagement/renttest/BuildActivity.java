@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,12 +32,21 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BuildActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     EditText rentInput,roomNo;
     Button addRoomsbutton;
     String accessToken,rooms=null,rentAmount=null,roomType=null;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -88,12 +99,15 @@ public class BuildActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
                 JSONObject roomsData=new JSONObject();
                 URL url = new URL(params[0]);
                 roomsData.put("roomType",roomType);
                 roomsData.put("roomRent",Integer.parseInt(rentAmount));
                 roomsData.put("noOfRooms",Integer.parseInt(rooms));
+                roomsData.put("date",dateFormat.format(new Date()).toString());
+                Log.i( "response",dateFormat.format(new Date()).toString());
                 if(accessToken!=null)
                     roomsData.put("auth",accessToken);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();

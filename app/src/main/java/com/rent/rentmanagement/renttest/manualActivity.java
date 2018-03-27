@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class manualActivity extends AppCompatActivity {
 
@@ -83,12 +86,16 @@ public class manualActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             try {
+
                 JSONObject roomsData=new JSONObject();
                 URL url = new URL(params[0]);
                 roomsData.put("roomType",roomType);
                 roomsData.put("roomRent",Integer.parseInt(rentAmount));
                 roomsData.put("roomNo",rooms);
+                roomsData.put("date",dateFormat.format(new Date()).toString());
+
                 if(accessToken!=null)
                     roomsData.put("auth",accessToken);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();

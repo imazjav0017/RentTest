@@ -35,10 +35,10 @@
         <activity android:name=".TotalTenantsctivity" />
         <activity android:name=".edit_rooms" />
         <activity android:name=".studentProfile" />
-        <activity android:name=".MainActivity"></activity>
-
+        <activity android:name=".MainActivity" />
         <activity android:name=".automanualActivity" />
-        <activity android:name=".manualActivity"></activity>
+        <activity android:name=".manualActivity" />
+        <activity android:name=".buildingActivity" />
     </application>
 
 </manifest>

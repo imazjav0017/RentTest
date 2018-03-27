@@ -1,9 +1,15 @@
 package com.rent.rentmanagement.renttest.AsyncTasks;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
+import com.rent.rentmanagement.renttest.MainActivity;
 import com.rent.rentmanagement.renttest.roomActivity;
 
 import org.json.JSONException;
@@ -21,8 +27,23 @@ import java.net.URL;
  * Created by imazjav0017 on 24-03-2018.
  */
 
-public class GetRoomsTask extends AsyncTask<String,Void,String>
+public class GetRoomsTask extends AsyncTask<String,Integer,String>
 {
+
+    Context context;
+
+    public GetRoomsTask(Context context) {
+        this.context = context;
+
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        RoomsFragment.progressBar.setProgress(values[0]);
+        MainActivity.completedTasks=false;
+    }
+
     @Override
     protected String doInBackground(String... params) {
         try {
@@ -57,6 +78,28 @@ public class GetRoomsTask extends AsyncTask<String,Void,String>
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        MainActivity.completedTasks=true;
+        RoomsFragment.progressBar.setProgress(100);
+        RoomsFragment.progressBar.setVisibility(View.INVISIBLE);
+        if (s != null) {
+
+            Log.i("getRooms", s);
+            MainActivity.roomInfo=s;
+            try {
+                RoomsFragment.setData(s,context);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            Toast.makeText(context, "Please Check Your Internet Connection and try later!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public String  getResponse(HttpURLConnection connection)

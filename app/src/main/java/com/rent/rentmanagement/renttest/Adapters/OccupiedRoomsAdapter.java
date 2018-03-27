@@ -1,6 +1,7 @@
 package com.rent.rentmanagement.renttest.Adapters;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -119,12 +120,14 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 View view=LayoutInflater.from(context).inflate(R.layout.reason_dialog,null,false);
                 final EditText input=(EditText)view.findViewById(R.id.reasonInputText);
                 final Button btn=(Button)view.findViewById(R.id.reasonButtonDialog);
-
+                builder.setView(view);
+                final AlertDialog dialog=builder.create();
+                dialog.show();
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         btn.setClickable(false);
-                         String reason=input.getText().toString();
+                        String reason=input.getText().toString();
                         if(reason.isEmpty()) {
                             enable(btn);
                             Toast.makeText(context, "Please Give A Reason..", Toast.LENGTH_SHORT).show();
@@ -138,8 +141,10 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                                     Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
                                     if(response.equals("Some Error,check if fields are missings!"))
                                         enable(btn);
-                                    else
+                                    else {
+                                        dialog.dismiss();
                                         goBack(holder.context);
+                                    }
                                 }
                                 else
                                 {
@@ -154,9 +159,6 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                         }
                     }
                 });
-                builder.setView(view);
-                AlertDialog dialog=builder.create();
-                dialog.show();
 
             }
         });
@@ -174,6 +176,12 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
                 Date dateObj=new Date();
                String date=dateFormat.format(dateObj).toString();
+                setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,model.get_id());
+                TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
+                dateCollected.setText(date);
+                builder.setView(view);
+                final AlertDialog dialog=builder.create();
+                dialog.show();
                 collectedButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -186,9 +194,11 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                             {
                                 Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
                                 if(response.equals("Some Error,check if fields are missings!"))
-                                enable(collectedButton);
-                                else
+                                    enable(collectedButton);
+                                else {
+                                    dialog.dismiss();
                                     goBack(holder.context);
+                                }
                             }
                             else
                             {
@@ -203,12 +213,6 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
 
                     }
                 });
-                setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,model.get_id());
-                TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
-                dateCollected.setText(date);
-                builder.setView(view);
-                AlertDialog dialog=builder.create();
-                dialog.show();
 
             }
         });
@@ -256,6 +260,8 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     }
     public void makeJson(String _id,EditText payee,EditText rentCollectedInput,String mode,String reason)
     {
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
         rentdetails=new JSONObject();
         try {
 
@@ -269,6 +275,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 if(mode.equals("c")) {
                     rentdetails.put("payee", payee.getText().toString());
                     rentdetails.put("amount", Integer.parseInt(rentCollectedInput.getText().toString()));
+                   rentdetails.put("date",dateFormat.format(new Date()).toString());
                 }else if(mode.equals("r"))
                 {
                     Log.i("reason",reason);
@@ -286,6 +293,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
     void goBack(Context context)
     {
         new RoomsFragment(context).onResume();
+
     }
     void enable(Button btn)
     {
