@@ -35,6 +35,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -253,6 +254,12 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
             e.printStackTrace();
         }
 
+    }
+    public void setFilter(List<RoomModel> filteredList)
+    {
+        roomList=new ArrayList<>();
+        roomList.addAll(filteredList);
+        notifyDataSetChanged();
     }
     void goBack(Context context)
     {

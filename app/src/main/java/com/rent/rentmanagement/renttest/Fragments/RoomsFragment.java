@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.Adapters.OccupiedRoomsAdapter;
@@ -41,6 +43,7 @@ public class RoomsFragment extends Fragment {
     Context context;
     TabLayout tabLayout;
     ViewPager viewPager;
+    public static ProgressBar progressBar;
     ViewPagerAdapter viewPagerAdapter;
     public static RecyclerAdapter adapter;
     public static TotalRoomsAdapter adapter3;
@@ -48,6 +51,7 @@ public class RoomsFragment extends Fragment {
     public static ArrayList<RoomModel> erooms;
     public static ArrayList<RoomModel> oRooms;
     public static ArrayList<RoomModel> tRooms;
+    public static int currentTab=-1;
     //android.support.v4.app.FragmentManager fragmentManager;
     public RoomsFragment() {
     }
@@ -59,6 +63,7 @@ public class RoomsFragment extends Fragment {
     {
         try {
             if(LoginActivity.sharedPreferences.getString("token",null)!=null) {
+                progressBar.setVisibility(View.VISIBLE);
                 JSONObject token = new JSONObject();
                 token.put("auth",LoginActivity.sharedPreferences.getString("token", null));
                 GetRoomsTask task = new GetRoomsTask(context);
@@ -141,6 +146,9 @@ public class RoomsFragment extends Fragment {
         viewPagerAdapter.addFragment(new RentDueFragment(context),"Rent Due");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        progressBar=(ProgressBar)v.findViewById(R.id.progressBar);
+        progressBar.setProgress(0);
+        progressBar.setMax(100);
         setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
         return v;
     }
@@ -148,6 +156,8 @@ public class RoomsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         setTokenJson();
+        if(currentTab!=-1)
+            viewPager.setCurrentItem(currentTab,false);
        // viewPagerAdapter.notifyDataSetChanged();
        // adapter.notifyDataSetChanged();
     }

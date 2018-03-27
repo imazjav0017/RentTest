@@ -20,6 +20,7 @@ public class automanualActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(automanualActivity.this,BuildActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -28,6 +29,7 @@ public class automanualActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(automanualActivity.this,manualActivity.class);
                 startActivity(i);
+                finish();
             }
         });
     }

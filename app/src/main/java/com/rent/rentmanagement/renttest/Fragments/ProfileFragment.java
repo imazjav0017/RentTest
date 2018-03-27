@@ -73,13 +73,6 @@ public class ProfileFragment extends Fragment {
                 v.getContext().startActivity(i);
             }
         });*/
-        totalStudents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(v.getContext(),TotalTenantsctivity.class);
-                v.getContext().startActivity(i);
-            }
-        });
             setData();
             name.setText(oName);
             noOfRooms.setText(rooms);
@@ -101,7 +94,7 @@ public class ProfileFragment extends Fragment {
         }
         rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
         tenants=String.valueOf(LoginActivity.sharedPreferences.getInt("totalTenants",0));
-//        String emptySize= String.valueOf(RoomsFragment.erooms.size());
+   //       String emptySize= String.valueOf(RoomsFragment.erooms.size());
       //  String occRoomsSize= String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0)-(RoomsFragment.erooms.size()));
         String ti=LoginActivity.sharedPreferences.getString("totalIncome",null);
         String todI=LoginActivity.sharedPreferences.getString("todayIncome",null);

@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <item android:id="@+id/profileViewItem"
     android:title="Home"
     android:orderInCategory="1"
-    android:icon="@drawable/home"/>
+    android:icon="@drawable/home"
+    app:showAsAction="always"/>
     <item android:id="@+id/roomViewItem"
         android:title="Rooms"
         android:icon="@drawable/room"
+        app:showAsAction="always"
         android:orderInCategory="2"/>
     <item android:id="@+id/tenantsViewiTem"
         android:title="Tenants"
         android:icon="@drawable/tenant"
+        app:showAsAction="always"
         android:orderInCategory="3"/>
+
+    <item android:id="@+id/myProfileViewTab"
+        android:title="Profile"
+        android:icon="@drawable/tenant"
+        app:showAsAction="always"
+        android:orderInCategory="4"/>
 
 
 
