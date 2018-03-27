@@ -7,67 +7,40 @@
     android:layout_height="match_parent"
     tools:context="com.rent.rentmanagement.renttest.studentProfile">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/l1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="horizontal"
-        android:id="@+id/l1"
         android:padding="5dp">
-        
-  
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="12dp"
-        android:src="@drawable/img" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="4"
-            android:padding="2dp">
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="First Name"
-                android:textSize="15sp"
-                android:textColor="#424242"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="11dp"
+            android:src="@drawable/owner" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Tushar"
-                android:id="@+id/studentRoomNoField"
-                android:inputType="textPersonName"
-                android:background="@android:color/tertiary_text_light"
-                android:layout_marginTop="5dp"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Last Name"
-                android:layout_marginTop="2dp"
-                android:textSize="15sp"
-                android:textColor="#424242"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img"
+            android:layout_centerHorizontal="true"
+            android:text="jade magician"
+            android:layout_marginTop="20dp"
+            android:textColor="#424242"
+            android:textSize="18sp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="Jaiswal"
-                android:inputType="textPersonName"
-                android:background="@android:color/tertiary_text_light"
-                android:layout_marginTop="5dp"/>
-        </LinearLayout>
-            
-        </LinearLayout>
+
+    </RelativeLayout>
     
     
     <LinearLayout
@@ -77,12 +50,14 @@
         android:id="@+id/l2"
         android:layout_marginTop="10dp"
         android:padding="4dp">
-        
-        
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Personal Information"
+
+            android:layout_marginLeft="5dp"
             android:textAllCaps="true"
             />
     </LinearLayout>
@@ -92,6 +67,7 @@
         android:layout_below="@id/l2"
         android:layout_marginTop="2dp"
         android:padding="5dp"
+        android:layout_marginLeft="12dp"
         android:orientation="vertical"
         >
 
@@ -103,12 +79,13 @@
             android:textSize="15sp"
             android:textColor="#424242"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="s@gmail.com"
             android:inputType="textPersonName"
+            android:textColor="#000000"
             android:background="@android:color/tertiary_text_light"
             android:layout_marginTop="5dp"/>
 
@@ -120,11 +97,12 @@
             android:textSize="15sp"
             android:textColor="#424242"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="9792919485"
+            android:textColor="#000000"
             android:inputType="number"
             android:background="@android:color/tertiary_text_light"
             android:layout_marginTop="5dp"/>

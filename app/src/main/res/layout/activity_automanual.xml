@@ -71,6 +71,7 @@
         android:layout_marginTop="50dp"
         android:layout_margin=".1dp"
         android:layout_below="@+id/c1"
+
         android:background="#ffffff">
 
 
