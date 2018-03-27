@@ -131,6 +131,12 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
                         DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
                         Date dateObj=new Date();
                         String date=dateFormat.format(dateObj).toString();
+                        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,model.get_id());
+                        TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
+                        dateCollected.setText(date);
+                        builder.setView(view);
+                        final AlertDialog dialog=builder.create();
+                        dialog.show();
                         collectedButton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -144,8 +150,11 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
                                         Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
                                         if(response.equals("Some Error,check if fields are missings!"))
                                             enable(collectedButton);
-                                        else
+                                        else {
+                                            dialog.dismiss();
                                             goBack(holder.context);
+                                        }
+
                                     }
                                     else
                                     {
@@ -160,12 +169,6 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
 
                             }
                         });
-                        setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,model.get_id());
-                        TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
-                        dateCollected.setText(date);
-                        builder.setView(view);
-                        AlertDialog dialog=builder.create();
-                        dialog.show();
                         break;
                     case "CheckOut":
                         new AlertDialog.Builder(context)

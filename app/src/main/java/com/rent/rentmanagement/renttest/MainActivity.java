@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     BottomNavigationView bottomNavigationView;
     SearchView searchView;
     FloatingActionButton fab;
+    public static String roomInfo;
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -75,9 +76,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        loadFragment(new ProfileFragment(MainActivity.this));
-        fab = (FloatingActionButton) findViewById(R.id.fab_btn);
 
+        fab = (FloatingActionButton) findViewById(R.id.fab_btn);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         });
+        fab.setVisibility(View.INVISIBLE);
+        loadFragment(new ProfileFragment(MainActivity.this));
     }
 
 
@@ -97,12 +99,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (id)
         {
             case R.id.profileViewItem:
+                fab.setVisibility(View.INVISIBLE);
                 fragment=new ProfileFragment(MainActivity.this);
                 break;
             case R.id.roomViewItem:
+
                 fragment=new RoomsFragment(MainActivity.this);
+                fab.setVisibility(View.VISIBLE);
                 break;
             case R.id.tenantsViewiTem:
+                fab.setVisibility(View.INVISIBLE);
                 Log.i("current","tenants");
                 break;
         }
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
         if (fragment != null) {
+
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragmentsContainer, fragment)
