@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rent.rentmanagement.renttest.studentProfile">
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,16 +11,17 @@
         android:orientation="horizontal"
         android:id="@+id/l1"
         android:padding="5dp">
-        
-  
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="12dp"
-        android:src="@drawable/img" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="12dp"
+            android:src="@drawable/img"
+             />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,9 +43,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:text="Tushar"
-                android:id="@+id/studentRoomNoField"
+                android:id="@+id/ownerNameTabText"
                 android:inputType="textPersonName"
-                android:background="@android:color/tertiary_text_light"
                 android:layout_marginTop="5dp"/>
 
             <TextView
@@ -63,13 +61,13 @@
                 android:textSize="18sp"
                 android:text="Jaiswal"
                 android:inputType="textPersonName"
-                android:background="@android:color/tertiary_text_light"
+
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
-            
-        </LinearLayout>
-    
-    
+
+    </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -77,8 +75,8 @@
         android:id="@+id/l2"
         android:layout_marginTop="10dp"
         android:padding="4dp">
-        
-        
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -109,7 +107,7 @@
             android:textSize="18sp"
             android:text="s@gmail.com"
             android:inputType="textPersonName"
-            android:background="@android:color/tertiary_text_light"
+            android:id="@+id/ownerEmailText"
             android:layout_marginTop="5dp"/>
 
         <TextView
@@ -125,8 +123,8 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="9792919485"
+            android:id="@+id/ownerNumbertext"
             android:inputType="number"
-            android:background="@android:color/tertiary_text_light"
             android:layout_marginTop="5dp"/>
 
 
@@ -134,8 +132,8 @@
 
 
     </LinearLayout>
-    
-    
+
+
 
 </RelativeLayout>
 

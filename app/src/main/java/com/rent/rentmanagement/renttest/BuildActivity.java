@@ -22,6 +22,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,6 +41,12 @@ public class BuildActivity extends AppCompatActivity {
     EditText rentInput,roomNo;
     Button addRoomsbutton;
     String accessToken,rooms=null,rentAmount=null,roomType=null;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

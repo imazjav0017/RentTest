@@ -59,7 +59,7 @@ public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsAdapte
                 i.putExtra("phNo",model.getPhNo());
                 i.putExtra("total",true);
                 holder.context.startActivity(i);
-                ((Activity)holder.context).finish();
+
             }
         });
 

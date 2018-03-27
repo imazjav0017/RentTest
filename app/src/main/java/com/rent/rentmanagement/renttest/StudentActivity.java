@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -172,21 +174,11 @@ public class StudentActivity extends AppCompatActivity {
 
     }
 
-   /* @Override
+    @Override
     public void onBackPressed() {
-
-        else if(added) {
-            Intent i = new Intent(getApplicationContext(), roomActivity.class);
-            roomActivity.mode = 1;
-            startActivity(i);
-            finish();
-        }
-        else
-        {
-            Intent i = new Intent(getApplicationContext(), roomActivity.class);
-            startActivity(i);
-            finish();
-        }
-        }*/
+        super.onBackPressed();
+        RoomsFragment.currentTab=2;
     }
+}
+
 

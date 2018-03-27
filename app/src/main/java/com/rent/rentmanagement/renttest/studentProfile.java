@@ -34,14 +34,6 @@ String _id,name,phNo,roomNo;
 
     @Override
     public void onBackPressed() {
-        if(from) {
-            Intent i = new Intent(getApplicationContext(), TotalTenantsctivity.class);
-            startActivity(i);
-            finish();
-        }
-        else
-        {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 }

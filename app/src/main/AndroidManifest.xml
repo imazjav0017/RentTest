@@ -39,7 +39,6 @@
         <activity android:name=".automanualActivity" />
         <activity android:name=".manualActivity" />
         <activity android:name=".buildingActivity" />
-        <activity android:name=".ownerProfileActivity"></activity>
     </application>
 
 </manifest>

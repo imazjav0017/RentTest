@@ -253,7 +253,6 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
         actionBarDrawerToggle.syncState();
         setBuildingName();
         setTitle(buildingName);
-        reasonPage = (RelativeLayout) findViewById(R.id.reasonPage);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

@@ -1,8 +1,11 @@
 package com.rent.rentmanagement.renttest.AsyncTasks;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
@@ -24,7 +27,7 @@ import java.net.URL;
  * Created by imazjav0017 on 24-03-2018.
  */
 
-public class GetRoomsTask extends AsyncTask<String,Void,String>
+public class GetRoomsTask extends AsyncTask<String,Integer,String>
 {
 
     Context context;
@@ -32,6 +35,13 @@ public class GetRoomsTask extends AsyncTask<String,Void,String>
     public GetRoomsTask(Context context) {
         this.context = context;
 
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        RoomsFragment.progressBar.setProgress(values[0]);
+        MainActivity.completedTasks=false;
     }
 
     @Override
@@ -73,6 +83,9 @@ public class GetRoomsTask extends AsyncTask<String,Void,String>
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        MainActivity.completedTasks=true;
+        RoomsFragment.progressBar.setProgress(100);
+        RoomsFragment.progressBar.setVisibility(View.INVISIBLE);
         if (s != null) {
 
             Log.i("getRooms", s);
