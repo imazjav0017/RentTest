@@ -51,7 +51,7 @@ public class RoomsFragment extends Fragment {
     public static ArrayList<RoomModel> erooms;
     public static ArrayList<RoomModel> oRooms;
     public static ArrayList<RoomModel> tRooms;
-    public static int currentTab=-1;
+    public static int currentTab;
     //android.support.v4.app.FragmentManager fragmentManager;
     public RoomsFragment() {
     }
@@ -68,7 +68,7 @@ public class RoomsFragment extends Fragment {
                 token.put("auth",LoginActivity.sharedPreferences.getString("token", null));
                 GetRoomsTask task = new GetRoomsTask(context);
                 task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/getRooms", token.toString());
-                   Log.i("status","fini");
+                Log.i("status","fini");
 
             }
         } catch (JSONException e) {
@@ -130,10 +130,11 @@ public class RoomsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View  v=inflater.inflate(R.layout.activity_room,container,false);
+        View  v=inflater.inflate(R.layout.activity_room,container,false);
         erooms=new ArrayList<>();
         oRooms=new ArrayList<>();
         tRooms=new ArrayList<>();
+        currentTab=-1;
         adapter=new RecyclerAdapter(erooms,context);
         adapter2=new OccupiedRoomsAdapter(oRooms,context);
         adapter3=new TotalRoomsAdapter(tRooms,context);
@@ -156,16 +157,10 @@ public class RoomsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         setTokenJson();
-<<<<<<< HEAD
-    }
-}, 0);
-        
-=======
         if(currentTab!=-1)
             viewPager.setCurrentItem(currentTab,false);
->>>>>>> 40d182e6558dcee56010f05523cc6f3df455905e
-       // viewPagerAdapter.notifyDataSetChanged();
-       // adapter.notifyDataSetChanged();
+        // viewPagerAdapter.notifyDataSetChanged();
+        // adapter.notifyDataSetChanged();
     }
 
     public void setStaticData(String s) {
@@ -173,7 +168,7 @@ public class RoomsFragment extends Fragment {
         if(s!=null) {
             if (s.equals("0")) {
                 Toast.makeText(context, "Fetching!", Toast.LENGTH_SHORT).show();
-               // setTokenJson();
+                // setTokenJson();
 
             } else {
                 erooms.clear();
@@ -223,7 +218,6 @@ public class RoomsFragment extends Fragment {
                     {
                         EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);
                         EmptyRoomsFragment.emptyList.setClickable(true);
-
                     }
                     else {
                         EmptyRoomsFragment.emptyList.setVisibility(View.INVISIBLE);
