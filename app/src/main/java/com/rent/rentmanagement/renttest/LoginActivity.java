@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject jsonObject=tokenJson.getJSONObject("user");
             Log.i("respone111",jsonObject.toString());
             sharedPreferences.edit().putString("ownerDetails",jsonObject.toString()).apply();
+            LoginActivity.sharedPreferences.edit().putInt("notCollected", tokenJson.getInt("notCollected")).apply();
+            LoginActivity.sharedPreferences.edit().putInt("totalRooms", Integer.parseInt(tokenJson.getString("totalRooms"))).apply();
             LoginActivity.sharedPreferences.edit().putInt("totalTenants",tokenJson.getInt("totalStudents")).apply();
             LoginActivity.sharedPreferences.edit().putString("totalIncome", tokenJson.getString("totalIncome")).apply();
             LoginActivity.sharedPreferences.edit().putString("todayIncome", tokenJson.getString("todayIncome")).apply();

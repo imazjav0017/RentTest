@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,12 +37,13 @@ public class ProfileFragment extends Fragment {
     LinearLayout totalRooms;
     LinearLayout totalStudents;
     TextView name;
-    TextView noOfRooms;
-    TextView noOfTenants;
+   // TextView noOfRooms;
+   // TextView noOfTenants;
     static String oName,rooms,tenants;
     RecyclerView detailsRv;
-    ProfileDetailsAdapter adapter;
-    static List<ProfileDetailsModel>pList;
+    RecyclerView roomsRv;
+    ProfileDetailsAdapter adapter,adapter2;
+    static List<ProfileDetailsModel>pList,rList;
     public ProfileFragment() {
 
     }
@@ -55,29 +57,28 @@ public class ProfileFragment extends Fragment {
         v=inflater.inflate(R.layout.activity_newprofile,container,false);
         name=(TextView)v.findViewById(R.id.ownerNameTextView);
         //roomActivity.mode=2;
-        noOfRooms=(TextView)v.findViewById(R.id.totalRoomsTextView);
-        noOfTenants=(TextView)v.findViewById(R.id.totalTenantsTextView);
-        totalRooms=(LinearLayout)v.findViewById(R.id.totalRoomsButton);
-        totalStudents=(LinearLayout)v.findViewById(R.id.totalTenantsButton);
+        //noOfRooms=(TextView)v.findViewById(R.id.totalRoomsTextView);
+      //  noOfTenants=(TextView)v.findViewById(R.id.totalTenantsTextView);
         detailsRv=(RecyclerView)v.findViewById(R.id.profileDetailsRv);
+        roomsRv=(RecyclerView)v.findViewById(R.id.roomsdetailsRv) ;
         pList=new ArrayList<>();
+        rList=new ArrayList<>();
         adapter=new ProfileDetailsAdapter(pList);
+        adapter2=new ProfileDetailsAdapter(rList);
         LinearLayoutManager lm1=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         detailsRv.setLayoutManager(lm1);
         detailsRv.setHasFixedSize(true);
         detailsRv.setAdapter(adapter);
-       /* totalRooms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                v.getContext().startActivity(i);
-            }
-        });*/
+        LinearLayoutManager lm2=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
+        roomsRv.setLayoutManager(lm2);
+        roomsRv.setHasFixedSize(true);
+        roomsRv.setAdapter(adapter2);
             setData();
             name.setText(oName);
-            noOfRooms.setText(rooms);
-        noOfTenants.setText(tenants);
+           // noOfRooms.setText(rooms);
+        //noOfTenants.setText(tenants);
         adapter.notifyDataSetChanged();
+        adapter2.notifyDataSetChanged();
         return v;
     }
     public static void setData(){
@@ -87,28 +88,30 @@ public class ProfileFragment extends Fragment {
         {
             try {
             JSONObject jsonObject=new JSONObject(s);
-                oName=jsonObject.getString("name");
+                oName=jsonObject.getString("buildingName");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-        rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
+       rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
         tenants=String.valueOf(LoginActivity.sharedPreferences.getInt("totalTenants",0));
-   //       String emptySize= String.valueOf(RoomsFragment.erooms.size());
-      //  String occRoomsSize= String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0)-(RoomsFragment.erooms.size()));
+        int notColl=(LoginActivity.sharedPreferences.getInt("notCollected",0));
+        Log.i("not",String.valueOf(notColl));
         String ti=LoginActivity.sharedPreferences.getString("totalIncome",null);
         String todI=LoginActivity.sharedPreferences.getString("todayIncome",null);
         String col=LoginActivity.sharedPreferences.getString("collected",null);
-        //pList.add(new ProfileDetailsModel("Total Occupied Rooms",occRoomsSize));
-       // pList.add(new ProfileDetailsModel("Total Empty Rooms",emptySize));
         if(ti!=null)
         pList.add(new ProfileDetailsModel("Total Income",ti));
         if(todI!=null)
         pList.add(new ProfileDetailsModel("Today's Income",todI));
-        pList.add(new ProfileDetailsModel("Total Rent Due","3750"));
+        if(notColl!=0)
+        pList.add(new ProfileDetailsModel("Total Rent Due",String.valueOf(notColl)));
         if(col!=null)
         pList.add(new ProfileDetailsModel("Total Rent Collected",col));
 
-
+        rList.add(new ProfileDetailsModel("Total Rooms",rooms));
+        rList.add(new ProfileDetailsModel("Total Tenants",tenants));
+        rList.add(new ProfileDetailsModel("Empty Rooms","10"));
+        rList.add(new ProfileDetailsModel("Occupied Rooms","15"));
     }
 }

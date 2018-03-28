@@ -84,6 +84,7 @@ public class RoomsFragment extends Fragment {
             LoginActivity.sharedPreferences.edit().putInt("totalTenants", jsonObject.getInt("totalStudents")).apply();
             JSONArray array = jsonObject.getJSONArray("room");
             Log.i("array", array.toString());
+            LoginActivity.sharedPreferences.edit().putInt("notCollected", jsonObject.getInt("notCollected")).apply();
             LoginActivity.sharedPreferences.edit().putInt("totalRooms", array.length()).apply();
             LoginActivity.sharedPreferences.edit().putString("totalIncome", String.valueOf(jsonObject.getInt("totalIncome"))).apply();
             LoginActivity.sharedPreferences.edit().putString("todayIncome", String.valueOf(jsonObject.getInt("todayIncome"))).apply();
@@ -141,7 +142,7 @@ public class RoomsFragment extends Fragment {
         tabLayout=(TabLayout)v.findViewById(R.id.tabLayout);
         viewPager=(ViewPager)v.findViewById(R.id.viewPager);
         viewPagerAdapter=new ViewPagerAdapter(getChildFragmentManager(),context);
-        viewPager.setCurrentItem(2,false);
+        viewPager.setCurrentItem(2,true);
         viewPagerAdapter.addFragment(new TotalRoomsFragment(context),"All Rooms");
         viewPagerAdapter.addFragment(new EmptyRoomsFragment(context),"Empty Rooms");
         viewPagerAdapter.addFragment(new RentDueFragment(context),"Rent Due");
@@ -156,9 +157,11 @@ public class RoomsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        MainActivity.fab.setVisibility(View.VISIBLE);
         setTokenJson();
+
         if(currentTab!=-1)
-            viewPager.setCurrentItem(currentTab,false);
+            viewPager.setCurrentItem(currentTab,true);
         // viewPagerAdapter.notifyDataSetChanged();
         // adapter.notifyDataSetChanged();
     }

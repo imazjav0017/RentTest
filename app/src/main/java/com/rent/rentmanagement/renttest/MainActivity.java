@@ -29,15 +29,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
    public static BottomNavigationView bottomNavigationView;
     SearchView searchView;
-    FloatingActionButton fab;
+    public static FloatingActionButton fab;
     public static String roomInfo;
     boolean showSv=false;
     public static boolean completedTasks=true;
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
         if(item.getItemId()==R.id.logoutMenuOption)
         {
             new AlertDialog.Builder(this)
@@ -122,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
@@ -144,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
         int id=item.getItemId();
-
         switch (id)
         {
             case R.id.profileViewItem:
@@ -153,7 +147,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.roomViewItem:
                 fragment=new RoomsFragment(MainActivity.this);
-                fab.setVisibility(View.VISIBLE);
+
                 break;
             case R.id.tenantsViewiTem:
                 fab.setVisibility(View.INVISIBLE);
@@ -163,12 +157,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
             case R.id.myProfileViewTab:
                 fab.setVisibility(View.INVISIBLE);
-
                 fragment=new OwnerProfileFragment(MainActivity.this);
                 break;
         }
         loadFragment(fragment);
-        return false;
+        return true;
     }
     private boolean loadFragment(Fragment fragment) {
         //switching fragment
