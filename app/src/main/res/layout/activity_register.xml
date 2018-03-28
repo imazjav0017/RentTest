@@ -12,12 +12,15 @@
 
 
 
-
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="70dp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_marginTop="70dp"
+
         android:padding="20dp"
         android:layout_height="wrap_content"
      >
@@ -42,7 +45,22 @@
             android:hint="Name"
             android:background="@android:color/transparent"
             android:id="@+id/newUsernameInput" />
+
+
+
   </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#d9d7d7"
+
+            >
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -70,6 +88,17 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#d9d7d7"
+
+            >
+
+        </LinearLayout>
+
 
 
 
@@ -83,8 +112,8 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_gravity="center_vertical"
 
+                android:background="@drawable/phone"
                 android:layout_margin="2dp"/>
 
 
@@ -97,6 +126,17 @@
             android:background="@android:color/transparent"
             android:ems="10"
             android:id="@+id/mobileNo" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#d9d7d7"
+
+            >
+
         </LinearLayout>
 
 
@@ -112,7 +152,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/email"
+            android:background="@drawable/regbuilding"
             android:layout_margin="2dp"/>
         <EditText
             android:layout_width="match_parent"
@@ -123,7 +163,16 @@
             android:background="@android:color/transparent"
             android:id="@+id/buildingName" />
     </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#d9d7d7"
 
+            >
+
+        </LinearLayout>
 
 
     <LinearLayout
@@ -137,7 +186,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/email"
+            android:background="@drawable/ic_action_pass"
             android:layout_margin="2dp"/>
         <EditText
             android:layout_width="match_parent"
@@ -149,6 +198,17 @@
 
             android:id="@+id/newPasswordInput" />
     </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#d9d7d7"
+
+            >
+
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
@@ -173,7 +233,11 @@
 
 
 
+
+
+
     </LinearLayout>
+  </ScrollView>
 
 
 </RelativeLayout>
