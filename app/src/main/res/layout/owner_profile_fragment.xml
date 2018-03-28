@@ -107,7 +107,6 @@
         android:layout_below="@+id/l1"
         android:id="@+id/l3"
         >
-        T
     </LinearLayout>
 
 

@@ -21,7 +21,8 @@ import java.util.List;
  * Created by imazjav0017 on 12-03-2018.
  */
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
+public class
+StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
     List<StudentModel> studentsList;
     Context context1;
 
