@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,6 +76,7 @@ public class ProfileFragment extends Fragment {
         roomsRv.setAdapter(adapter2);
             setData();
             name.setText(oName);
+         getActivity().setTitle(oName);
            // noOfRooms.setText(rooms);
         //noOfTenants.setText(tenants);
         adapter.notifyDataSetChanged();
@@ -89,6 +91,7 @@ public class ProfileFragment extends Fragment {
             try {
             JSONObject jsonObject=new JSONObject(s);
                 oName=jsonObject.getString("buildingName");
+                LoginActivity.sharedPreferences.edit().putString("buildingName",oName).apply();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

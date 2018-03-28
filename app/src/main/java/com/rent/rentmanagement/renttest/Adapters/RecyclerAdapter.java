@@ -55,6 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 i.putExtra("roomNo",model.getRoomNo());
                 i.putExtra("roomType",model.getRoomType());
                 i.putExtra("roomRent",model.getRoomRent());
+                i.putExtra("due",model.getDueAmount());
                 holder.context.startActivity(i);
             }
         });

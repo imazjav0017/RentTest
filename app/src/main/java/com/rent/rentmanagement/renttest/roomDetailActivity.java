@@ -12,9 +12,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.github.aakira.expandablelayout.ExpandableRelativeLayout;
 import com.rent.rentmanagement.renttest.Adapters.PaymentHistoryAdapter;
 import com.rent.rentmanagement.renttest.Adapters.StudentAdapter;
 import com.rent.rentmanagement.renttest.AsyncTasks.CheckoutTask;
+import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
 import com.rent.rentmanagement.renttest.DataModels.PaymentHistoryModel;
 import com.rent.rentmanagement.renttest.DataModels.StudentModel;
 
@@ -53,8 +56,75 @@ public class roomDetailActivity extends AppCompatActivity {
     Button checkOut;
     PaymentHistoryAdapter pAdapter;
     ExpandableRelativeLayout expandableRelativeLayout,expandablePayments;
-    String roomNo,roomType,roomRent,_id,response;
+    String roomNo,roomType,roomRent,_id,response,dueAmnt;
     boolean fromTotal;
+    JSONObject rentdetails;
+    void enable(Button btn)
+    {
+        btn.setClickable(true);
+    }
+    public void makeJson(String _id,EditText payee,EditText rentCollectedInput,String mode,String reason)
+    {
+        DateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
+        rentdetails=new JSONObject();
+        try {
+
+            if(LoginActivity.sharedPreferences.getString("token",null)==null)
+            {
+                throw new Exception("invalid token");
+            }
+            else {
+                rentdetails.put("roomId",_id);
+                rentdetails.put("auth", LoginActivity.sharedPreferences.getString("token", null));
+                if(mode.equals("c")) {
+                    rentdetails.put("payee", payee.getText().toString());
+                    rentdetails.put("amount", Integer.parseInt(rentCollectedInput.getText().toString()));
+                    rentdetails.put("date",dateFormat.format(new Date()).toString());
+                }else if(mode.equals("r"))
+                {
+                    Log.i("reason",reason);
+                    rentdetails.put("reason",reason);
+                }
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void setStaticData(String s,EditText payee,String _id) {
+        if(s!=null) {
+            if (s.equals("0")) {
+                Toast.makeText(getApplicationContext(), "Fetching!", Toast.LENGTH_SHORT).show();
+
+            } else {
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(s);
+                    JSONArray array = jsonObject.getJSONArray("room");
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject detail = array.getJSONObject(i);
+                        if(detail.getBoolean("isEmpty")==false && detail.getString("_id").equals(_id))
+                        {
+                            JSONArray students=detail.getJSONArray("students");
+                            if(students.length()>0)
+                            {
+                                JSONObject studentDetails=students.getJSONObject(0);
+                                payee.setText(studentDetails.getString("name"));
+                            }
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
     @Override
     public void onBackPressed() {
         //super.onBackPressed();
@@ -82,6 +152,57 @@ public class roomDetailActivity extends AppCompatActivity {
                         if(s.equals("checked out from Room"))
                         {
                             onBackPressed();
+                        }
+                        else if(s.equals("First clear Dues!"))
+                        {
+                            AlertDialog.Builder builder=new AlertDialog.Builder(roomDetailActivity.this);
+                            View view= LayoutInflater.from(roomDetailActivity.this).inflate(R.layout.collect_dialog,null,false);
+                            final EditText rentCollectedInput=(EditText)view.findViewById(R.id.rentcollectedinput);
+                            final EditText payee=(EditText)view.findViewById(R.id.payee);
+                            rentCollectedInput.setText(dueAmnt);
+                            rentCollectedInput.setSelection(rentCollectedInput.getText().toString().length());
+                            final Button collectedButton=(Button)view.findViewById(R.id.collectedbutton);
+                            DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+                            Date dateObj=new Date();
+                            String date=df.format(dateObj).toString();
+                            setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null),payee,_id);
+                            TextView dateCollected=(TextView)view.findViewById(R.id.datecollectedinput);
+                            dateCollected.setText(date);
+                            builder.setView(view);
+                            final AlertDialog dialog=builder.create();
+                            dialog.show();
+                            collectedButton.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    collectedButton.setClickable(false);
+                                    makeJson(_id,payee,rentCollectedInput,"c",null);
+                                    PaymentTask ptask=new PaymentTask();
+                                    try {
+                                        String response=ptask.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
+                                        if(response!=null)
+                                        {
+                                            Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                                            if(response.equals("Some Error,check if fields are missings!"))
+                                                enable(collectedButton);
+                                            else {
+                                                dialog.dismiss();
+                                                checkOut(null);
+                                            }
+                                        }
+                                        else
+                                        {
+                                             enable(collectedButton);
+                                            Toast.makeText(getApplicationContext(), "No Internet", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    } catch (ExecutionException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            });
+
                         }
                     }
                     else
@@ -186,15 +307,25 @@ public class roomDetailActivity extends AppCompatActivity {
     }
     public void checkOut(View v)
     {
-        new AlertDialog.Builder(this)
-                .setTitle("Delete!").setMessage("Are You Sure You Wish To Checkout from Room No "+roomNo+"?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        setTokenJson("ch");
-                    }
-                })
-                .setNegativeButton("No",null).show();
+        if(checkOut.getText().toString().equals("Checkout")) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Checkout!").setMessage("Are You Sure You Wish To Checkout from Room No " + roomNo + "?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            setTokenJson("ch");
+                        }
+                    })
+                    .setNegativeButton("No", null).show();
+        }
+        else
+        {
+            Intent i=new Intent(getApplicationContext(),StudentActivity.class);
+            i.putExtra("id",_id);
+            i.putExtra("roomNo",roomNo);
+            startActivity(i);
+            finish();
+        }
 
     }
     public void editRoom(View v)
@@ -284,13 +415,20 @@ public class roomDetailActivity extends AppCompatActivity {
 
                                 for(int k=0;k<students.length();k++) {
                                     JSONObject studentDetails = students.getJSONObject(k);
-                                     studentsList.add(new StudentModel(studentDetails.getString("name"),studentDetails.getString("mobileNo"),
+                                     studentsList.add(new StudentModel(studentDetails.getString("name"),studentDetails.getString("mobileNo"),roomNo,
                                              studentDetails.getString("_id")));
                                 }
                                 adapter.notifyDataSetChanged();
 
                             }
+
                         }
+
+                    }
+                    if(studentsList.size()==0)
+                    {
+
+                            checkOut.setText("Checkin");
 
                     }
                 } catch (JSONException e) {
@@ -323,6 +461,7 @@ public class roomDetailActivity extends AppCompatActivity {
         roomType=i.getStringExtra("roomType");
         fromTotal=i.getBooleanExtra("fromTotal",false);
         roomRent=i.getStringExtra("roomRent");
+        dueAmnt=i.getStringExtra("due");
         setTitle("RoomNo: "+i.getStringExtra("roomNo"));
         checkOut=(Button)findViewById(R.id.empt_checkin);
         rn = (TextView) findViewById(R.id.roomno);

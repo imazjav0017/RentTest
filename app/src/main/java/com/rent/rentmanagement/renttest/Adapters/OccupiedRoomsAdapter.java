@@ -108,6 +108,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 i.putExtra("roomNo",model.getRoomNo());
                 i.putExtra("roomType",model.getRoomType());
                 i.putExtra("roomRent",model.getRoomRent());
+                i.putExtra("due",model.getDueAmount());
                 holder.context.startActivity(i);
             }
         });
@@ -182,7 +183,7 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                 builder.setView(view);
                 final AlertDialog dialog=builder.create();
                 dialog.show();
-                collectedButton.setOnClickListener(new View.OnClickListener() {
+                               collectedButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         collectedButton.setClickable(false);

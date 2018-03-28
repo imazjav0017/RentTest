@@ -106,6 +106,7 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
                 i.putExtra("roomType",model.getRoomType());
                 i.putExtra("roomRent",model.getRoomRent());
                 i.putExtra("fromTotal",true);
+                i.putExtra("due",model.getDueAmount());
                 holder.context.startActivity(i);
             }
         });
