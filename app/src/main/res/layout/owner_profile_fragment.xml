@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
+                android:layout_margin="1dp"
                 android:text="Tushar"
                 android:id="@+id/ownerNameTabText"
                 android:textColor="#000000"
@@ -87,13 +87,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginRight="65dp"
-                android:layout_marginLeft="65dp"
                 android:background="#d9d7d7"
 
-                >
+                />
 
-            </LinearLayout>
 
 
         </LinearLayout>
@@ -134,16 +131,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/l2"
-        android:layout_margin=".1dp"
+        android:layout_margin="5dp"
 
         android:id="@+id/c3"
         android:background="#ffffff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         android:layout_marginLeft="12dp"
-
-        android:layout_marginTop="2dp"
+         android:layout_marginLeft="5dp"
         android:padding="5dp"
         android:orientation="vertical"
         >
@@ -170,7 +165,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:background="#d9d7d7"
 
             >
@@ -180,7 +176,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mobile Number"
-            android:layout_marginTop="20dp"
             android:textSize="15sp"
             android:textColor="#424242"/>
 
