@@ -140,8 +140,29 @@ public class TenantsFragment extends Fragment {
             }
         }
     }
+    void setStaticData(String s) throws JSONException
+    {
+        if(s!=null) {
+            JSONObject jsonObject = new JSONObject(s);
+            JSONArray array = jsonObject.getJSONArray("data");
+            JSONArray roomNo = jsonObject.getJSONArray("roomNo");
+            studentModelList.clear();
+            for (int k = 0; k < array.length(); k++) {
+                String rNo = roomNo.getString(k);
+                JSONArray array1 = array.getJSONArray(k);
+                for (int i = 0; i < array1.length(); i++) {
+                    JSONObject detail = array1.getJSONObject(i);
+                    studentModelList.add(new StudentModel(detail.getString("name"), detail.getString("mobileNo"), rNo
+                            , detail.getString("_id")));
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
+
+    }
     public void setData(String s) throws JSONException {
         Log.i("getAllStudents", s);
+        LoginActivity.sharedPreferences.edit().putString("allTenantsinfo",s).apply();
         JSONObject jsonObject=new JSONObject(s);
         JSONArray array=jsonObject.getJSONArray("data");
         JSONArray roomNo=jsonObject.getJSONArray("roomNo");
@@ -163,6 +184,11 @@ public class TenantsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        try {
+            setStaticData(LoginActivity.sharedPreferences.getString("allTenantsinfo",null));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         setTokenJson();
     }
 

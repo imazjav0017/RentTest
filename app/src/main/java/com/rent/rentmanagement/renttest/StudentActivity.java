@@ -145,15 +145,6 @@ public class StudentActivity extends AppCompatActivity {
         }
         return false;
     }
-    public void logout(View v)
-    {
-        LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn",false).apply();
-        Log.i("status","Logging out");
-        LoginActivity.sharedPreferences.edit().putString("token",null).apply();
-        Intent i=new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(i);
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

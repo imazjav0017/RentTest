@@ -161,9 +161,8 @@ public class RoomsFragment extends Fragment {
         setTokenJson();
 
         if(currentTab!=-1)
+            if(viewPager!=null)
             viewPager.setCurrentItem(currentTab,true);
-        // viewPagerAdapter.notifyDataSetChanged();
-        // adapter.notifyDataSetChanged();
     }
 
     public void setStaticData(String s) {

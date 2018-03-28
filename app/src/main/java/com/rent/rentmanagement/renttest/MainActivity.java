@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if(completedTasks) {
-                                LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn", false).apply();
+
+                                Log.i("status","logout");
+                                LoginActivity.sharedPreferences.edit().clear().apply();
+                                /*LoginActivity.sharedPreferences.edit().putBoolean("isLoggedIn", false).apply();
                                 Log.i("status", "Logging out");
                                 LoginActivity.sharedPreferences.edit().putString("token", null).apply();
                                 LoginActivity.sharedPreferences.edit().putString("roomsDetails", "0").apply();
@@ -51,10 +53,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                                 LoginActivity.sharedPreferences.edit().putString("totalIncome", null).apply();
                                 LoginActivity.sharedPreferences.edit().putString("todayIncome", null).apply();
                                 LoginActivity.sharedPreferences.edit().putString("collected", null).apply();
-
+                                LoginActivity.sharedPreferences.edit().putString("buildingName", null).apply();
+                                LoginActivity.sharedPreferences.edit().putString("allTenantsInfo", null).apply();*/
                                 Intent i = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(i);
-                            }
+
                         }
                     }).setNegativeButton("No",null).show();
             return true;
@@ -121,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
+        setTitle(LoginActivity.sharedPreferences.getString("buildingName","Rent App"));
 
         fab = (FloatingActionButton) findViewById(R.id.fab_btn);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +187,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if(!(searchView.isIconified()))
         {
            searchView.setIconified(true);
+        }
+        else if (bottomNavigationView.getSelectedItemId()!=R.id.profileViewItem)
+        {
+            bottomNavigationView.setSelectedItemId(R.id.profileViewItem);
         }
         else
         {
