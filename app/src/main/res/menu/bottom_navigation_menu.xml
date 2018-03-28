@@ -19,7 +19,7 @@
 
     <item android:id="@+id/myProfileViewTab"
         android:title="Profile"
-        android:icon="@drawable/tenant"
+        android:icon="@drawable/user_icon"
         app:showAsAction="always"
         android:orderInCategory="4"/>
 
