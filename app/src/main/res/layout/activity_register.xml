@@ -227,7 +227,7 @@
                 android:textColor="#ffffff"
                 android:onClick="Register"
                 android:textSize="20sp"
-                android:background="#9CCC65"
+                android:background="#FFFF1818"
                 android:elevation="6dp" />
         </LinearLayout>
 
