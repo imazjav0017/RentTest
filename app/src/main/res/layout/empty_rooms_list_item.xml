@@ -139,7 +139,7 @@
                             android:layout_height="wrap_content"
                             android:text="Empty Form 5 Days!"
                             android:textColor="#424242"
-                            android:textSize="18sp"
+                            android:textSize="16sp"
                             android:id="@+id/emptyDays"
                             android:layout_marginLeft="2dp"
                             android:layout_gravity="center"
