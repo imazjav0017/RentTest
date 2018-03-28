@@ -67,7 +67,7 @@
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:elevation="10dp"
-                android:background="#9CCC65"
+                android:background="#FFFF1818"
                 android:onClick="login"
                 android:textAllCaps="false"
                  />
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button"
-            android:background="#9CCC65"
+            android:background="#FFFF1818"
             android:elevation="10dp"
             android:textColor="#ffffff"
             android:textSize="20sp"

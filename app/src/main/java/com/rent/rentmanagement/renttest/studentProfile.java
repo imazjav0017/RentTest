@@ -26,7 +26,6 @@ String _id,name,phNo,roomNo;
         sRoomNo=(EditText)findViewById(R.id.studentRoomNoField);
         sPhNo=(EditText)findViewById(R.id.studentPhNoField);
         sAadharNo=(EditText)findViewById(R.id.studentAadharNoField);
-        sAdress=(EditText)findViewById(R.id.studentAddressField);
         sName.setText(name);
         sRoomNo.setText(roomNo);
         sPhNo.setText(phNo);
