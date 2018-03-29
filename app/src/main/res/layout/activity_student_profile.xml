@@ -258,21 +258,7 @@
 
                         >
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Address"
-                            android:textSize="15sp"
-                            android:textColor="#43b360"/>
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:textSize="18sp"
-                            android:inputType="textPersonName"
-                            android:id="@+id/studentAddressField"
-                            android:text="j12/38wfgbvcsdgfhn"
-                            android:background="@android:color/transparent"
-                            android:layout_marginTop="5dp"/>
+
 
                     </LinearLayout>
 
