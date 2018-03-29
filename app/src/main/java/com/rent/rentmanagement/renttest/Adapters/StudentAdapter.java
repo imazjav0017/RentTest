@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -60,7 +61,9 @@ StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
                 i.putExtra("roomNo",model.getRoomNo());
                 i.putExtra("phNo",model.getPhNo());
                 i.putExtra("total",false);
+                i.putExtra("roomId",model.getRoomId());
                 holder.context.startActivity(i);
+                ((Activity)holder.context).finish();
             }
         });
 

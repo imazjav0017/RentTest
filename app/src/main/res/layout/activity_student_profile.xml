@@ -66,8 +66,9 @@
         android:layout_marginRight="15dp"
         android:text="Edit"
         android:textAllCaps="false"
+        android:onClick="editStudent"
         android:background="@drawable/square_blue"
-        android:id="@+id/button2" />
+        android:id="@+id/editStudent" />
 
 
     <Button
@@ -75,7 +76,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
+        android:onClick="deleteStudent"
         android:text="Delete"
+        android:id="@+id/deleteStudent"
         android:textAllCaps="false"
         android:background="@drawable/square_blue"
        />

@@ -5,13 +5,10 @@ package com.rent.rentmanagement.renttest.DataModels;
  */
 
 public class StudentModel {
-    String name,phNo,roomNo,_id;
-
-    public StudentModel(String name, String phNo, String _id) {
-        this.name = name;
-        this.phNo = phNo;
-        this._id = _id;
-    }
+    String name;
+    String phNo;
+    String roomNo;
+    String _id;
 
     public StudentModel(String name, String phNo, String roomNo, String _id) {
         this.name = name;
@@ -20,6 +17,15 @@ public class StudentModel {
         this._id = _id;
     }
 
+    public StudentModel(String name, String phNo, String roomNo, String _id, String roomId) {
+        this.name = name;
+        this.phNo = phNo;
+        this.roomNo = roomNo;
+        this._id = _id;
+        this.roomId = roomId;
+    }
+
+    String roomId;
     public String getName() {
         return name;
     }
@@ -36,4 +42,7 @@ public class StudentModel {
         return roomNo;
     }
 
+    public String getRoomId() {
+        return roomId;
+    }
 }

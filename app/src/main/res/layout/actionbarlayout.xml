@@ -8,11 +8,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:background="@color/colorPrimary"
-=======
-        android:background="#FFFF1818"
->>>>>>> 4954d3044b6fec4602b7ca2908abcf6a3dff0fc4
         android:id="@+id/toolbar"
         android:elevation="10dp"
         app:titleTextColor="#fff"
