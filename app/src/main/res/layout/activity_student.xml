@@ -28,95 +28,137 @@
         android:layout_width="match_parent"
         android:padding="3dp"
         android:layout_height="wrap_content"
-
         app:cardElevation="3dp"
         android:layout_marginBottom="10dp"
+                android:id="@+id/c1">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_alignParentTop="true"
+
+                    android:padding="15dp">
 
 
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="25dp"
+                        android:text="Name:"
+                        android:textSize="15sp" />
 
-        android:id="@+id/c1">
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/line1"
+                        android:layout_marginTop="12dp"
+                        android:text="Contact No."
+                        android:textSize="15sp" />
 
-        android:layout_alignParentTop="true"
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/line2"
+                        android:layout_marginTop="12dp"
+                        android:text="Aadhar No."
+                        android:textSize="15sp" />
 
-        android:padding="15dp">
-
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/studentNameInput"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Name:"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/studentContactNoInput"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Contact No."
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/studentAadharNoInput"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Aadhar No."
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/studentNameInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/studentContactNoInput"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="25dp"
-            android:ems="10"
-            android:textSize="18sp"
-            android:inputType="textPersonName"
-            android:text="" />
+                    <EditText
+                        android:id="@+id/studentNameInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/textView"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text=""
+                        android:textSize="18sp" />
 
 
-        <EditText
-            android:id="@+id/studentContactNoInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/studentAadharNoInput"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="31dp"
-            android:ems="10"
-            android:inputType="number"
-            android:textSize="18sp"/>
+                    <LinearLayout
+                        android:id="@+id/line1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/studentNameInput"
+                        android:layout_alignParentLeft="true"
 
-        <EditText
-            android:id="@+id/studentAadharNoInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:ems="10"
-            android:textSize="18sp"
-            android:inputType="number" />
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="4dp"
+                        android:background="#d9d7d7">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/studentContactNoInput"
+                        android:layout_marginTop="4dp"
+                        android:background="#d9d7d7">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/line3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                       android:layout_marginTop="4dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/studentAadharNoInput"
+                        android:background="#d9d7d7">
+
+                    </LinearLayout>
 
 
-    </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                    <EditText
+                        android:id="@+id/studentContactNoInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/textView2"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/studentAadharNoInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_below="@+id/textView3"
+                        android:background="@android:color/transparent"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textSize="18sp" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
 
     <Button
         android:id="@+id/addExtraStudentButton"
