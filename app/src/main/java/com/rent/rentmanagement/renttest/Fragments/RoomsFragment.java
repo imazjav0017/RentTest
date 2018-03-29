@@ -127,6 +127,27 @@ public class RoomsFragment extends Fragment {
 
 
         }
+        if (tRooms.size()==0)
+        {
+            TotalRoomsFragment.empty.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            TotalRoomsFragment.empty.setVisibility(View.INVISIBLE);
+        }
+        if(erooms.size()==0)
+        {
+            EmptyRoomsFragment.empty.setVisibility(View.INVISIBLE);
+        }
+        else
+            EmptyRoomsFragment.empty.setVisibility(View.VISIBLE);
+        if(oRooms.size()==0)
+        {
+            RentDueFragment.empty.setVisibility(View.INVISIBLE);
+        }
+        else
+            RentDueFragment.empty.setVisibility(View.VISIBLE);
+
     }
     @Nullable
     @Override

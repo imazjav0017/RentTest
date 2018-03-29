@@ -54,23 +54,14 @@
 
                     />
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 8ee5b39fc5b64700744bfc76637e658ed2204b56
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="1"
-
                     android:gravity="center"
-<<<<<<< HEAD
                     android:textColor="#000000"/>
-=======
-                    android:textColor="#000000"
                     android:textSize="16sp" />
-
->>>>>>> 8ee5b39fc5b64700744bfc76637e658ed2204b56
 
 
                 <TextView

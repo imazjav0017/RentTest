@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.rent.rentmanagement.renttest.Adapters.OccupiedRoomsAdapter;
 import com.rent.rentmanagement.renttest.R;
@@ -21,6 +22,7 @@ import com.rent.rentmanagement.renttest.roomActivity;
 public class RentDueFragment extends Fragment {
     View v;
     Context context;
+    static TextView empty;
 
     RecyclerView occupiedRoomsListView;
 
@@ -36,6 +38,7 @@ public class RentDueFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.rent_due_tab,container,false);
         occupiedRoomsListView=(RecyclerView)v.findViewById(R.id.occupiedRoomsList);
+        empty=(TextView)v.findViewById(R.id.noRentDueText);
         LinearLayoutManager lm1=new LinearLayoutManager(context);
         occupiedRoomsListView.setLayoutManager(lm1);
         occupiedRoomsListView.setHasFixedSize(true);
