@@ -33,6 +33,12 @@ public class RentDueFragment extends Fragment {
         this.context=context;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +49,19 @@ public class RentDueFragment extends Fragment {
         occupiedRoomsListView.setLayoutManager(lm1);
         occupiedRoomsListView.setHasFixedSize(true);
         occupiedRoomsListView.setAdapter(RoomsFragment.adapter2);
+        if(RoomsFragment.oRooms.isEmpty())
+        {
+            if(empty!=null) {
+                occupiedRoomsListView.setVisibility(View.INVISIBLE);
+                empty.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
+            if(empty!=null) {
+                occupiedRoomsListView.setVisibility(View.VISIBLE);
+                empty.setVisibility(View.INVISIBLE);
+            }
+        }
         return v;
     }
 }

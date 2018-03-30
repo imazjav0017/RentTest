@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.Adapters.OccupiedRoomsAdapter;
@@ -84,6 +85,8 @@ public class RoomsFragment extends Fragment {
             LoginActivity.sharedPreferences.edit().putInt("totalTenants", jsonObject.getInt("totalStudents")).apply();
             JSONArray array = jsonObject.getJSONArray("room");
             Log.i("array", array.toString());
+            LoginActivity.sharedPreferences.edit().putInt("occupiedRoomsCount", jsonObject.getInt("occupiedRoomsCount")).apply();
+            LoginActivity.sharedPreferences.edit().putInt("emptyRoomsCount", jsonObject.getInt("emptyRoomsCount")).apply();
             LoginActivity.sharedPreferences.edit().putInt("notCollected", jsonObject.getInt("notCollected")).apply();
             LoginActivity.sharedPreferences.edit().putInt("totalRooms", array.length()).apply();
             LoginActivity.sharedPreferences.edit().putString("totalIncome", String.valueOf(jsonObject.getInt("totalIncome"))).apply();
@@ -127,26 +130,10 @@ public class RoomsFragment extends Fragment {
 
 
         }
-        if (tRooms.size()==0)
-        {
-            TotalRoomsFragment.empty.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            TotalRoomsFragment.empty.setVisibility(View.INVISIBLE);
-        }
-        if(erooms.size()==0)
-        {
-            EmptyRoomsFragment.empty.setVisibility(View.INVISIBLE);
-        }
-        else
-            EmptyRoomsFragment.empty.setVisibility(View.VISIBLE);
-        if(oRooms.size()==0)
-        {
-            RentDueFragment.empty.setVisibility(View.INVISIBLE);
-        }
-        else
-            RentDueFragment.empty.setVisibility(View.VISIBLE);
+
+        new TotalRoomsFragment(context).onResume();
+        new RentDueFragment((context)).onResume();
+        new EmptyRoomsFragment(context).onResume();
 
     }
     @Nullable
@@ -163,7 +150,8 @@ public class RoomsFragment extends Fragment {
         tabLayout=(TabLayout)v.findViewById(R.id.tabLayout);
         viewPager=(ViewPager)v.findViewById(R.id.viewPager);
         viewPagerAdapter=new ViewPagerAdapter(getChildFragmentManager(),context);
-        viewPager.setCurrentItem(2,true);
+        //viewPager.setCurrentItem(2,true);
+        viewPager.setOffscreenPageLimit(2);
         viewPagerAdapter.addFragment(new TotalRoomsFragment(context),"All Rooms");
         viewPagerAdapter.addFragment(new EmptyRoomsFragment(context),"Empty Rooms");
         viewPagerAdapter.addFragment(new RentDueFragment(context),"Rent Due");
@@ -180,7 +168,6 @@ public class RoomsFragment extends Fragment {
         super.onResume();
         MainActivity.fab.setVisibility(View.VISIBLE);
         setTokenJson();
-
         if(currentTab!=-1)
             if(viewPager!=null)
             viewPager.setCurrentItem(currentTab,true);

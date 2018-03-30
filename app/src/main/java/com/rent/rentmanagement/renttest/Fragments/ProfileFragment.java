@@ -99,22 +99,24 @@ public class ProfileFragment extends Fragment {
        rooms=String.valueOf(LoginActivity.sharedPreferences.getInt("totalRooms",0));
         tenants=String.valueOf(LoginActivity.sharedPreferences.getInt("totalTenants",0));
         int notColl=(LoginActivity.sharedPreferences.getInt("notCollected",0));
+        int empty=LoginActivity.sharedPreferences.getInt("emptyRoomsCount",0);
+        int occupied=LoginActivity.sharedPreferences.getInt("occupiedRoomsCount",0);
         Log.i("not",String.valueOf(notColl));
         String ti=LoginActivity.sharedPreferences.getString("totalIncome",null);
         String todI=LoginActivity.sharedPreferences.getString("todayIncome",null);
         String col=LoginActivity.sharedPreferences.getString("collected",null);
         if(ti!=null)
-        pList.add(new ProfileDetailsModel("Total Income",ti));
+        pList.add(new ProfileDetailsModel("Total Income","₹"+ti));
         if(todI!=null)
-        pList.add(new ProfileDetailsModel("Today's Income",todI));
+        pList.add(new ProfileDetailsModel("Today's Income","₹"+todI));
         if(notColl!=0)
-        pList.add(new ProfileDetailsModel("Total Rent Due",String.valueOf(notColl)));
+        pList.add(new ProfileDetailsModel("Total Rent Due","₹"+String.valueOf(notColl)));
         if(col!=null)
-        pList.add(new ProfileDetailsModel("Total Rent Collected",col));
+        pList.add(new ProfileDetailsModel("Total Rent Collected","₹"+col));
 
         rList.add(new ProfileDetailsModel("Total Rooms",rooms));
         rList.add(new ProfileDetailsModel("Total Tenants",tenants));
-        rList.add(new ProfileDetailsModel("Empty Rooms","10"));
-        rList.add(new ProfileDetailsModel("Occupied Rooms","15"));
+        rList.add(new ProfileDetailsModel("Empty Rooms",String.valueOf(empty)));
+        rList.add(new ProfileDetailsModel("Occupied Rooms",String.valueOf(occupied)));
     }
 }

@@ -38,6 +38,7 @@ public class EmptyRoomsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         RoomsFragment.adapter.notifyDataSetChanged();
+
     }
 
     @Nullable
@@ -50,6 +51,19 @@ public class EmptyRoomsFragment extends Fragment {
         emptyRoomsListView.setLayoutManager(lm);
         emptyRoomsListView.setHasFixedSize(true);
         emptyRoomsListView.setAdapter(RoomsFragment.adapter);
+        if(RoomsFragment.erooms.isEmpty())
+        {
+            if(empty!=null) {
+                emptyRoomsListView.setVisibility(View.INVISIBLE);
+                empty.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
+            if(empty!=null) {
+                emptyRoomsListView.setVisibility(View.VISIBLE);
+                empty.setVisibility(View.INVISIBLE);
+            }
+        }
         return v;
     }
 }

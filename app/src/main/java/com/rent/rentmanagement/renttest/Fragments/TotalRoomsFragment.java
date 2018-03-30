@@ -22,6 +22,7 @@ import com.rent.rentmanagement.renttest.R;
 public class TotalRoomsFragment extends Fragment {
     Context context;
     static TextView empty;
+    RecyclerView totalRoomsList;
     public TotalRoomsFragment() {
     }
 
@@ -29,16 +30,36 @@ public class TotalRoomsFragment extends Fragment {
         this.context = context;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        RoomsFragment.adapter3.notifyDataSetChanged();
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View  v=inflater.inflate(R.layout.activity_all_rooms,container,false);
-       RecyclerView totalRoomsList=(RecyclerView)v.findViewById(R.id.totalRoomsList);
+        totalRoomsList=(RecyclerView)v.findViewById(R.id.totalRoomsList);
        empty=(TextView)v.findViewById(R.id.noRoomsText);
         LinearLayoutManager lm=new LinearLayoutManager(context);
         totalRoomsList.setLayoutManager(lm);
         totalRoomsList.setHasFixedSize(true);
         totalRoomsList.setAdapter(RoomsFragment.adapter3);
+        if(RoomsFragment.tRooms.isEmpty())
+        {
+            if(empty!=null) {
+                totalRoomsList.setVisibility(View.INVISIBLE);
+                empty.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
+            if(empty!=null) {
+                totalRoomsList.setVisibility(View.VISIBLE);
+                empty.setVisibility(View.INVISIBLE);
+            }
+        }
         return v;
     }
 }
