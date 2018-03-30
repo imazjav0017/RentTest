@@ -176,29 +176,8 @@ public class roomDetailActivity extends AppCompatActivity {
                                 public void onClick(View v) {
                                     collectedButton.setClickable(false);
                                     makeJson(_id,payee,rentCollectedInput,"c",null);
-                                    PaymentTask ptask=new PaymentTask();
-                                    try {
-                                        String response=ptask.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
-                                        if(response!=null)
-                                        {
-                                            Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
-                                            if(response.equals("Some Error,check if fields are missings!"))
-                                                enable(collectedButton);
-                                            else {
-                                                dialog.dismiss();
-                                                checkOut(null);
-                                            }
-                                        }
-                                        else
-                                        {
-                                             enable(collectedButton);
-                                            Toast.makeText(getApplicationContext(), "No Internet", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    } catch (ExecutionException e) {
-                                        e.printStackTrace();
-                                    }
+                                    PaymentTask ptask=new PaymentTask(roomDetailActivity.this,dialog,collectedButton);
+                                    ptask.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString());
 
                                 }
                             });
@@ -346,6 +325,7 @@ public class roomDetailActivity extends AppCompatActivity {
         i.putExtra("roomNo",roomNo);
         i.putExtra("fromDetails",true);
         startActivity(i);
+        finish();
     }
     public void setPaymentHistory(String s) {
         paymentList.clear();

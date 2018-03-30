@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/background"
     tools:context="com.rent.rentmanagement.renttest.StudentActivity">
-
-    <include
-        layout="@layout/actionbarlayout" />
 
       <ScrollView
           android:layout_width="wrap_content"
@@ -199,6 +197,15 @@
         </RelativeLayout>
       </ScrollView>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:id="@+id/studentAddingProgress"
+        android:layout_height="wrap_content"
+        android:theme="@style/BottomNavigationTheme"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"/>
+    <include
+        layout="@layout/actionbarlayout" />
 
 </RelativeLayout>
 

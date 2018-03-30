@@ -136,28 +136,8 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                         }
                         else {
                             makeJson(model.get_id(), null, null, "r", reason);
-                            PaymentTask task = new PaymentTask();
-                            try {
-                                String response = task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail", rentdetails.toString()).get();
-                                if (response != null) {
-                                    Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                                    if(response.equals("Some Error,check if fields are missings!"))
-                                        enable(btn);
-                                    else {
-                                        dialog.dismiss();
-                                        goBack(holder.context);
-                                    }
-                                }
-                                else
-                                {
-                                    enable(btn);
-                                    Toast.makeText(context, "No Internet!", Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
-                            }
+                            PaymentTask task = new PaymentTask(holder.context,dialog,btn);
+                            task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail", rentdetails.toString());
                         }
                     }
                 });
@@ -189,29 +169,9 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
                     public void onClick(View v) {
                         collectedButton.setClickable(false);
                         makeJson(model.get_id(),payee,rentCollectedInput,"c",null);
-                        PaymentTask task=new PaymentTask();
-                        try {
-                            String response=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
-                            if(response!=null)
-                            {
-                                Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                if(response.equals("Some Error,check if fields are missings!"))
-                                    enable(collectedButton);
-                                else {
-                                    dialog.dismiss();
-                                    goBack(holder.context);
-                                }
-                            }
-                            else
-                            {
-                                enable(collectedButton);
-                                Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
-                        }
+                        PaymentTask task=new PaymentTask(holder.context,dialog,collectedButton);
+                           task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString());
+
 
                     }
                 });
@@ -295,12 +255,12 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
         }
 
     }
-    void goBack(Context context)
+    public static void goBack(Context context)
     {
         new RoomsFragment(context).onResume();
 
     }
-    void enable(Button btn)
+    public static void enable(Button btn)
     {
         btn.setClickable(true);
     }

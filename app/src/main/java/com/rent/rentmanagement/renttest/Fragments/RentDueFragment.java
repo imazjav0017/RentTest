@@ -49,8 +49,7 @@ public class RentDueFragment extends Fragment {
         occupiedRoomsListView.setLayoutManager(lm1);
         occupiedRoomsListView.setHasFixedSize(true);
         occupiedRoomsListView.setAdapter(RoomsFragment.adapter2);
-        if(RoomsFragment.oRooms.isEmpty())
-            RoomsFragment.adapter2.setEmptyView(empty);
+
         /*if(RoomsFragment.oRooms.isEmpty())
         {
             if(empty!=null) {
@@ -65,5 +64,14 @@ public class RentDueFragment extends Fragment {
             }
         }*/
         return v;
+    }
+    public static void empty()
+    {
+        if(empty!=null) {
+            if (RoomsFragment.oRooms.isEmpty())
+                RoomsFragment.adapter2.setEmptyView(empty);
+            else
+                empty.setVisibility(View.INVISIBLE);
+        }
     }
 }

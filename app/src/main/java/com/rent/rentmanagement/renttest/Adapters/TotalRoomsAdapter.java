@@ -145,30 +145,9 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
                             public void onClick(View v) {
                                 makeJson(model.get_id(),payee,rentCollectedInput,"c",null);
                                 collectedButton.setClickable(false);
-                                PaymentTask task=new PaymentTask();
-                                try {
-                                    String response=task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString()).get();
-                                    if(response!=null)
-                                    {
-                                        Toast.makeText(context,response,Toast.LENGTH_SHORT).show();
-                                        if(response.equals("Some Error,check if fields are missings!"))
-                                            enable(collectedButton);
-                                        else {
-                                            dialog.dismiss();
-                                            goBack(holder.context);
-                                        }
+                                PaymentTask task=new PaymentTask(holder.context,dialog,collectedButton);
+                                task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/paymentDetail",rentdetails.toString());
 
-                                    }
-                                    else
-                                    {
-                                        enable(collectedButton);
-                                        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show();
-                                    }
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                } catch (ExecutionException e) {
-                                    e.printStackTrace();
-                                }
 
                             }
                         });
@@ -197,7 +176,6 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
     @Override
     public int getItemCount()
     {
-
         return roomList.size();
     }
     public void setStaticData(String s, EditText payee, String _id) {
@@ -264,8 +242,9 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
     }
     public void setFilter(List<RoomModel> filteredList)
     {
+        roomList.clear();
         roomList=new ArrayList<>();
-        roomList.addAll(filteredList);
+        roomList=filteredList;
         notifyDataSetChanged();
     }
     void goBack(Context context)

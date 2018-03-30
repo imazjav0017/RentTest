@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,8 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
     EditText studentName,contactNo,aadharNo;
     TextView datePickerText;
     String sName,sNo,sAad;
+    ProgressBar progressBar;
+    RelativeLayout bg;
     String _id;
     JSONObject studentDetails;
     boolean fromTotal,added=false;
@@ -53,12 +57,15 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
         c.set(Calendar.YEAR,i);
         c.set(Calendar.MONTH,i1);
         c.set(Calendar.DAY_OF_MONTH,i2);
-        String date=DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        //String date=DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
         String year= String.valueOf(c.get(Calendar.YEAR));
         String month= String.valueOf(c.get(Calendar.MONTH)+1);
+        if(month.length()==1)
+        {
+            month="0"+month;
+        }
         String day= String.valueOf(c.get(Calendar.DAY_OF_MONTH));
-        //datePickerText.setText(year+"-"+month+"-"+day);
-        datePickerText.setText(date);
+        datePickerText.setText(day+"-"+month+"-"+year);
     }
 
     public class AddStudentsTask extends AsyncTask<String,Void,String>
@@ -99,7 +106,8 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
         @Override
         protected void onPostExecute(String s) {
             enable();
-
+            progressBar.setVisibility(View.GONE);
+            bg.setClickable(true);
             if(s!=null)
             {
                 added=true;
@@ -129,6 +137,7 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
                 throw new Exception("invalid token");
             }
             else {
+                Log.i("date",datePickerText.getText().toString());
                 studentDetails.put("checkinDate",datePickerText.getText().toString());
                 studentDetails.put("name",sName);
                 studentDetails.put("mobileNo",sNo);
@@ -156,6 +165,8 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
         }
         else
         {
+            progressBar.setVisibility(View.VISIBLE);
+            bg.setClickable(false);
             makeJson();
             AddStudentsTask task=new AddStudentsTask();
             task.execute("https://sleepy-atoll-65823.herokuapp.com/rooms/addStudents",studentDetails.toString());
@@ -182,14 +193,21 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
         finish.setClickable(false);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
+        bg=(RelativeLayout)findViewById(R.id.background);
+        progressBar=(ProgressBar)findViewById(R.id.studentAddingProgress);
         datePickerText=(TextView)findViewById(R.id.datePicker);
         Calendar c=Calendar.getInstance();
         String year= String.valueOf(c.get(Calendar.YEAR));
         String month= String.valueOf(c.get(Calendar.MONTH)+1);
+        if(month.length()==1)
+        {
+            month="0"+month;
+        }
         String day= String.valueOf(c.get(Calendar.DAY_OF_MONTH));
        // datePickerText.setText(year+"-"+month+"-"+day);
         String date=DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
-        datePickerText.setText(date);
+        datePickerText.setText(day+"-"+month+"-"+year);
+        //datePickerText.setText(date);
         datePickerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

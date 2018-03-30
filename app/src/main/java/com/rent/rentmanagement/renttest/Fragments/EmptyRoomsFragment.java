@@ -37,7 +37,6 @@ public class EmptyRoomsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        RoomsFragment.adapter.notifyDataSetChanged();
 
     }
 
@@ -64,8 +63,17 @@ public class EmptyRoomsFragment extends Fragment {
                 empty.setVisibility(View.INVISIBLE);
             }
         }*/
-        if(RoomsFragment.erooms.isEmpty())
-            RoomsFragment.adapter.setEmptyView(empty);
+
         return v;
     }
+    public static void empty()
+    {
+        if(empty!=null) {
+            if (RoomsFragment.erooms.isEmpty())
+                RoomsFragment.adapter.setEmptyView(empty);
+            else
+                empty.setVisibility(View.INVISIBLE);
+        }
+    }
+
 }

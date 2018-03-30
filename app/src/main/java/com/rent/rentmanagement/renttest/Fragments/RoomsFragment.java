@@ -105,6 +105,7 @@ public class RoomsFragment extends Fragment {
             LoginActivity.sharedPreferences.edit().putString("roomsDetails", s).apply();
             if (array.length() == 0) {
 
+
             } else {
                 Toast.makeText(context, "Refreshed!", Toast.LENGTH_SHORT).show();
                 for (int i = 0; i < array.length(); i++) {
@@ -131,13 +132,13 @@ public class RoomsFragment extends Fragment {
 
                     }
                 }
-                adapter.notifyDataSetChanged();
-                adapter2.notifyDataSetChanged();
-                adapter3.notifyDataSetChanged();
-
             }
-
-
+            adapter.notifyDataSetChanged();
+            adapter2.notifyDataSetChanged();
+            adapter3.notifyDataSetChanged();
+            TotalRoomsFragment.empty();
+            RentDueFragment.empty();
+            EmptyRoomsFragment.empty();
         }
 
     }

@@ -42,8 +42,6 @@ public class TotalRoomsFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        RoomsFragment.adapter3.notifyDataSetChanged();
-
     }
 
     @Nullable
@@ -61,7 +59,7 @@ public class TotalRoomsFragment extends Fragment {
         ArrayAdapter<String>filterAdapter=new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,filterOptions);
         filterAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinner.setAdapter(filterAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ArrayList<RoomModel> filteredList = new ArrayList<>();
@@ -110,18 +108,18 @@ public class TotalRoomsFragment extends Fragment {
                             {
                                 RoomsFragment.adapter3.setFilter(filteredList);
                             }
-                            break;
+
+                        RoomsFragment.adapter3.notifyDataSetChanged();
                     }
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                RoomsFragment.adapter3.notifyDataSetChanged();
             }
-        });
-        if(RoomsFragment.tRooms.isEmpty())
-            RoomsFragment.adapter3.setEmptyView(empty);
+        });*/
+
        /* if(RoomsFragment.tRooms.isEmpty())
         {
             if(empty!=null) {
@@ -136,5 +134,13 @@ public class TotalRoomsFragment extends Fragment {
             }
         }*/
         return v;
+    }
+    public static void empty() {
+        if (empty != null) {
+            if (RoomsFragment.tRooms.isEmpty())
+                RoomsFragment.adapter3.setEmptyView(empty);
+            else
+                empty.setVisibility(View.INVISIBLE);
+        }
     }
 }
