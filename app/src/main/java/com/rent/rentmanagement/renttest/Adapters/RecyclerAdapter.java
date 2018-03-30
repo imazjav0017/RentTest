@@ -77,7 +77,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        if(roomModels.isEmpty())
         {
             Log.i("isEmptye","y");
         }
