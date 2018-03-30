@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.rent.rentmanagement.renttest.Adapters.TotalTenantsAdapter;
 import com.rent.rentmanagement.renttest.DataModels.StudentModel;
 import com.rent.rentmanagement.renttest.LoginActivity;
+import com.rent.rentmanagement.renttest.MainActivity;
 import com.rent.rentmanagement.renttest.R;
 import com.rent.rentmanagement.renttest.TotalTenantsctivity;
 
@@ -49,8 +50,8 @@ public class TenantsFragment extends Fragment {
         this.context = context;
     }
     RecyclerView totalTenants;
-    List<StudentModel> studentModelList;
-    TotalTenantsAdapter adapter;
+    public static List<StudentModel> studentModelList;
+  public static TotalTenantsAdapter adapter;
     String response;
     public void setTokenJson()
     {
@@ -198,6 +199,10 @@ public class TenantsFragment extends Fragment {
             e.printStackTrace();
         }
         setTokenJson();
+        if(!(MainActivity.searchView.isIconified()))
+        {
+            MainActivity.searchView.setIconified(true);
+        }
     }
 
     @Nullable

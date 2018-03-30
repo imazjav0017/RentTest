@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.DataModels.StudentModel;
 import com.rent.rentmanagement.renttest.Fragments.OwnerProfileFragment;
 import com.rent.rentmanagement.renttest.Fragments.ProfileFragment;
 import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
@@ -26,9 +27,9 @@ import com.rent.rentmanagement.renttest.Fragments.TenantsFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener{
    public static BottomNavigationView bottomNavigationView;
-    SearchView searchView;
+   public static SearchView searchView;
     public static FloatingActionButton fab;
     public static String roomInfo;
     boolean showSv=false;
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
         MenuItem item=menu.findItem(R.id.searchMenu);
-        item.setVisible(true);
             searchView = (SearchView) MenuItemCompat.getActionView(item);
             searchView.setOnQueryTextListener(this);
             searchView.setMaxWidth(Integer.MAX_VALUE);
@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         ArrayList<RoomModel> filteredList = new ArrayList<>();
         ArrayList<RoomModel> filteredOcList = new ArrayList<>();
         ArrayList<RoomModel> filteredTotalList = new ArrayList<>();
+        ArrayList<StudentModel>filteredTenants=new ArrayList<>();
+        filteredTenants.clear();
         filteredList.clear();
         filteredOcList.clear();
         filteredTotalList.clear();
@@ -112,6 +114,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             RoomsFragment.adapter.setFilter(filteredList);
             RoomsFragment.adapter2.setFilter(filteredOcList);
             RoomsFragment.adapter3.setFilter(filteredTotalList);
+        }
+        if(TenantsFragment.studentModelList!=null)
+        {
+            for(StudentModel model:TenantsFragment.studentModelList)
+            {
+                if(model.getName().toLowerCase().contains(newText))
+                {
+                    filteredTenants.add(model);
+                }
+            }
+            if(TenantsFragment.adapter!=null)
+            {
+                TenantsFragment.adapter.setFilter(filteredTenants);
+            }
         }
         return true;
     }

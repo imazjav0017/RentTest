@@ -8,9 +8,14 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -44,6 +49,7 @@ public class RoomsFragment extends Fragment {
     Context context;
     TabLayout tabLayout;
     ViewPager viewPager;
+
     public static ProgressBar progressBar;
     ViewPagerAdapter viewPagerAdapter;
     public static RecyclerAdapter adapter;
@@ -76,7 +82,10 @@ public class RoomsFragment extends Fragment {
             e.printStackTrace();
         }
     }
-    public static void setData(String s,Context context) throws JSONException {
+
+
+
+    public static void setData(String s, Context context) throws JSONException {
         if(s!=null) {
             erooms.clear();
             oRooms.clear();
@@ -249,4 +258,6 @@ public class RoomsFragment extends Fragment {
         EmptyRoomsFragment.emptyList.setClickable(true);
     }*/
     }
+
+
 }

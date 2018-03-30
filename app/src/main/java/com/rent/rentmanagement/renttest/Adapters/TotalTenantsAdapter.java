@@ -12,10 +12,12 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.rent.rentmanagement.renttest.DataModels.RoomModel;
 import com.rent.rentmanagement.renttest.R;
 import com.rent.rentmanagement.renttest.DataModels.StudentModel;
 import com.rent.rentmanagement.renttest.studentProfile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -68,6 +70,12 @@ public class TotalTenantsAdapter extends RecyclerView.Adapter<TotalTenantsAdapte
     @Override
     public int getItemCount() {
         return studentModels.size();
+    }
+    public void setFilter(List<StudentModel> filteredList)
+    {
+        studentModels=new ArrayList<>();
+        studentModels.addAll(filteredList);
+        notifyDataSetChanged();
     }
 
     /**
