@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
+import com.rent.rentmanagement.renttest.Fragments.TotalRoomsFragment;
 import com.rent.rentmanagement.renttest.LoginActivity;
 import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
 import com.rent.rentmanagement.renttest.R;
@@ -218,7 +219,10 @@ public class OccupiedRoomsAdapter extends RecyclerView.Adapter<ViewHolder2> {
             }
         });
     }
-
+    public void setEmptyView(TextView tv)
+    {
+        tv.setVisibility(View.VISIBLE);
+    }
     @Override
     public int getItemCount() {
         return roomList.size();

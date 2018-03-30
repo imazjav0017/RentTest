@@ -51,7 +51,7 @@ public class EmptyRoomsFragment extends Fragment {
         emptyRoomsListView.setLayoutManager(lm);
         emptyRoomsListView.setHasFixedSize(true);
         emptyRoomsListView.setAdapter(RoomsFragment.adapter);
-        if(RoomsFragment.erooms.isEmpty())
+       /* if(RoomsFragment.erooms.isEmpty())
         {
             if(empty!=null) {
                 emptyRoomsListView.setVisibility(View.INVISIBLE);
@@ -63,7 +63,9 @@ public class EmptyRoomsFragment extends Fragment {
                 emptyRoomsListView.setVisibility(View.VISIBLE);
                 empty.setVisibility(View.INVISIBLE);
             }
-        }
+        }*/
+        if(RoomsFragment.erooms.isEmpty())
+            RoomsFragment.adapter.setEmptyView(empty);
         return v;
     }
 }

@@ -131,10 +131,6 @@ public class RoomsFragment extends Fragment {
 
         }
 
-        new TotalRoomsFragment(context).onResume();
-        new RentDueFragment((context)).onResume();
-        new EmptyRoomsFragment(context).onResume();
-
     }
     @Nullable
     @Override

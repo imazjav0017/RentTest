@@ -3,6 +3,7 @@ package com.rent.rentmanagement.renttest.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,9 +70,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             }
         });
     }
+    public void setEmptyView(TextView tv)
+    {
+        tv.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public int getItemCount() {
+        if(roomModels.isEmpty())
+        {
+            Log.i("isEmptye","y");
+        }
         return roomModels.size();
     }
     public void setFilter(List<RoomModel> filteredList)

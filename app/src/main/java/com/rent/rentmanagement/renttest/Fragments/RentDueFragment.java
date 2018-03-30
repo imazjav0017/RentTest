@@ -22,7 +22,7 @@ import com.rent.rentmanagement.renttest.roomActivity;
 public class RentDueFragment extends Fragment {
     View v;
     Context context;
-    static TextView empty;
+   public static TextView empty;
 
     RecyclerView occupiedRoomsListView;
 
@@ -50,6 +50,8 @@ public class RentDueFragment extends Fragment {
         occupiedRoomsListView.setHasFixedSize(true);
         occupiedRoomsListView.setAdapter(RoomsFragment.adapter2);
         if(RoomsFragment.oRooms.isEmpty())
+            RoomsFragment.adapter2.setEmptyView(empty);
+        /*if(RoomsFragment.oRooms.isEmpty())
         {
             if(empty!=null) {
                 occupiedRoomsListView.setVisibility(View.INVISIBLE);
@@ -61,7 +63,7 @@ public class RentDueFragment extends Fragment {
                 occupiedRoomsListView.setVisibility(View.VISIBLE);
                 empty.setVisibility(View.INVISIBLE);
             }
-        }
+        }*/
         return v;
     }
 }

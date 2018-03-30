@@ -21,7 +21,7 @@ import com.rent.rentmanagement.renttest.R;
 
 public class TotalRoomsFragment extends Fragment {
     Context context;
-    static TextView empty;
+    public static TextView empty;
     RecyclerView totalRoomsList;
     public TotalRoomsFragment() {
     }
@@ -48,6 +48,8 @@ public class TotalRoomsFragment extends Fragment {
         totalRoomsList.setHasFixedSize(true);
         totalRoomsList.setAdapter(RoomsFragment.adapter3);
         if(RoomsFragment.tRooms.isEmpty())
+            RoomsFragment.adapter3.setEmptyView(empty);
+       /* if(RoomsFragment.tRooms.isEmpty())
         {
             if(empty!=null) {
                 totalRoomsList.setVisibility(View.INVISIBLE);
@@ -59,7 +61,7 @@ public class TotalRoomsFragment extends Fragment {
                 totalRoomsList.setVisibility(View.VISIBLE);
                 empty.setVisibility(View.INVISIBLE);
             }
-        }
+        }*/
         return v;
     }
 }

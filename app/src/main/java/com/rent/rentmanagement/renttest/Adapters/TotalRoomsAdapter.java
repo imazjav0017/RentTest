@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.AsyncTasks.CheckoutTask;
 import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
+import com.rent.rentmanagement.renttest.Fragments.TotalRoomsFragment;
 import com.rent.rentmanagement.renttest.LoginActivity;
 import com.rent.rentmanagement.renttest.AsyncTasks.PaymentTask;
 import com.rent.rentmanagement.renttest.R;
@@ -189,9 +190,14 @@ public class TotalRoomsAdapter extends RecyclerView.Adapter<TotalRoomsAdapter.To
             }
         });
     }
-
+  public void setEmptyView(TextView tv)
+  {
+      tv.setVisibility(View.VISIBLE);
+  }
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
+
         return roomList.size();
     }
     public void setStaticData(String s, EditText payee, String _id) {
