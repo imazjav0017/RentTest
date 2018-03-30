@@ -227,7 +227,6 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        RoomsFragment.currentTab=2;
     }
 }
 
