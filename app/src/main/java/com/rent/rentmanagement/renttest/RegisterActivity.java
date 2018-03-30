@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,6 +28,7 @@ import java.util.Date;
 public class RegisterActivity extends AppCompatActivity {
     EditText username,email,password,mobileNo,buildingName;
     Button register;
+    ProgressBar progressBar;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -78,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            progressBar.setVisibility(View.INVISIBLE);
             if(s!=null)
             {
                 if(s.equals("200"))
@@ -85,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Registered...", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Invalid", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid! Maybe Some Detail is Already In Use", Toast.LENGTH_SHORT).show();
 
             }
             else Toast.makeText(RegisterActivity.this, "Please Check Your Internet and Try Again!", Toast.LENGTH_SHORT).show();
@@ -94,9 +97,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
     public void Register(View v)  {
         DateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        Toast.makeText(this, "Registering..!", Toast.LENGTH_SHORT).show();
         register.setClickable(false);
         try {
+            progressBar.setVisibility(View.VISIBLE);
             JSONObject userDetails = new JSONObject();
          userDetails.put("name", username.getText().toString());
             userDetails.put("email", email.getText().toString());
@@ -104,12 +107,12 @@ public class RegisterActivity extends AppCompatActivity {
             userDetails.put("mobileNo",mobileNo.getText().toString());
             userDetails.put("buildingName",buildingName.getText().toString());
             userDetails.put("date",dateFormat.format(new Date()).toString());
-
             RegisterTask task=new RegisterTask();
             Log.i("data:",userDetails.toString());
             task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signup",userDetails.toString());
         }catch(Exception e)
         {
+            progressBar.setVisibility(View.INVISIBLE);
             Log.i("err",e.getMessage());
             register.setClickable(true);
         }
@@ -131,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
         setTitle("Register");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         username=(EditText)findViewById(R.id.newUsernameInput);
+        progressBar=(ProgressBar)findViewById(R.id.registerProgress);
         email=(EditText)findViewById(R.id.emailInput);
         password=(EditText)findViewById(R.id.newPasswordInput);
         register=(Button)findViewById(R.id.submitRegister);

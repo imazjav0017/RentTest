@@ -1,5 +1,6 @@
 package com.rent.rentmanagement.renttest.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -21,7 +22,8 @@ import java.util.List;
  * Created by imazjav0017 on 12-03-2018.
  */
 
-public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
+public class
+StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
     List<StudentModel> studentsList;
     Context context1;
 
@@ -59,7 +61,9 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 i.putExtra("roomNo",model.getRoomNo());
                 i.putExtra("phNo",model.getPhNo());
                 i.putExtra("total",false);
+                i.putExtra("roomId",model.getRoomId());
                 holder.context.startActivity(i);
+                ((Activity)holder.context).finish();
             }
         });
 

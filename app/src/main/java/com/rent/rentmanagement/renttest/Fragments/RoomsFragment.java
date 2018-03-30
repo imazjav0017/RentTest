@@ -8,13 +8,19 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.Adapters.OccupiedRoomsAdapter;
@@ -43,6 +49,7 @@ public class RoomsFragment extends Fragment {
     Context context;
     TabLayout tabLayout;
     ViewPager viewPager;
+
     public static ProgressBar progressBar;
     ViewPagerAdapter viewPagerAdapter;
     public static RecyclerAdapter adapter;
@@ -75,7 +82,10 @@ public class RoomsFragment extends Fragment {
             e.printStackTrace();
         }
     }
-    public static void setData(String s,Context context) throws JSONException {
+
+
+
+    public static void setData(String s, Context context) throws JSONException {
         if(s!=null) {
             erooms.clear();
             oRooms.clear();
@@ -84,6 +94,8 @@ public class RoomsFragment extends Fragment {
             LoginActivity.sharedPreferences.edit().putInt("totalTenants", jsonObject.getInt("totalStudents")).apply();
             JSONArray array = jsonObject.getJSONArray("room");
             Log.i("array", array.toString());
+            LoginActivity.sharedPreferences.edit().putInt("occupiedRoomsCount", jsonObject.getInt("occupiedRoomsCount")).apply();
+            LoginActivity.sharedPreferences.edit().putInt("emptyRoomsCount", jsonObject.getInt("emptyRoomsCount")).apply();
             LoginActivity.sharedPreferences.edit().putInt("notCollected", jsonObject.getInt("notCollected")).apply();
             LoginActivity.sharedPreferences.edit().putInt("totalRooms", array.length()).apply();
             LoginActivity.sharedPreferences.edit().putString("totalIncome", String.valueOf(jsonObject.getInt("totalIncome"))).apply();
@@ -127,6 +139,7 @@ public class RoomsFragment extends Fragment {
 
 
         }
+
     }
     @Nullable
     @Override
@@ -142,7 +155,8 @@ public class RoomsFragment extends Fragment {
         tabLayout=(TabLayout)v.findViewById(R.id.tabLayout);
         viewPager=(ViewPager)v.findViewById(R.id.viewPager);
         viewPagerAdapter=new ViewPagerAdapter(getChildFragmentManager(),context);
-        viewPager.setCurrentItem(2,true);
+        //viewPager.setCurrentItem(2,true);
+        viewPager.setOffscreenPageLimit(2);
         viewPagerAdapter.addFragment(new TotalRoomsFragment(context),"All Rooms");
         viewPagerAdapter.addFragment(new EmptyRoomsFragment(context),"Empty Rooms");
         viewPagerAdapter.addFragment(new RentDueFragment(context),"Rent Due");
@@ -159,7 +173,6 @@ public class RoomsFragment extends Fragment {
         super.onResume();
         MainActivity.fab.setVisibility(View.VISIBLE);
         setTokenJson();
-
         if(currentTab!=-1)
             if(viewPager!=null)
             viewPager.setCurrentItem(currentTab,true);
@@ -245,4 +258,6 @@ public class RoomsFragment extends Fragment {
         EmptyRoomsFragment.emptyList.setClickable(true);
     }*/
     }
+
+
 }

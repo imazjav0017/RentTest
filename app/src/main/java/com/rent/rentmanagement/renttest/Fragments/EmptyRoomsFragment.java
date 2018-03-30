@@ -21,9 +21,9 @@ import com.rent.rentmanagement.renttest.roomActivity;
 
 public class EmptyRoomsFragment extends Fragment {
     View v;
+    static TextView empty;
     Context context;
     RecyclerView emptyRoomsListView;
-    static TextView emptyList;
 
 
 
@@ -38,6 +38,7 @@ public class EmptyRoomsFragment extends Fragment {
     public void onResume() {
         super.onResume();
         RoomsFragment.adapter.notifyDataSetChanged();
+
     }
 
     @Nullable
@@ -45,11 +46,26 @@ public class EmptyRoomsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v=inflater.inflate(R.layout.empty_rooms_tab,container,false);
         emptyRoomsListView=(RecyclerView)v. findViewById(R.id.emptyRoomsList);
-        emptyList=(TextView)v.findViewById(R.id.addBuildingText);
+        empty=(TextView)v.findViewById(R.id.noEmptyRoomsText);
         LinearLayoutManager lm=new LinearLayoutManager(context);
         emptyRoomsListView.setLayoutManager(lm);
         emptyRoomsListView.setHasFixedSize(true);
         emptyRoomsListView.setAdapter(RoomsFragment.adapter);
+       /* if(RoomsFragment.erooms.isEmpty())
+        {
+            if(empty!=null) {
+                emptyRoomsListView.setVisibility(View.INVISIBLE);
+                empty.setVisibility(View.VISIBLE);
+            }
+        }
+        else {
+            if(empty!=null) {
+                emptyRoomsListView.setVisibility(View.VISIBLE);
+                empty.setVisibility(View.INVISIBLE);
+            }
+        }*/
+        if(RoomsFragment.erooms.isEmpty())
+            RoomsFragment.adapter.setEmptyView(empty);
         return v;
     }
 }

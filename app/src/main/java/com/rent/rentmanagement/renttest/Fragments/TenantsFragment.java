@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rent.rentmanagement.renttest.Adapters.TotalTenantsAdapter;
 import com.rent.rentmanagement.renttest.DataModels.StudentModel;
 import com.rent.rentmanagement.renttest.LoginActivity;
+import com.rent.rentmanagement.renttest.MainActivity;
 import com.rent.rentmanagement.renttest.R;
 import com.rent.rentmanagement.renttest.TotalTenantsctivity;
 
@@ -40,6 +42,7 @@ import java.util.List;
 
 public class TenantsFragment extends Fragment {
     Context context;
+    static TextView empty;
     public TenantsFragment() {
     }
 
@@ -47,8 +50,8 @@ public class TenantsFragment extends Fragment {
         this.context = context;
     }
     RecyclerView totalTenants;
-    List<StudentModel> studentModelList;
-    TotalTenantsAdapter adapter;
+    public static List<StudentModel> studentModelList;
+  public static TotalTenantsAdapter adapter;
     String response;
     public void setTokenJson()
     {
@@ -178,6 +181,12 @@ public class TenantsFragment extends Fragment {
             }
         }
         adapter.notifyDataSetChanged();
+        if(studentModelList.size()==0)
+        {
+            empty.setVisibility(View.VISIBLE);
+        }
+        else
+            empty.setVisibility(View.INVISIBLE);
 
     }
 
@@ -190,6 +199,10 @@ public class TenantsFragment extends Fragment {
             e.printStackTrace();
         }
         setTokenJson();
+        if(!(MainActivity.searchView.isIconified()))
+        {
+            MainActivity.searchView.setIconified(true);
+        }
     }
 
     @Nullable
@@ -197,6 +210,7 @@ public class TenantsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.activity_total_tenantsctivity,container,false);
         totalTenants=(RecyclerView)v.findViewById(R.id.totalStudentsList);
+        empty=(TextView)v.findViewById(R.id.noTenantsText);
         studentModelList=new ArrayList<>();
         adapter=new TotalTenantsAdapter(studentModelList);
         LinearLayoutManager lm=new LinearLayoutManager(context);

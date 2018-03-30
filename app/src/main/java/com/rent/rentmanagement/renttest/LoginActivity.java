@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     String accessToken=null;
     int resp;
     JSONObject tokenJson;
+    ProgressBar progressBar;
     public static SharedPreferences sharedPreferences;
     public String getResponse(HttpURLConnection connection)
     {
@@ -62,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             JSONObject jsonObject=tokenJson.getJSONObject("user");
             Log.i("respone111",jsonObject.toString());
             sharedPreferences.edit().putString("ownerDetails",jsonObject.toString()).apply();
+            LoginActivity.sharedPreferences.edit().putInt("occupiedRoomsCount", tokenJson.getInt("occupiedRoomsCount")).apply();
+            LoginActivity.sharedPreferences.edit().putInt("emptyRoomsCount", tokenJson.getInt("emptyRoomsCount")).apply();
             LoginActivity.sharedPreferences.edit().putInt("notCollected", tokenJson.getInt("notCollected")).apply();
             LoginActivity.sharedPreferences.edit().putInt("totalRooms", Integer.parseInt(tokenJson.getString("totalRooms"))).apply();
             LoginActivity.sharedPreferences.edit().putInt("totalTenants",tokenJson.getInt("totalStudents")).apply();
@@ -130,11 +134,12 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String response) {
+            progressBar.setVisibility(View.INVISIBLE);
             if (response != null) {
                 if (response.equals("200")) {
                     Toast.makeText(getApplicationContext(), "Logged In!", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Try Again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Check Your Credentials And Try Again!", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -155,7 +160,9 @@ public class LoginActivity extends AppCompatActivity {
             if(!(emailInput.getText().toString().equals("")||passwordInput.getText().toString().equals(""))) {
                 loginDetails.put("email", emailInput.getText().toString());
                 loginDetails.put("password", passwordInput.getText().toString());
-                Toast.makeText(this, "Logging In..!", Toast.LENGTH_SHORT).show();
+                LoginTask task=new LoginTask();
+                task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signin",loginDetails.toString());
+                progressBar.setVisibility(View.VISIBLE);
             }
             else
             {
@@ -163,12 +170,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         }catch(Exception e)
         {
+            progressBar.setVisibility(View.INVISIBLE);
             loginButton.setClickable(true);
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        LoginTask task=new LoginTask();
 
-        task.execute("https://sleepy-atoll-65823.herokuapp.com/users/signin",loginDetails.toString());
     }
     public void Register(View v)
     {
@@ -192,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
             gotoHome();
         }
         setContentView(R.layout.activity_login);
+        progressBar=(ProgressBar)findViewById(R.id.loginProgress);
         Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setTitle("Login");

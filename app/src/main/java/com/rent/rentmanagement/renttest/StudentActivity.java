@@ -1,5 +1,7 @@
 package com.rent.rentmanagement.renttest;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +12,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rent.rentmanagement.renttest.Fragments.DatePickerFragment;
 import com.rent.rentmanagement.renttest.Fragments.RoomsFragment;
 
 import org.json.JSONException;
@@ -25,9 +30,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText studentName,contactNo,aadharNo;
+    TextView datePickerText;
     String sName,sNo,sAad;
     String _id;
     JSONObject studentDetails;
@@ -37,6 +46,21 @@ public class StudentActivity extends AppCompatActivity {
     {
         checkin.setClickable(true);
     }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        Calendar c=Calendar.getInstance();
+        c.set(Calendar.YEAR,i);
+        c.set(Calendar.MONTH,i1);
+        c.set(Calendar.DAY_OF_MONTH,i2);
+        String date=DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        String year= String.valueOf(c.get(Calendar.YEAR));
+        String month= String.valueOf(c.get(Calendar.MONTH)+1);
+        String day= String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+        //datePickerText.setText(year+"-"+month+"-"+day);
+        datePickerText.setText(date);
+    }
+
     public class AddStudentsTask extends AsyncTask<String,Void,String>
     {
         @Override
@@ -105,6 +129,7 @@ public class StudentActivity extends AppCompatActivity {
                 throw new Exception("invalid token");
             }
             else {
+                studentDetails.put("checkinDate",datePickerText.getText().toString());
                 studentDetails.put("name",sName);
                 studentDetails.put("mobileNo",sNo);
                 studentDetails.put("adharNo",sAad);
@@ -157,6 +182,22 @@ public class StudentActivity extends AppCompatActivity {
         finish.setClickable(false);
         Intent i=getIntent();
         _id=i.getStringExtra("id");
+        datePickerText=(TextView)findViewById(R.id.datePicker);
+        Calendar c=Calendar.getInstance();
+        String year= String.valueOf(c.get(Calendar.YEAR));
+        String month= String.valueOf(c.get(Calendar.MONTH)+1);
+        String day= String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+       // datePickerText.setText(year+"-"+month+"-"+day);
+        String date=DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
+        datePickerText.setText(date);
+        datePickerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerFragment df=new DatePickerFragment();
+                df.show(getSupportFragmentManager(),"Choose Date");
+
+            }
+        });
         fromTotal=i.getBooleanExtra("fromTotal",false);
         setTitle("Room No: "+i.getStringExtra("roomNo"));
         studentName=(EditText)findViewById(R.id.studentNameInput);
