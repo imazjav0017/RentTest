@@ -29,12 +29,6 @@
         <activity android:name=".roomActivity"  android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"  android:resizeableActivity="false"/>
 
-        <supports-screens
-            android:anyDensity="true"
-            android:largeScreens="true"
-            android:normalScreens="true"
-            android:smallScreens="true"
-            android:xlargeScreens="true" />
 
         <activity android:name=".roomDetailActivity"  android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"  android:resizeableActivity="false"/>
