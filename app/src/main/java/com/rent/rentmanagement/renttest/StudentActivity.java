@@ -65,7 +65,11 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
             month="0"+month;
         }
         String day= String.valueOf(c.get(Calendar.DAY_OF_MONTH));
-        datePickerText.setText(day+"-"+month+"-"+year);
+        if(day.length()==1)
+        {
+            day="0"+day;
+        }
+        datePickerText.setText(year+"-"+month+"-"+day);
     }
 
     public class AddStudentsTask extends AsyncTask<String,Void,String>
@@ -204,9 +208,13 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
             month="0"+month;
         }
         String day= String.valueOf(c.get(Calendar.DAY_OF_MONTH));
+        if(day.length()==1)
+        {
+            day="0"+day;
+        }
+        datePickerText.setText(year+"-"+month+"-"+day);
        // datePickerText.setText(year+"-"+month+"-"+day);
         String date=DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(c.getTime());
-        datePickerText.setText(day+"-"+month+"-"+year);
         //datePickerText.setText(date);
         datePickerText.setOnClickListener(new View.OnClickListener() {
             @Override
