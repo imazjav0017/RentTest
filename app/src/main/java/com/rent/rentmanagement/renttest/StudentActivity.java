@@ -2,10 +2,13 @@ package com.rent.rentmanagement.renttest;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -34,7 +37,9 @@ import java.net.ProtocolException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 
 public class StudentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     EditText studentName,contactNo,aadharNo;
@@ -42,7 +47,9 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
     String sName,sNo,sAad;
     ProgressBar progressBar;
     RelativeLayout bg;
+    public static final int FROM_NOTIFICATION=1;
     String _id;
+    ArrayList<String> tenantsNames;
     JSONObject studentDetails;
     boolean fromTotal,added=false;
     Button checkin,finish;
@@ -114,6 +121,7 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
             bg.setClickable(true);
             if(s!=null)
             {
+                tenantsNames.add(sName);
                 added=true;
                 finish.setClickable(true);
                 Toast.makeText(getApplicationContext(),s, Toast.LENGTH_SHORT).show();
@@ -131,6 +139,35 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
     public void back(View v)
     {
         onBackPressed();
+        String names="";
+        Iterator<String> it=tenantsNames.iterator();
+        while(it.hasNext())
+        {
+            names+=it.next();
+            if(it.hasNext())
+            {
+                names+=", ";
+            }
+            else
+                names+=".";
+        }
+        /*NotificationCompat.Builder notf;
+        final int not_id=100008800;
+        notf=new NotificationCompat.Builder(getApplicationContext());
+        notf.setAutoCancel(true);
+        notf.setSmallIcon(R.drawable.logo);
+        notf.setTicker("Students Added");
+        notf.setWhen(System.currentTimeMillis());
+        notf.setContentTitle("New Tenants!");
+        notf.setContentText(names);
+        Intent i=new Intent(getApplicationContext(),MainActivity.class);
+        i.putExtra("fromN",FROM_NOTIFICATION);
+        PendingIntent pi=PendingIntent.getActivity(getApplicationContext(),0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        notf.setContentIntent(pi);
+        NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(not_id,notf.build());*/
+
+
     }
     public void makeJson()
     {
@@ -229,6 +266,8 @@ public class StudentActivity extends AppCompatActivity implements DatePickerDial
         studentName=(EditText)findViewById(R.id.studentNameInput);
         contactNo=(EditText)findViewById(R.id.studentContactNoInput);
         aadharNo=(EditText)findViewById(R.id.studentAadharNoInput);
+        tenantsNames=new ArrayList<>();
+        tenantsNames.clear();
 
     }
 

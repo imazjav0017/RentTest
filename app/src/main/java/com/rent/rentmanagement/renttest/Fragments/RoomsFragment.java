@@ -28,6 +28,7 @@ import com.rent.rentmanagement.renttest.Adapters.RecyclerAdapter;
 import com.rent.rentmanagement.renttest.Adapters.TotalRoomsAdapter;
 import com.rent.rentmanagement.renttest.AsyncTasks.GetRoomsTask;
 import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.DataModels.StudentModel;
 import com.rent.rentmanagement.renttest.LoginActivity;
 import com.rent.rentmanagement.renttest.MainActivity;
 import com.rent.rentmanagement.renttest.R;
@@ -45,11 +46,11 @@ import java.util.concurrent.ExecutionException;
  * Created by imazjav0017 on 24-03-2018.
  */
 
-public class RoomsFragment extends Fragment {
+public class RoomsFragment extends Fragment implements SearchView.OnQueryTextListener {
     Context context;
     TabLayout tabLayout;
     ViewPager viewPager;
-
+    public static SearchView searchView;
     public static ProgressBar progressBar;
     ViewPagerAdapter viewPagerAdapter;
     public static RecyclerAdapter adapter;
@@ -139,6 +140,7 @@ public class RoomsFragment extends Fragment {
             TotalRoomsFragment.empty();
             RentDueFragment.empty();
             EmptyRoomsFragment.empty();
+            TotalRoomsFragment.useSpinner=true;
         }
 
     }
@@ -169,6 +171,66 @@ public class RoomsFragment extends Fragment {
         setStaticData(LoginActivity.sharedPreferences.getString("roomsDetails",null));
         return v;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        MenuItem item=menu.findItem(R.id.searchMenu);
+        item.setVisible(true);
+        searchView = (SearchView) MenuItemCompat.getActionView(item);
+        searchView.setOnQueryTextListener(this);
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+    }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        newText = newText.toLowerCase();
+        ArrayList<RoomModel> filteredList = new ArrayList<>();
+        ArrayList<RoomModel> filteredOcList = new ArrayList<>();
+        ArrayList<RoomModel> filteredTotalList = new ArrayList<>();
+        filteredList.clear();
+        filteredOcList.clear();
+        filteredTotalList.clear();
+        if(newText.isEmpty())
+        {
+            filteredTotalList.addAll(RoomsFragment.tRooms);
+        }
+        if(RoomsFragment.erooms!=null) {
+            for (RoomModel model : RoomsFragment.erooms) {
+                if (model.getRoomNo().toLowerCase().contains(newText)) {
+                    filteredList.add(model);
+                }
+            }
+            for (RoomModel model : RoomsFragment.oRooms) {
+                if (model.getRoomNo().toLowerCase().contains(newText)) {
+                    filteredOcList.add(model);
+                }
+            }
+            for (RoomModel model : RoomsFragment.tRooms) {
+                if (model.getRoomNo().toLowerCase().contains(newText)) {
+                    filteredTotalList.add(model);
+                }
+            }
+        }
+        if(RoomsFragment.adapter3!=null) {
+
+            RoomsFragment.adapter.setFilter(filteredList);
+            RoomsFragment.adapter2.setFilter(filteredOcList);
+            RoomsFragment.adapter3.setFilter(filteredTotalList);
+        }
+        return true;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -253,6 +315,7 @@ public class RoomsFragment extends Fragment {
         adapter.notifyDataSetChanged();
         adapter2.notifyDataSetChanged();
         adapter3.notifyDataSetChanged();
+        TotalRoomsFragment.useSpinner=true;
 
         /*else {
         EmptyRoomsFragment.emptyList.setVisibility(View.VISIBLE);

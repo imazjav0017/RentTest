@@ -27,9 +27,8 @@ import com.rent.rentmanagement.renttest.Fragments.TenantsFragment;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
    public static BottomNavigationView bottomNavigationView;
-   public static SearchView searchView;
     public static FloatingActionButton fab;
     public static String roomInfo;
     boolean showSv=false;
@@ -64,73 +63,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             return true;
 
         }
+
         return false;
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_menu,menu);
-        MenuItem item=menu.findItem(R.id.searchMenu);
-            searchView = (SearchView) MenuItemCompat.getActionView(item);
-            searchView.setOnQueryTextListener(this);
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-
         return true;
     }
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        return false;
-    }
 
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        newText = newText.toLowerCase();
-        ArrayList<RoomModel> filteredList = new ArrayList<>();
-        ArrayList<RoomModel> filteredOcList = new ArrayList<>();
-        ArrayList<RoomModel> filteredTotalList = new ArrayList<>();
-        ArrayList<StudentModel>filteredTenants=new ArrayList<>();
-        filteredTenants.clear();
-        filteredList.clear();
-        filteredOcList.clear();
-        filteredTotalList.clear();
-        if(RoomsFragment.erooms!=null) {
-            for (RoomModel model : RoomsFragment.erooms) {
-                if (model.getRoomNo().toLowerCase().contains(newText)) {
-                    filteredList.add(model);
-                }
-            }
-            for (RoomModel model : RoomsFragment.oRooms) {
-                if (model.getRoomNo().toLowerCase().contains(newText)) {
-                    filteredOcList.add(model);
-                }
-            }
-            for (RoomModel model : RoomsFragment.tRooms) {
-                if (model.getRoomNo().toLowerCase().contains(newText)) {
-                    filteredTotalList.add(model);
-                }
-            }
-        }
-        if(RoomsFragment.adapter3!=null) {
-
-            RoomsFragment.adapter.setFilter(filteredList);
-            RoomsFragment.adapter2.setFilter(filteredOcList);
-            RoomsFragment.adapter3.setFilter(filteredTotalList);
-        }
-        if(TenantsFragment.studentModelList!=null)
-        {
-            for(StudentModel model:TenantsFragment.studentModelList)
-            {
-                if(model.getName().toLowerCase().contains(newText))
-                {
-                    filteredTenants.add(model);
-                }
-            }
-            if(TenantsFragment.adapter!=null)
-            {
-                TenantsFragment.adapter.setFilter(filteredTenants);
-            }
-        }
-        return true;
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,7 +94,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             }
         });
         fab.setVisibility(View.INVISIBLE);
+        if(getIntent().getIntExtra("fromN",-1)!=StudentActivity.FROM_NOTIFICATION)
         loadFragment(new ProfileFragment(MainActivity.this));
+        else
+            loadFragment(new RoomsFragment(MainActivity.this));
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -200,13 +144,31 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     public void onBackPressed() {
 
-        if(!(searchView.isIconified()))
+        if (bottomNavigationView.getSelectedItemId()!=R.id.profileViewItem)
         {
-           searchView.setIconified(true);
-        }
-        else if (bottomNavigationView.getSelectedItemId()!=R.id.profileViewItem)
-        {
-            bottomNavigationView.setSelectedItemId(R.id.profileViewItem);
+            if(bottomNavigationView.getSelectedItemId()==R.id.roomViewItem)
+            {
+                if(!(RoomsFragment.searchView.isIconified()))
+                {
+                    RoomsFragment.searchView.setIconified(true);
+                }
+                else
+                {
+                    bottomNavigationView.setSelectedItemId(R.id.profileViewItem);
+                }
+            }
+            if(bottomNavigationView.getSelectedItemId()==R.id.tenantsViewiTem)
+            {
+                if(!(TenantsFragment.searchView.isIconified()))
+                {
+                    TenantsFragment.searchView.setIconified(true);
+                }
+                else
+                {
+                    bottomNavigationView.setSelectedItemId(R.id.profileViewItem);
+                }
+            }
+
         }
         else
         {

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.rent.rentmanagement.renttest.Adapters.TotalRoomsAdapter;
 
 import com.rent.rentmanagement.renttest.DataModels.RoomModel;
+import com.rent.rentmanagement.renttest.MainActivity;
 import com.rent.rentmanagement.renttest.R;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class TotalRoomsFragment extends Fragment {
     public static TextView empty;
     RecyclerView totalRoomsList;
     Spinner spinner;
+    public static boolean useSpinner=false;
     public TotalRoomsFragment() {
     }
 
@@ -56,17 +59,18 @@ public class TotalRoomsFragment extends Fragment {
         totalRoomsList.setAdapter(RoomsFragment.adapter3);
         spinner=(Spinner)v.findViewById(R.id.filterAllRooms);
         String[]filterOptions={"All Rooms","Empty Rooms","Rent Due","Paid"};
-        ArrayAdapter<String>filterAdapter=new ArrayAdapter<String>(context,android.R.layout.simple_list_item_1,filterOptions);
+        ArrayAdapter<String>filterAdapter=new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,filterOptions);
         filterAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
         spinner.setAdapter(filterAdapter);
-      /*spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 ArrayList<RoomModel> filteredList = new ArrayList<>();
                 filteredList.clear();
-                if(RoomsFragment.tRooms!=null) {
+                if(RoomsFragment.tRooms!=null && RoomsFragment.tRooms.size()!=0) {
                     switch (i) {
                         case 0:
+
                             for(RoomModel model: RoomsFragment.tRooms)
                             {
                                 filteredList.add(model);
@@ -88,6 +92,7 @@ public class TotalRoomsFragment extends Fragment {
                             }
                             break;
                         case 2:
+
                             for(RoomModel model: RoomsFragment.tRooms)
                             {
                                 if(!model.isEmpty() && model.isRentDue())
@@ -110,15 +115,17 @@ public class TotalRoomsFragment extends Fragment {
                             }
 
                         RoomsFragment.adapter3.notifyDataSetChanged();
+
+
                     }
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                RoomsFragment.adapter3.notifyDataSetChanged();
+
             }
-        });*/
+        });
 
        /* if(RoomsFragment.tRooms.isEmpty())
         {
