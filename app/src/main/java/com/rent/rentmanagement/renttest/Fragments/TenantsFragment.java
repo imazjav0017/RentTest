@@ -277,6 +277,10 @@ public class TenantsFragment extends Fragment implements SearchView.OnQueryTextL
         newText = newText.toLowerCase();
         ArrayList<StudentModel>filteredTenants=new ArrayList<>();
         filteredTenants.clear();
+        if(newText.isEmpty())
+        {
+            onlyRooms.setChecked(false);
+        }
 
         if(TenantsFragment.studentModelList!=null)
         {
