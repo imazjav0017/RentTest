@@ -168,7 +168,7 @@ public class TenantsFragment extends Fragment implements SearchView.OnQueryTextL
                 for (int i = 0; i < array1.length(); i++) {
                     JSONObject detail = array1.getJSONObject(i);
                     studentModelList.add(new StudentModel(detail.getString("name"), detail.getString("mobileNo"), rNo
-                            , detail.getString("_id"),detail.getInt("adharNo")));
+                            , detail.getString("_id"),detail.getString("adharNo")));
                 }
             }
             adapter.notifyDataSetChanged();
@@ -189,7 +189,7 @@ public class TenantsFragment extends Fragment implements SearchView.OnQueryTextL
             for (int i = 0; i < array1.length(); i++) {
                 JSONObject detail = array1.getJSONObject(i);
                 studentModelList.add(new StudentModel(detail.getString("name"),detail.getString("mobileNo"),rNo
-                        ,detail.getString("_id"),detail.getInt("adharNo")));
+                        ,detail.getString("_id"),detail.getString("adharNo")));
             }
         }
         adapter.notifyDataSetChanged();

@@ -162,7 +162,7 @@ String _id,name,phNo,roomNo,adhaarNo;
         phNo=i.getStringExtra("phNo");
         roomNo=i.getStringExtra("roomNo");
         from=i.getBooleanExtra("total",false);
-        adhaarNo=String.valueOf(i.getIntExtra("aadharNo",0));
+        adhaarNo=i.getStringExtra("aadharNo");
         Log.i("aadharNo",adhaarNo);
         sName=(EditText) findViewById(R.id.studentNameField);
         sRoomNo=(EditText)findViewById(R.id.studentRoomNoField);

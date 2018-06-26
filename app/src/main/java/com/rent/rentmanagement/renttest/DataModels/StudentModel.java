@@ -9,9 +9,9 @@ public class StudentModel {
     String phNo;
     String roomNo;
     String _id;
-    int aadharNo;
+    String aadharNo;
 
-    public StudentModel(String name, String phNo, String roomNo, String _id, String roomId,int aadharNo) {
+    public StudentModel(String name, String phNo, String roomNo, String _id, String roomId,String aadharNo) {
         this.name = name;
         this.phNo = phNo;
         this.roomNo = roomNo;
@@ -20,28 +20,20 @@ public class StudentModel {
         this.roomId = roomId;
     }
 
-    public int getAadharNo() {
+    public String getAadharNo() {
         return aadharNo;
     }
 
-    public void setAadharNo(int aadharNo) {
+    public void setAadharNo(String aadharNo) {
         this.aadharNo = aadharNo;
     }
 
-    public StudentModel(String name, String phNo, String roomNo, String _id,int aadharNo) {
+    public StudentModel(String name, String phNo, String roomNo, String _id,String aadharNo) {
         this.name = name;
         this.phNo = phNo;
         this.roomNo = roomNo;
         this._id = _id;
         this.aadharNo=aadharNo;
-    }
-
-    public StudentModel(String name, String phNo, String roomNo, String _id, String roomId) {
-        this.name = name;
-        this.phNo = phNo;
-        this.roomNo = roomNo;
-        this._id = _id;
-        this.roomId = roomId;
     }
 
     String roomId;
