@@ -390,13 +390,14 @@ public class roomDetailActivity extends AppCompatActivity {
                         if(detail.getBoolean("isEmpty")==false && detail.getString("_id").equals(_id))
                         {
                             JSONArray students=detail.getJSONArray("students");
+                            Log.i("StudentsInfo",students.toString());
                             if(students.length()>0)
                             {
 
                                 for(int k=0;k<students.length();k++) {
                                     JSONObject studentDetails = students.getJSONObject(k);
                                      studentsList.add(new StudentModel(studentDetails.getString("name"),studentDetails.getString("mobileNo"),roomNo,
-                                             studentDetails.getString("_id"),_id));
+                                             studentDetails.getString("_id"),_id,studentDetails.getInt("adharNo")));
                                 }
                                 adapter.notifyDataSetChanged();
 

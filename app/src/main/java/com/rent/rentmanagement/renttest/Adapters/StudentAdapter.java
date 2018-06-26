@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +56,13 @@ StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
         holder.rl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent i=new Intent(holder.context,studentProfile.class);
                 i.putExtra("name",model.getName());
                 i.putExtra("id",model.get_id());
                 i.putExtra("roomNo",model.getRoomNo());
+                i.putExtra("aadharNo",model.getAadharNo());
+                Log.i("ade",String.valueOf(model.getAadharNo()));
                 i.putExtra("phNo",model.getPhNo());
                 i.putExtra("total",false);
                 i.putExtra("roomId",model.getRoomId());

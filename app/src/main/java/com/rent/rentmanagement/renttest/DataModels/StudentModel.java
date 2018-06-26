@@ -9,12 +9,31 @@ public class StudentModel {
     String phNo;
     String roomNo;
     String _id;
+    int aadharNo;
 
-    public StudentModel(String name, String phNo, String roomNo, String _id) {
+    public StudentModel(String name, String phNo, String roomNo, String _id, String roomId,int aadharNo) {
         this.name = name;
         this.phNo = phNo;
         this.roomNo = roomNo;
         this._id = _id;
+        this.aadharNo = aadharNo;
+        this.roomId = roomId;
+    }
+
+    public int getAadharNo() {
+        return aadharNo;
+    }
+
+    public void setAadharNo(int aadharNo) {
+        this.aadharNo = aadharNo;
+    }
+
+    public StudentModel(String name, String phNo, String roomNo, String _id,int aadharNo) {
+        this.name = name;
+        this.phNo = phNo;
+        this.roomNo = roomNo;
+        this._id = _id;
+        this.aadharNo=aadharNo;
     }
 
     public StudentModel(String name, String phNo, String roomNo, String _id, String roomId) {
@@ -44,5 +63,11 @@ public class StudentModel {
 
     public String getRoomId() {
         return roomId;
+    }
+
+    @Override
+    public String toString() {
+        String result=String.valueOf(aadharNo);
+        return result;
     }
 }

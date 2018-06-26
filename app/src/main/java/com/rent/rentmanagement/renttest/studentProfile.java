@@ -162,6 +162,8 @@ String _id,name,phNo,roomNo,adhaarNo;
         phNo=i.getStringExtra("phNo");
         roomNo=i.getStringExtra("roomNo");
         from=i.getBooleanExtra("total",false);
+        adhaarNo=String.valueOf(i.getIntExtra("aadharNo",0));
+        Log.i("aadharNo",adhaarNo);
         sName=(EditText) findViewById(R.id.studentNameField);
         sRoomNo=(EditText)findViewById(R.id.studentRoomNoField);
         sPhNo=(EditText)findViewById(R.id.studentPhNoField);
@@ -171,6 +173,7 @@ String _id,name,phNo,roomNo,adhaarNo;
         sName.setText(name);
         sRoomNo.setText(roomNo);
         sPhNo.setText(phNo);
+        sAadharNo.setText(adhaarNo);
     }
 
     @Override

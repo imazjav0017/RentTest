@@ -304,7 +304,6 @@ public class roomActivity extends AppCompatActivity implements SearchView.OnQuer
                     if (array.length() == 0) {
 
                     } else {
-
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject detail = array.getJSONObject(i);
                             if (detail.getBoolean("isEmpty") == true) {
