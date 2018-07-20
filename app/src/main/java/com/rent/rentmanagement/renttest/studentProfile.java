@@ -142,6 +142,7 @@ String _id,name,phNo,roomNo,adhaarNo;
     }
     public void editStudent(View v)
     {
+        Log.i("e","c");
         edit.setClickable(false);
         name=sName.getText().toString();
         phNo=sPhNo.getText().toString();
